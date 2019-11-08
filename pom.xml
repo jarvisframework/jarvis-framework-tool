@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- The first line of code for the jarvis (2019-11-08 16:00:00) -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.jarvis.framework</groupId>
+    <artifactId>jarvis-framework</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <revision>0.0.1-SNAPSHOT</revision>
+        <main.basedir>${basedir}</main.basedir>
+    </properties>
+
+    <modules>
+        <module>jarvis-redis</module>
+    </modules>
+
+</project>
+
