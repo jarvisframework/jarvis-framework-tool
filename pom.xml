@@ -4,20 +4,46 @@
     <!-- The first line of code for the jarvis (2019-11-08 16:00:00) -->
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.jarvis.framework</groupId>
+    <groupId>com.jarvis.framework</groupId>
     <artifactId>jarvis-framework</artifactId>
-    <version>${revision}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
-        <revision>0.0.1-SNAPSHOT</revision>
-        <main.basedir>${basedir}</main.basedir>
+        <compile.version>8</compile.version>
     </properties>
 
     <modules>
+        <module>jarvis-all</module>
+        <module>jarvis-core</module>
         <module>jarvis-redis</module>
-        <module>jarvis-common</module>
     </modules>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${compile.version}</source>
+                    <target>${compile.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
 
