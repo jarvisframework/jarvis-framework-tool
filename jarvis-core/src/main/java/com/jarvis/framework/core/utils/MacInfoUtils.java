@@ -13,12 +13,12 @@ import java.net.UnknownHostException;
  */
 public class MacInfoUtils {
 
-    /** 
-     * @Title: getLastMac
-     * @Description: TODO(获取MAC地址最后一个字节)
-     * @param
-     * @return int
-     * @throws UnknownHostException,SocketException
+    /**
+     * 获取MAC地址最后一个字节
+     *
+     * @return
+     * @throws UnknownHostException
+     * @throws SocketException
      */
     public static int getLastMac() throws UnknownHostException, SocketException {
         int id;
