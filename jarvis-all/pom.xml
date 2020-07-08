@@ -2,6 +2,7 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.jarvis.framework</groupId>
@@ -9,14 +10,34 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <modelVersion>4.0.0</modelVersion>
     <artifactId>jarvis-all</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
+
         <dependency>
             <groupId>com.jarvis.framework</groupId>
             <artifactId>jarvis-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jarvis.framework</groupId>
+            <artifactId>jarvis-crypto</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jarvis.framework</groupId>
+            <artifactId>jarvis-email</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jarvis.framework</groupId>
+            <artifactId>jarvis-http</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jarvis.framework</groupId>
+            <artifactId>jarvis-poi</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
@@ -25,6 +46,5 @@
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
-
 
 </project>
