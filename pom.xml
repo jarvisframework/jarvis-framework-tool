@@ -20,6 +20,7 @@
         <module>jarvis-crypto</module>
         <module>jarvis-http</module>
         <module>jarvis-poi</module>
+        <module>jarvis-email</module>
     </modules>
 
     <build>
