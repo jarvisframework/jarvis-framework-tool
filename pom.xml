@@ -8,21 +8,42 @@
     <artifactId>jarvis-framework</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <!-- 还未注册的域名 -->
+    <url>jarvisframework.com</url>
+    <!-- <groupId>com.jarvisframework</groupId>  -->
 
     <properties>
+        <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+
         <compile.version>8</compile.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.version>4.13</junit.version>
+        <hutool.version>5.3.8</hutool.version>
     </properties>
 
     <modules>
-        <module>jarvis-all</module>
-        <module>jarvis-core</module>
-        <module>jarvis-redis</module>
-        <module>jarvis-crypto</module>
-        <module>jarvis-http</module>
-        <module>jarvis-poi</module>
-        <module>jarvis-email</module>
+        <module>jarvis-tool-all</module>
+        <module>jarvis-tool-core</module>
+        <module>jarvis-tool-redis</module>
+        <module>jarvis-tool-crypto</module>
+        <module>jarvis-tool-http</module>
+        <module>jarvis-tool-poi</module>
+        <module>jarvis-tool-email</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
