@@ -1,6 +1,6 @@
 package com.jarvisframework.tool.core.convert;
 
-import cn.hutool.core.util.StrUtil;
+import com.jarvisframework.tool.core.util.StringUtils;
 
 /**
  * 将浮点数类型的number转换成英语的表达方式 <br>
@@ -49,9 +49,10 @@ public class NumberWordFormatter {
 			// 否则就是全部
 			lstr = x;
 		}
-
-		String lstrrev = StrUtil.reverse(lstr); // 对左边的字串取反
-		String[] a = new String[5]; // 定义5个字串变量来存放解析出来的叁位一组的字串
+		// 对左边的字串取反
+		String lstrrev = StringUtils.reverse(lstr);
+		// 定义5个字串变量来存放解析出来的叁位一组的字串
+		String[] a = new String[5];
 
 		switch (lstrrev.length() % 3) {
 			case 1:
@@ -63,7 +64,7 @@ public class NumberWordFormatter {
 		}
 		StringBuilder lm = new StringBuilder(); // 用来存放转换后的整数部分
 		for (int i = 0; i < lstrrev.length() / 3; i++) {
-			a[i] = StrUtil.reverse(lstrrev.substring(3 * i, 3 * i + 3)); // 截取第一个三位
+			a[i] = StringUtils.reverse(lstrrev.substring(3 * i, 3 * i + 3)); // 截取第一个三位
 			if (false == "000".equals(a[i])) { // 用来避免这种情况：1000000 = one million
 				// thousand only
 				if (i != 0) {

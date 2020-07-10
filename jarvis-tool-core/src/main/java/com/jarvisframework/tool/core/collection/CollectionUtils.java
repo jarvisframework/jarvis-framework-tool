@@ -10,16 +10,11 @@ import cn.hutool.core.lang.Matcher;
 import cn.hutool.core.lang.func.Func1;
 import cn.hutool.core.lang.hash.Hash32;
 import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.ClassUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.ReflectUtil;
-import cn.hutool.core.util.TypeUtil;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.convert.ConverterRegistry;
 import com.jarvisframework.tool.core.exception.UtilException;
-import com.jarvisframework.tool.core.util.ArrayUtils;
-import com.jarvisframework.tool.core.util.CharUtils;
-import com.jarvisframework.tool.core.util.StringUtils;
+import com.jarvisframework.tool.core.map.MapUtils;
+import com.jarvisframework.tool.core.util.*;
 
 import java.lang.reflect.Type;
 import java.util.*;
@@ -294,7 +289,7 @@ public class CollectionUtils {
      * @return 单差集
      */
     public static <T> Collection<T> subtract(Collection<T> coll1, Collection<T> coll2) {
-        final Collection<T> result = ObjectUtil.clone(coll1);
+        final Collection<T> result = ObjectUtils.clone(coll1);
         result.removeAll(coll2);
         return result;
     }
@@ -315,10 +310,10 @@ public class CollectionUtils {
     public static <T> List<T> subtractToList(Collection<T> coll1, Collection<T> coll2) {
 
         if (isEmpty(coll1)) {
-            return ListUtil.empty();
+            return ListUtils.empty();
         }
         if (isEmpty(coll2)) {
-            return ListUtil.list(true, coll1);
+            return ListUtils.list(true, coll1);
         }
 
         //将被交数用链表储存，防止因为频繁扩容影响性能
@@ -416,7 +411,7 @@ public class CollectionUtils {
      * @see IterUtil#countMap(Iterator)
      */
     public static <T> Map<T, Integer> countMap(Iterable<T> collection) {
-        return IterUtil.countMap(null == collection ? null : collection.iterator());
+        return IterUtils.countMap(null == collection ? null : collection.iterator());
     }
 
     /**
@@ -433,7 +428,7 @@ public class CollectionUtils {
         if (null == iterable) {
             return null;
         }
-        return IterUtil.join(iterable.iterator(), conjunction);
+        return IterUtils.join(iterable.iterator(), conjunction);
     }
 
     /**
@@ -451,7 +446,7 @@ public class CollectionUtils {
         if (null == iterable) {
             return null;
         }
-        return IterUtil.join(iterable.iterator(), conjunction, prefix, suffix);
+        return IterUtils.join(iterable.iterator(), conjunction, prefix, suffix);
     }
 
     /**
@@ -466,7 +461,7 @@ public class CollectionUtils {
      */
     @Deprecated
     public static <T> String join(Iterator<T> iterator, CharSequence conjunction) {
-        return IterUtil.join(iterator, conjunction);
+        return IterUtils.join(iterator, conjunction);
     }
 
     /**
@@ -538,7 +533,7 @@ public class CollectionUtils {
      * @see MapUtil#newHashMap()
      */
     public static <K, V> HashMap<K, V> newHashMap() {
-        return MapUtil.newHashMap();
+        return MapUtils.newHashMap();
     }
 
     /**
@@ -553,7 +548,7 @@ public class CollectionUtils {
      * @since 3.0.4
      */
     public static <K, V> HashMap<K, V> newHashMap(int size, boolean isOrder) {
-        return MapUtil.newHashMap(size, isOrder);
+        return MapUtils.newHashMap(size, isOrder);
     }
 
     /**
@@ -566,7 +561,7 @@ public class CollectionUtils {
      * @see MapUtil#newHashMap(int)
      */
     public static <K, V> HashMap<K, V> newHashMap(int size) {
-        return MapUtil.newHashMap(size);
+        return MapUtils.newHashMap(size);
     }
 
     // ----------------------------------------------------------------------------------------------- new HashSet
@@ -689,7 +684,7 @@ public class CollectionUtils {
      * @since 4.1.2
      */
     public static <T> List<T> list(boolean isLinked) {
-        return ListUtil.list(isLinked);
+        return ListUtils.list(isLinked);
     }
 
     /**
@@ -703,7 +698,7 @@ public class CollectionUtils {
      */
     @SafeVarargs
     public static <T> List<T> list(boolean isLinked, T... values) {
-        return ListUtil.list(isLinked, values);
+        return ListUtils.list(isLinked, values);
     }
 
     /**
@@ -716,7 +711,7 @@ public class CollectionUtils {
      * @since 4.1.2
      */
     public static <T> List<T> list(boolean isLinked, Collection<T> collection) {
-        return ListUtil.list(isLinked, collection);
+        return ListUtils.list(isLinked, collection);
     }
 
     /**
@@ -730,7 +725,7 @@ public class CollectionUtils {
      * @since 4.1.2
      */
     public static <T> List<T> list(boolean isLinked, Iterable<T> iterable) {
-        return ListUtil.list(isLinked, iterable);
+        return ListUtils.list(isLinked, iterable);
     }
 
     /**
@@ -744,7 +739,7 @@ public class CollectionUtils {
      * @since 4.1.2
      */
     public static <T> List<T> list(boolean isLinked, Iterator<T> iter) {
-        return ListUtil.list(isLinked, iter);
+        return ListUtils.list(isLinked, iter);
     }
 
     /**
@@ -758,7 +753,7 @@ public class CollectionUtils {
      * @since 3.0.8
      */
     public static <T> List<T> list(boolean isLinked, Enumeration<T> enumeration) {
-        return ListUtil.list(isLinked, enumeration);
+        return ListUtils.list(isLinked, enumeration);
     }
 
     /**
@@ -771,7 +766,7 @@ public class CollectionUtils {
      */
     @SafeVarargs
     public static <T> ArrayList<T> newArrayList(T... values) {
-        return ListUtil.toList(values);
+        return ListUtils.toList(values);
     }
 
     /**
@@ -784,7 +779,7 @@ public class CollectionUtils {
      */
     @SafeVarargs
     public static <T> ArrayList<T> toList(T... values) {
-        return ListUtil.toList(values);
+        return ListUtils.toList(values);
     }
 
     /**
@@ -795,7 +790,7 @@ public class CollectionUtils {
      * @return ArrayList对象
      */
     public static <T> ArrayList<T> newArrayList(Collection<T> collection) {
-        return ListUtil.toList(collection);
+        return ListUtils.toList(collection);
     }
 
     /**
@@ -808,7 +803,7 @@ public class CollectionUtils {
      * @since 3.1.0
      */
     public static <T> ArrayList<T> newArrayList(Iterable<T> iterable) {
-        return ListUtil.toList(iterable);
+        return ListUtils.toList(iterable);
     }
 
     /**
@@ -821,7 +816,7 @@ public class CollectionUtils {
      * @since 3.0.8
      */
     public static <T> ArrayList<T> newArrayList(Iterator<T> iterator) {
-        return ListUtil.toList(iterator);
+        return ListUtils.toList(iterator);
     }
 
     /**
@@ -834,7 +829,7 @@ public class CollectionUtils {
      * @since 3.0.8
      */
     public static <T> ArrayList<T> newArrayList(Enumeration<T> enumeration) {
-        return ListUtil.toList(enumeration);
+        return ListUtils.toList(enumeration);
     }
 
     // ----------------------------------------------------------------------new LinkedList
@@ -849,7 +844,7 @@ public class CollectionUtils {
      */
     @SafeVarargs
     public static <T> LinkedList<T> newLinkedList(T... values) {
-        return ListUtil.toLinkedList(values);
+        return ListUtils.toLinkedList(values);
     }
 
     /**
@@ -860,7 +855,7 @@ public class CollectionUtils {
      * @return {@link CopyOnWriteArrayList}
      */
     public static <T> CopyOnWriteArrayList<T> newCopyOnWriteArrayList(Collection<T> collection) {
-        return ListUtil.toCopyOnWriteArrayList(collection);
+        return ListUtils.toCopyOnWriteArrayList(collection);
     }
 
     /**
@@ -908,7 +903,7 @@ public class CollectionUtils {
             //noinspection SortedCollectionWithNonComparableKeys
             list = new TreeSet<>();
         } else if (collectionType.isAssignableFrom(EnumSet.class)) {
-            list = (Collection<T>) EnumSet.noneOf((Class<Enum>) ClassUtil.getTypeArgument(collectionType));
+            list = (Collection<T>) EnumSet.noneOf((Class<Enum>) ClassUtils.getTypeArgument(collectionType));
         }
 
         // List
@@ -921,7 +916,7 @@ public class CollectionUtils {
         // Others，直接实例化
         else {
             try {
-                list = (Collection<T>) ReflectUtil.newInstance(collectionType);
+                list = (Collection<T>) ReflectUtils.newInstance(collectionType);
             } catch (Exception e) {
                 throw new UtilException(e);
             }
@@ -940,7 +935,7 @@ public class CollectionUtils {
      * @see MapUtil#createMap(Class)
      */
     public static <K, V> Map<K, V> createMap(Class<?> mapType) {
-        return MapUtil.createMap(mapType);
+        return MapUtils.createMap(mapType);
     }
 
     /**
@@ -970,7 +965,7 @@ public class CollectionUtils {
      * @return 截取后的数组，当开始位置超过最大时，返回空的List
      */
     public static <T> List<T> sub(List<T> list, int start, int end) {
-        return ListUtil.sub(list, start, end);
+        return ListUtils.sub(list, start, end);
     }
 
     /**
@@ -985,7 +980,7 @@ public class CollectionUtils {
      * @since 4.0.6
      */
     public static <T> List<T> sub(List<T> list, int start, int end, int step) {
-        return ListUtil.sub(list, start, end, step);
+        return ListUtils.sub(list, start, end, step);
     }
 
     /**
@@ -1065,7 +1060,7 @@ public class CollectionUtils {
             return collection;
         }
 
-        Collection<T> collection2 = ObjectUtil.clone(collection);
+        Collection<T> collection2 = ObjectUtils.clone(collection);
         try {
             collection2.clear();
         } catch (UnsupportedOperationException e) {
@@ -1099,7 +1094,7 @@ public class CollectionUtils {
      * @since 4.1.8
      */
     public static <T> List<T> filter(List<T> list, Editor<T> editor) {
-        return ListUtil.filter(list, editor);
+        return ListUtils.filter(list, editor);
     }
 
     /**
@@ -1121,7 +1116,7 @@ public class CollectionUtils {
             return collection;
         }
 
-        Collection<T> collection2 = ObjectUtil.clone(collection);
+        Collection<T> collection2 = ObjectUtils.clone(collection);
         try {
             collection2.clear();
         } catch (UnsupportedOperationException e) {
@@ -1152,7 +1147,7 @@ public class CollectionUtils {
      * @since 4.1.8
      */
     public static <T> List<T> filterNew(List<T> list, Filter<T> filter) {
-        return ListUtil.filter(list, t -> filter.accept(t) ? t : null);
+        return ListUtils.filter(list, t -> filter.accept(t) ? t : null);
     }
 
     /**
@@ -1182,7 +1177,7 @@ public class CollectionUtils {
      * @since 4.6.5
      */
     public static <T extends Collection<E>, E> T filter(T collection, final Filter<E> filter) {
-        return IterUtil.filter(collection, filter);
+        return IterUtils.filter(collection, filter);
     }
 
     /**
@@ -1308,7 +1303,7 @@ public class CollectionUtils {
             if (bean instanceof Map) {
                 return ((Map<?, ?>) bean).get(fieldName);
             } else {
-                return ReflectUtil.getFieldValue(bean, fieldName);
+                return ReflectUtils.getFieldValue(bean, fieldName);
             }
         }, ignoreNull);
     }
@@ -1341,7 +1336,7 @@ public class CollectionUtils {
      * @since 5.0.6
      */
     public static <K, V> Map<K, V> fieldValueMap(Iterable<V> iterable, String fieldName) {
-        return IterUtil.fieldValueMap(null == iterable ? null : iterable.iterator(), fieldName);
+        return IterUtils.fieldValueMap(null == iterable ? null : iterable.iterator(), fieldName);
     }
 
     /**
@@ -1356,7 +1351,7 @@ public class CollectionUtils {
      * @since 5.0.6
      */
     public static <K, V> Map<K, V> fieldValueAsMap(Iterable<?> iterable, String fieldNameForKey, String fieldNameForValue) {
-        return IterUtil.fieldValueAsMap(null == iterable ? null : iterable.iterator(), fieldNameForKey, fieldNameForValue);
+        return IterUtils.fieldValueAsMap(null == iterable ? null : iterable.iterator(), fieldNameForKey, fieldNameForValue);
     }
 
     /**
@@ -1397,12 +1392,12 @@ public class CollectionUtils {
             if (t instanceof Map) {
                 final Map<?, ?> map = (Map<?, ?>) t;
                 final Object value = map.get(fieldName);
-                return ObjectUtil.equal(value, fieldValue);
+                return ObjectUtils.equal(value, fieldValue);
             }
 
             // 普通Bean
-            final Object value = ReflectUtil.getFieldValue(t, fieldName);
-            return ObjectUtil.equal(value, fieldValue);
+            final Object value = ReflectUtils.getFieldValue(t, fieldName);
+            return ObjectUtils.equal(value, fieldValue);
         });
     }
 
@@ -1423,7 +1418,7 @@ public class CollectionUtils {
      * @see MapUtil#filter(Map, Editor)
      */
     public static <K, V> Map<K, V> filter(Map<K, V> map, Editor<Map.Entry<K, V>> editor) {
-        return MapUtil.filter(map, editor);
+        return MapUtils.filter(map, editor);
     }
 
     /**
@@ -1444,7 +1439,7 @@ public class CollectionUtils {
      * @since 3.1.0
      */
     public static <K, V> Map<K, V> filter(Map<K, V> map, Filter<Map.Entry<K, V>> filter) {
-        return MapUtil.filter(map, filter);
+        return MapUtils.filter(map, filter);
     }
 
     /**
@@ -1525,7 +1520,7 @@ public class CollectionUtils {
      * @see MapUtil#isEmpty(Map)
      */
     public static boolean isEmpty(Map<?, ?> map) {
-        return MapUtil.isEmpty(map);
+        return MapUtils.isEmpty(map);
     }
 
     /**
@@ -1536,7 +1531,7 @@ public class CollectionUtils {
      * @see IterUtil#isEmpty(Iterable)
      */
     public static boolean isEmpty(Iterable<?> iterable) {
-        return IterUtil.isEmpty(iterable);
+        return IterUtils.isEmpty(iterable);
     }
 
     /**
@@ -1547,7 +1542,7 @@ public class CollectionUtils {
      * @see IterUtil#isEmpty(Iterator)
      */
     public static boolean isEmpty(Iterator<?> Iterator) {
-        return IterUtil.isEmpty(Iterator);
+        return IterUtils.isEmpty(Iterator);
     }
 
     /**
@@ -1580,7 +1575,7 @@ public class CollectionUtils {
      * @see MapUtil#isNotEmpty(Map)
      */
     public static boolean isNotEmpty(Map<?, ?> map) {
-        return MapUtil.isNotEmpty(map);
+        return MapUtils.isNotEmpty(map);
     }
 
     /**
@@ -1591,7 +1586,7 @@ public class CollectionUtils {
      * @see IterUtil#isNotEmpty(Iterable)
      */
     public static boolean isNotEmpty(Iterable<?> iterable) {
-        return IterUtil.isNotEmpty(iterable);
+        return IterUtils.isNotEmpty(iterable);
     }
 
     /**
@@ -1599,10 +1594,10 @@ public class CollectionUtils {
      *
      * @param Iterator Iterator对象
      * @return 是否为空
-     * @see IterUtil#isNotEmpty(Iterator)
+     * @see IterUtils#isNotEmpty(Iterator)
      */
     public static boolean isNotEmpty(Iterator<?> Iterator) {
-        return IterUtil.isNotEmpty(Iterator);
+        return IterUtils.isNotEmpty(Iterator);
     }
 
     /**
@@ -1624,7 +1619,7 @@ public class CollectionUtils {
      * @since 3.0.7
      */
     public static boolean hasNull(Iterable<?> iterable) {
-        return IterUtil.hasNull(iterable);
+        return IterUtils.hasNull(iterable);
     }
 
     // ---------------------------------------------------------------------- zip
@@ -1704,10 +1699,10 @@ public class CollectionUtils {
      * @param <V>       值类型
      * @param entryIter entry集合
      * @return Map
-     * @see IterUtil#toMap(Iterable)
+     * @see IterUtils#toMap(Iterable)
      */
     public static <K, V> HashMap<K, V> toMap(Iterable<Map.Entry<K, V>> entryIter) {
-        return IterUtil.toMap(entryIter);
+        return IterUtils.toMap(entryIter);
     }
 
     /**
@@ -1721,7 +1716,7 @@ public class CollectionUtils {
      * </pre>
      *
      * <pre>
-     * Map&lt;Object, Object&gt; colorMap = CollectionUtil.toMap(new String[][] {{
+     * Map&lt;Object, Object&gt; colorMap = CollectionUtils.toMap(new String[][] {{
      *     {"RED", "#FF0000"},
      *     {"GREEN", "#00FF00"},
      *     {"BLUE", "#0000FF"}});
@@ -1735,7 +1730,7 @@ public class CollectionUtils {
      * @since 3.0.8
      */
     public static HashMap<Object, Object> toMap(Object[] array) {
-        return MapUtil.of(array);
+        return MapUtils.of(array);
     }
 
     /**
@@ -1773,10 +1768,10 @@ public class CollectionUtils {
      * @param <E> 集合元素类型
      * @param e   {@link Enumeration}
      * @return {@link Iterator}
-     * @see IterUtil#asIterator(Enumeration)
+     * @see IterUtils#asIterator(Enumeration)
      */
     public static <E> Iterator<E> asIterator(Enumeration<E> e) {
-        return IterUtil.asIterator(e);
+        return IterUtils.asIterator(e);
     }
 
     /**
@@ -1785,10 +1780,10 @@ public class CollectionUtils {
      * @param <E>  元素类型
      * @param iter {@link Iterator}
      * @return {@link Iterable}
-     * @see IterUtil#asIterable(Iterator)
+     * @see IterUtils#asIterable(Iterator)
      */
     public static <E> Iterable<E> asIterable(final Iterator<E> iter) {
-        return IterUtil.asIterable(iter);
+        return IterUtils.asIterable(iter);
     }
 
     /**
@@ -1836,7 +1831,7 @@ public class CollectionUtils {
      * @see MapUtil#toListMap(Iterable)
      */
     public static <K, V> Map<K, List<V>> toListMap(Iterable<? extends Map<K, V>> mapList) {
-        return MapUtil.toListMap(mapList);
+        return MapUtils.toListMap(mapList);
     }
 
     /**
@@ -1870,7 +1865,7 @@ public class CollectionUtils {
      * @see MapUtil#toMapList(Map)
      */
     public static <K, V> List<Map<K, V>> toMapList(Map<K, ? extends Iterable<V>> listMap) {
-        return MapUtil.toMapList(listMap);
+        return MapUtils.toMapList(listMap);
     }
 
     /**
@@ -1886,7 +1881,7 @@ public class CollectionUtils {
      * @since 5.2.6
      */
     public static <K, V> Map<K, V> toMap(Iterable<V> values, Map<K, V> map, Func1<V, K> keyFunc) {
-        return IterUtil.toMap(null == values ? null : values.iterator(), map, keyFunc);
+        return IterUtils.toMap(null == values ? null : values.iterator(), map, keyFunc);
     }
 
     /**
@@ -1904,7 +1899,7 @@ public class CollectionUtils {
      * @since 5.2.6
      */
     public static <K, V, E> Map<K, V> toMap(Iterable<E> values, Map<K, V> map, Func1<E, K> keyFunc, Func1<E, V> valueFunc) {
-        return IterUtil.toMap(null == values ? null : values.iterator(), map, keyFunc, valueFunc);
+        return IterUtils.toMap(null == values ? null : values.iterator(), map, keyFunc, valueFunc);
     }
 
     /**
@@ -1917,7 +1912,7 @@ public class CollectionUtils {
      * @return 被加入集合
      */
     public static <T> Collection<T> addAll(Collection<T> collection, Object value) {
-        return addAll(collection, value, TypeUtil.getTypeArgument(collection.getClass()));
+        return addAll(collection, value, TypeUtils.getTypeArgument(collection.getClass()));
     }
 
     /**
@@ -1936,7 +1931,7 @@ public class CollectionUtils {
         if (null == collection || null == value) {
             return collection;
         }
-        if (TypeUtil.isUnknow(elementType)) {
+        if (TypeUtils.isUnknow(elementType)) {
             // 元素类型为空时，使用Object类型来接纳所有类型
             elementType = Object.class;
         }
@@ -1956,7 +1951,7 @@ public class CollectionUtils {
             iter = StringUtils.splitTrim(ArrayStr, CharUtils.COMMA).iterator();
         } else {
             // 其它类型按照单一元素处理
-            iter = CollUtil.newArrayList(value).iterator();
+            iter = CollectionUtils.newArrayList(value).iterator();
         }
 
         final ConverterRegistry convert = ConverterRegistry.getInstance();
@@ -2131,11 +2126,11 @@ public class CollectionUtils {
      * @param <T>      集合元素类型
      * @param iterable {@link Iterable}
      * @return 第一个元素
-     * @see IterUtil#getFirst(Iterable)
+     * @see IterUtils#getFirst(Iterable)
      * @since 3.0.1
      */
     public static <T> T getFirst(Iterable<T> iterable) {
-        return IterUtil.getFirst(iterable);
+        return IterUtils.getFirst(iterable);
     }
 
     /**
@@ -2144,11 +2139,11 @@ public class CollectionUtils {
      * @param <T>      集合元素类型
      * @param iterator {@link Iterator}
      * @return 第一个元素
-     * @see IterUtil#getFirst(Iterator)
+     * @see IterUtils#getFirst(Iterator)
      * @since 3.0.1
      */
     public static <T> T getFirst(Iterator<T> iterator) {
-        return IterUtil.getFirst(iterator);
+        return IterUtils.getFirst(iterator);
     }
 
     /**
@@ -2168,11 +2163,11 @@ public class CollectionUtils {
      *
      * @param iterable {@link Iterable}
      * @return 元素类型，当列表为空或元素全部为null时，返回null
-     * @see IterUtil#getElementType(Iterable)
+     * @see IterUtils#getElementType(Iterable)
      * @since 3.0.8
      */
     public static Class<?> getElementType(Iterable<?> iterable) {
-        return IterUtil.getElementType(iterable);
+        return IterUtils.getElementType(iterable);
     }
 
     /**
@@ -2180,11 +2175,11 @@ public class CollectionUtils {
      *
      * @param iterator {@link Iterator}
      * @return 元素类型，当列表为空或元素全部为null时，返回null
-     * @see IterUtil#getElementType(Iterator)
+     * @see IterUtils#getElementType(Iterator)
      * @since 3.0.8
      */
     public static Class<?> getElementType(Iterator<?> iterator) {
-        return IterUtil.getElementType(iterator);
+        return IterUtils.getElementType(iterator);
     }
 
     /**
@@ -2278,7 +2273,7 @@ public class CollectionUtils {
      * @since 4.1.20
      */
     public static <T> List<T> page(int pageNo, int pageSize, List<T> list) {
-        return ListUtil.page(pageNo, pageSize, list);
+        return ListUtils.page(pageNo, pageSize, list);
     }
 
     /**
@@ -2305,7 +2300,7 @@ public class CollectionUtils {
      * @see Collections#sort(List, Comparator)
      */
     public static <T> List<T> sort(List<T> list, Comparator<? super T> c) {
-        return ListUtil.sort(list, c);
+        return ListUtils.sort(list, c);
     }
 
     /**
@@ -2331,7 +2326,7 @@ public class CollectionUtils {
      * @since 4.0.6
      */
     public static <T> List<T> sortByProperty(List<T> list, String property) {
-        return ListUtil.sortByProperty(list, property);
+        return ListUtils.sortByProperty(list, property);
     }
 
     /**
@@ -2353,7 +2348,7 @@ public class CollectionUtils {
      * @since 4.0.8
      */
     public static List<String> sortByPinyin(List<String> list) {
-        return ListUtil.sortByPinyin(list);
+        return ListUtils.sortByPinyin(list);
     }
 
     /**
@@ -2537,7 +2532,7 @@ public class CollectionUtils {
                     // 非Bean放在同一子分组中
                     return 0;
                 }
-                final Object value = ReflectUtil.getFieldValue(t, fieldName);
+                final Object value = ReflectUtils.getFieldValue(t, fieldName);
                 int hash = fieldNameList.indexOf(value);
                 if (hash < 0) {
                     fieldNameList.add(value);
@@ -2558,7 +2553,7 @@ public class CollectionUtils {
      * @since 4.0.6
      */
     public static <T> List<T> reverse(List<T> list) {
-        return ListUtil.reverse(list);
+        return ListUtils.reverse(list);
     }
 
     /**
@@ -2570,7 +2565,7 @@ public class CollectionUtils {
      * @since 4.0.6
      */
     public static <T> List<T> reverseNew(List<T> list) {
-        return ListUtil.reverseNew(list);
+        return ListUtils.reverseNew(list);
     }
 
     /**
@@ -2584,7 +2579,7 @@ public class CollectionUtils {
      * @since 4.1.2
      */
     public static <T> List<T> setOrAppend(List<T> list, int index, T element) {
-        return ListUtil.setOrAppend(list, index, element);
+        return ListUtils.setOrAppend(list, index, element);
     }
 
     /**

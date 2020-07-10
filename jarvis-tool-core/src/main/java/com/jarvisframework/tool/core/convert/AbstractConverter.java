@@ -1,9 +1,8 @@
 package com.jarvisframework.tool.core.convert;
 
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.core.util.CharUtil;
-import cn.hutool.core.util.ClassUtil;
-import cn.hutool.core.util.StrUtil;
+import com.jarvisframework.tool.core.util.ArrayUtils;
+import com.jarvisframework.tool.core.util.CharUtils;
+import com.jarvisframework.tool.core.util.ClassUtils;
 import com.jarvisframework.tool.core.util.StringUtils;
 
 import java.io.Serializable;
@@ -97,11 +96,11 @@ public abstract class AbstractConverter<T> implements Converter<T>, Serializable
 		}
 		if (value instanceof CharSequence) {
 			return value.toString();
-		} else if (ArrayUtil.isArray(value)) {
-			return ArrayUtil.toString(value);
-		} else if(CharUtil.isChar(value)) {
+		} else if (ArrayUtils.isArray(value)) {
+			return ArrayUtils.toString(value);
+		} else if(CharUtils.isChar(value)) {
 			//对于ASCII字符使用缓存加速转换，减少空间创建
-			return CharUtil.toString((char)value);
+			return CharUtils.toString((char)value);
 		}
 		return value.toString();
 	}
@@ -113,6 +112,6 @@ public abstract class AbstractConverter<T> implements Converter<T>, Serializable
 	 */
 	@SuppressWarnings("unchecked")
 	public Class<T> getTargetType() {
-		return (Class<T>) ClassUtil.getTypeArgument(getClass());
+		return (Class<T>) ClassUtils.getTypeArgument(getClass());
 	}
 }

@@ -1,8 +1,8 @@
 package com.jarvisframework.tool.core.convert.impl;
 
-import cn.hutool.core.util.BooleanUtil;
-import cn.hutool.core.util.StrUtil;
 import com.jarvisframework.tool.core.convert.AbstractConverter;
+import com.jarvisframework.tool.core.util.BooleanUtils;
+import com.jarvisframework.tool.core.util.StringUtils;
 
 /**
  * 字符转换器
@@ -16,10 +16,10 @@ public class CharacterConverter extends AbstractConverter<Character> {
 	@Override
 	protected Character convertInternal(Object value) {
 		if (value instanceof Boolean) {
-			return BooleanUtil.toCharacter((Boolean) value);
+			return BooleanUtils.toCharacter((Boolean) value);
 		} else {
 			final String valueStr = convertToStr(value);
-			if (StrUtil.isNotBlank(valueStr)) {
+			if (StringUtils.isNotBlank(valueStr)) {
 				return valueStr.charAt(0);
 			}
 		}

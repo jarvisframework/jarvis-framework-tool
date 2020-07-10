@@ -1,8 +1,8 @@
 package com.jarvisframework.tool.core.convert.impl;
 
 import cn.hutool.core.convert.ConverterRegistry;
-import cn.hutool.core.util.TypeUtil;
 import com.jarvisframework.tool.core.convert.AbstractConverter;
+import com.jarvisframework.tool.core.util.TypeUtils;
 
 import java.lang.reflect.Type;
 import java.util.concurrent.atomic.AtomicReference;
@@ -22,8 +22,8 @@ public class AtomicReferenceConverter extends AbstractConverter<AtomicReference>
 		
 		//尝试将值转换为Reference泛型的类型
 		Object targetValue = null;
-		final Type paramType = TypeUtil.getTypeArgument(AtomicReference.class);
-		if(false == TypeUtil.isUnknow(paramType)){
+		final Type paramType = TypeUtils.getTypeArgument(AtomicReference.class);
+		if(false == TypeUtils.isUnknow(paramType)){
 			targetValue = ConverterRegistry.getInstance().convert(paramType, value);
 		}
 		if(null == targetValue){

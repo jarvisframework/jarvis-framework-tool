@@ -1,7 +1,7 @@
 package com.jarvisframework.tool.core.convert.impl;
 
-import cn.hutool.core.util.BooleanUtil;
 import com.jarvisframework.tool.core.convert.AbstractConverter;
+import com.jarvisframework.tool.core.util.BooleanUtils;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -23,7 +23,7 @@ public class AtomicBooleanConverter extends AbstractConverter<AtomicBoolean> {
 			return new AtomicBoolean((Boolean) value);
 		}
 		final String valueStr = convertToStr(value);
-		return new AtomicBoolean(BooleanUtil.toBoolean(valueStr));
+		return new AtomicBoolean(BooleanUtils.toBoolean(valueStr));
 	}
 
 }

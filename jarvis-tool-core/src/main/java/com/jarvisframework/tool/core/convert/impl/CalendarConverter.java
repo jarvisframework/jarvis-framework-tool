@@ -1,8 +1,8 @@
 package com.jarvisframework.tool.core.convert.impl;
 
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.StrUtil;
 import com.jarvisframework.tool.core.convert.AbstractConverter;
+import com.jarvisframework.tool.core.date.DateUtils;
+import com.jarvisframework.tool.core.util.StringUtils;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -41,17 +41,17 @@ public class CalendarConverter extends AbstractConverter<Calendar> {
 	protected Calendar convertInternal(Object value) {
 		// Handle Date
 		if (value instanceof Date) {
-			return DateUtil.calendar((Date)value);
+			return DateUtils.calendar((Date)value);
 		}
 
 		// Handle Long
 		if (value instanceof Long) {
 			//此处使用自动拆装箱
-			return DateUtil.calendar((Long)value);
+			return DateUtils.calendar((Long)value);
 		}
 
 		final String valueStr = convertToStr(value);
-		return DateUtil.calendar(StrUtil.isBlank(format) ? DateUtil.parse(valueStr) : DateUtil.parse(valueStr, format));
+		return DateUtils.calendar(StringUtils.isBlank(format) ? DateUtils.parse(valueStr) : DateUtils.parse(valueStr, format));
 	}
 
 }

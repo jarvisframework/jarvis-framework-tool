@@ -1,10 +1,10 @@
 package com.jarvisframework.tool.core.convert.impl;
 
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.BooleanUtil;
-import cn.hutool.core.util.NumberUtil;
-import cn.hutool.core.util.StrUtil;
 import com.jarvisframework.tool.core.convert.AbstractConverter;
+import com.jarvisframework.tool.core.date.DateUtils;
+import com.jarvisframework.tool.core.util.BooleanUtils;
+import com.jarvisframework.tool.core.util.NumberUtils;
+import com.jarvisframework.tool.core.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -60,34 +60,34 @@ public class NumberConverter extends AbstractConverter<Number> {
 			if (value instanceof Number) {
 				return ((Number) value).byteValue();
 			} else if (value instanceof Boolean) {
-				return BooleanUtil.toByteObj((Boolean) value);
+				return BooleanUtils.toByteObj((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : Byte.valueOf(valueStr);
+			return StringUtils.isBlank(valueStr) ? null : Byte.valueOf(valueStr);
 
 		} else if (Short.class == targetType) {
 			if (value instanceof Number) {
 				return ((Number) value).shortValue();
 			} else if (value instanceof Boolean) {
-				return BooleanUtil.toShortObj((Boolean) value);
+				return BooleanUtils.toShortObj((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : Short.valueOf(valueStr);
+			return StringUtils.isBlank(valueStr) ? null : Short.valueOf(valueStr);
 
 		} else if (Integer.class == targetType) {
 			if (value instanceof Number) {
 				return ((Number) value).intValue();
 			} else if (value instanceof Boolean) {
-				return BooleanUtil.toInteger((Boolean) value);
+				return BooleanUtils.toInteger((Boolean) value);
 			} else if (value instanceof Date) {
 				return (int)((Date) value).getTime();
 			} else if (value instanceof Calendar) {
 				return (int)((Calendar) value).getTimeInMillis();
 			} else if (value instanceof TemporalAccessor) {
-				return (int)DateUtil.toInstant((TemporalAccessor) value).toEpochMilli();
+				return (int) DateUtils.toInstant((TemporalAccessor) value).toEpochMilli();
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : NumberUtil.parseInt(valueStr);
+			return StringUtils.isBlank(valueStr) ? null : NumberUtils.parseInt(valueStr);
 
 		} else if (AtomicInteger.class == targetType) {
 			final Number number = convertInternal(value, Integer.class);
@@ -101,16 +101,16 @@ public class NumberConverter extends AbstractConverter<Number> {
 			if (value instanceof Number) {
 				return ((Number) value).longValue();
 			} else if (value instanceof Boolean) {
-				return BooleanUtil.toLongObj((Boolean) value);
+				return BooleanUtils.toLongObj((Boolean) value);
 			} else if (value instanceof Date) {
 				return ((Date) value).getTime();
 			} else if (value instanceof Calendar) {
 				return ((Calendar) value).getTimeInMillis();
 			} else if (value instanceof TemporalAccessor) {
-				return DateUtil.toInstant((TemporalAccessor) value).toEpochMilli();
+				return DateUtils.toInstant((TemporalAccessor) value).toEpochMilli();
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : NumberUtil.parseLong(valueStr);
+			return StringUtils.isBlank(valueStr) ? null : NumberUtils.parseLong(valueStr);
 
 		} else if (AtomicLong.class == targetType) {
 			final Number number = convertInternal(value, Long.class);
@@ -124,19 +124,19 @@ public class NumberConverter extends AbstractConverter<Number> {
 			if (value instanceof Number) {
 				return ((Number) value).floatValue();
 			} else if (value instanceof Boolean) {
-				return BooleanUtil.toFloatObj((Boolean) value);
+				return BooleanUtils.toFloatObj((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : Float.valueOf(valueStr);
+			return StringUtils.isBlank(valueStr) ? null : Float.valueOf(valueStr);
 
 		} else if (Double.class == targetType) {
 			if (value instanceof Number) {
 				return ((Number) value).doubleValue();
 			} else if (value instanceof Boolean) {
-				return BooleanUtil.toDoubleObj((Boolean) value);
+				return BooleanUtils.toDoubleObj((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : Double.valueOf(valueStr);
+			return StringUtils.isBlank(valueStr) ? null : Double.valueOf(valueStr);
 
 		} else if (BigDecimal.class == targetType) {
 			return toBigDecimal(value);
@@ -148,13 +148,13 @@ public class NumberConverter extends AbstractConverter<Number> {
 			if (value instanceof Number) {
 				return (Number) value;
 			} else if (value instanceof Boolean) {
-				return BooleanUtil.toInteger((Boolean) value);
+				return BooleanUtils.toInteger((Boolean) value);
 			}
 			final String valueStr = convertToStr(value);
-			return StrUtil.isBlank(valueStr) ? null : NumberUtil.parseNumber(valueStr);
+			return StringUtils.isBlank(valueStr) ? null : NumberUtils.parseNumber(valueStr);
 		}
 
-		throw new UnsupportedOperationException(StrUtil.format("Unsupport Number type: {}", this.targetType.getName()));
+		throw new UnsupportedOperationException(StringUtils.format("Unsupport Number type: {}", this.targetType.getName()));
 	}
 
 	/**
@@ -178,7 +178,7 @@ public class NumberConverter extends AbstractConverter<Number> {
 
 		//对于Double类型，先要转换为String，避免精度问题
 		final String valueStr = convertToStr(value);
-		if (StrUtil.isBlank(valueStr)) {
+		if (StringUtils.isBlank(valueStr)) {
 			return null;
 		}
 		return new BigDecimal(valueStr);
@@ -199,7 +199,7 @@ public class NumberConverter extends AbstractConverter<Number> {
 			return BigInteger.valueOf((boolean) value ? 1 : 0);
 		}
 		final String valueStr = convertToStr(value);
-		if (StrUtil.isBlank(valueStr)) {
+		if (StringUtils.isBlank(valueStr)) {
 			return null;
 		}
 		return new BigInteger(valueStr);
@@ -207,7 +207,7 @@ public class NumberConverter extends AbstractConverter<Number> {
 
 	@Override
 	protected String convertToStr(Object value) {
-		return StrUtil.trim(super.convertToStr(value));
+		return StringUtils.trim(super.convertToStr(value));
 	}
 
 	@Override

@@ -1,12 +1,12 @@
 package com.jarvisframework.tool.core.util;
 
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.IterUtil;
-import cn.hutool.core.comparator.CompareUtil;
 import cn.hutool.core.lang.Editor;
 import cn.hutool.core.lang.Filter;
 import cn.hutool.core.util.ObjectUtil;
 import com.jarvisframework.tool.core.collection.CollectionUtils;
+import com.jarvisframework.tool.core.collection.IterUtils;
+import com.jarvisframework.tool.core.comparator.CompareUtils;
 import com.jarvisframework.tool.core.exception.UtilException;
 
 import java.lang.reflect.Array;
@@ -1179,7 +1179,7 @@ public class ArrayUtils {
         }
 
         final int size = Math.min(keys.length, values.length);
-        final Map<K, V> map = CollUtil.newHashMap(size, isOrder);
+        final Map<K, V> map = CollectionUtils.newHashMap(size, isOrder);
         for (int i = 0; i < size; i++) {
             map.put(keys[i], values[i]);
         }
@@ -1218,7 +1218,7 @@ public class ArrayUtils {
     public static <T> int indexOf(T[] array, Object value) {
         if (null != array) {
             for (int i = 0; i < array.length; i++) {
-                if (ObjectUtil.equal(value, array[i])) {
+                if (ObjectUtils.equal(value, array[i])) {
                     return i;
                 }
             }
@@ -1257,7 +1257,7 @@ public class ArrayUtils {
     public static <T> int lastIndexOf(T[] array, Object value) {
         if (null != array) {
             for (int i = array.length - 1; i >= 0; i--) {
-                if (ObjectUtil.equal(value, array[i])) {
+                if (ObjectUtils.equal(value, array[i])) {
                     return i;
                 }
             }
@@ -1882,7 +1882,7 @@ public class ArrayUtils {
 
         final byte[] array = new byte[length];
         for (int i = 0; i < length; i++) {
-            array[i] = ObjectUtil.defaultIfNull(values[i], (byte)0);
+            array[i] = ObjectUtils.defaultIfNull(values[i], (byte)0);
         }
         return array;
     }
@@ -1926,7 +1926,7 @@ public class ArrayUtils {
 
         final short[] array = new short[length];
         for (int i = 0; i < length; i++) {
-            array[i] = ObjectUtil.defaultIfNull(values[i], (short)0);
+            array[i] = ObjectUtils.defaultIfNull(values[i], (short)0);
         }
         return array;
     }
@@ -1970,7 +1970,7 @@ public class ArrayUtils {
 
         final float[] array = new float[length];
         for (int i = 0; i < length; i++) {
-            array[i] = ObjectUtil.defaultIfNull(values[i], 0F);
+            array[i] = ObjectUtils.defaultIfNull(values[i], 0F);
         }
         return array;
     }
@@ -2014,7 +2014,7 @@ public class ArrayUtils {
 
         final double[] array = new double[length];
         for (int i = 0; i < length; i++) {
-            array[i] = ObjectUtil.defaultIfNull(values[i], 0D);
+            array[i] = ObjectUtils.defaultIfNull(values[i], 0D);
         }
         return array;
     }
@@ -2058,7 +2058,7 @@ public class ArrayUtils {
 
         final boolean[] array = new boolean[length];
         for (int i = 0; i < length; i++) {
-            array[i] = ObjectUtil.defaultIfNull(values[i], false);
+            array[i] = ObjectUtils.defaultIfNull(values[i], false);
         }
         return array;
     }
@@ -2582,12 +2582,12 @@ public class ArrayUtils {
      * 如果参数为{@code null}，返回0
      *
      * <pre>
-     * ArrayUtil.length(null)            = 0
-     * ArrayUtil.length([])              = 0
-     * ArrayUtil.length([null])          = 1
-     * ArrayUtil.length([true, false])   = 2
-     * ArrayUtil.length([1, 2, 3])       = 3
-     * ArrayUtil.length(["a", "b", "c"]) = 3
+     * ArrayUtils.length(null)            = 0
+     * ArrayUtils.length([])              = 0
+     * ArrayUtils.length([null])          = 1
+     * ArrayUtils.length([true, false])   = 2
+     * ArrayUtils.length([1, 2, 3])       = 3
+     * ArrayUtils.length(["a", "b", "c"]) = 3
      * </pre>
      *
      * @param array 数组对象
@@ -2642,9 +2642,9 @@ public class ArrayUtils {
             if (ArrayUtils.isArray(item)) {
                 sb.append(join(ArrayUtils.wrap(item), conjunction, prefix, suffix));
             } else if (item instanceof Iterable<?>) {
-                sb.append(CollUtil.join((Iterable<?>) item, conjunction, prefix, suffix));
+                sb.append(CollectionUtils.join((Iterable<?>) item, conjunction, prefix, suffix));
             } else if (item instanceof Iterator<?>) {
-                sb.append(IterUtil.join((Iterator<?>) item, conjunction, prefix, suffix));
+                sb.append(IterUtils.join((Iterator<?>) item, conjunction, prefix, suffix));
             } else {
                 sb.append(StringUtils.wrap(StringUtils.toString(item), prefix, suffix));
             }
@@ -2955,7 +2955,7 @@ public class ArrayUtils {
      * @since 3.0.9
      */
     public static <T> T[] toArray(Iterator<T> iterator, Class<T> componentType) {
-        return toArray(CollUtil.newArrayList(iterator), componentType);
+        return toArray(CollectionUtils.newArrayList(iterator), componentType);
     }
 
     /**
@@ -3637,7 +3637,7 @@ public class ArrayUtils {
         }
         T min = numberArray[0];
         for (T t : numberArray) {
-            if (CompareUtil.compare(min, t, comparator) > 0) {
+            if (CompareUtils.compare(min, t, comparator) > 0) {
                 min = t;
             }
         }
@@ -3811,7 +3811,7 @@ public class ArrayUtils {
         }
         T max = numberArray[0];
         for (int i = 1; i < numberArray.length; i++) {
-            if (CompareUtil.compare(max, numberArray[i], comparator) < 0) {
+            if (CompareUtils.compare(max, numberArray[i], comparator) < 0) {
                 max = numberArray[i];
             }
         }
@@ -4160,7 +4160,7 @@ public class ArrayUtils {
         int count = 0;
         if (isNotEmpty(args)) {
             for (Object element : args) {
-                if (ObjectUtil.isEmpty(element)) {
+                if (ObjectUtils.isEmpty(element)) {
                     count++;
                 }
             }
@@ -4178,7 +4178,7 @@ public class ArrayUtils {
     public static boolean hasEmpty(Object... args) {
         if (isNotEmpty(args)) {
             for (Object element : args) {
-                if (ObjectUtil.isEmpty(element)) {
+                if (ObjectUtils.isEmpty(element)) {
                     return true;
                 }
             }

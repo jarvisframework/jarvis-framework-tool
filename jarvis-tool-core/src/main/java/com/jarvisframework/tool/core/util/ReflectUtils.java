@@ -3,13 +3,11 @@ package com.jarvisframework.tool.core.util;
 import cn.hutool.core.annotation.Alias;
 import cn.hutool.core.lang.Filter;
 import cn.hutool.core.lang.SimpleCache;
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.core.util.ClassUtil;
-import cn.hutool.core.util.StrUtil;
 import com.jarvisframework.tool.core.collection.CollectionUtils;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.exception.UtilException;
+import com.jarvisframework.tool.core.lang.Assert;
+import com.jarvisframework.tool.core.map.MapUtils;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
@@ -18,7 +16,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 /**
- * <p>description</p>
+ * <p>反射工具类</p>
  *
  * @author 王涛
  * @since 1.0, 2020-07-10 11:59:38
@@ -57,7 +55,7 @@ public class ReflectUtils {
         Class<?>[] pts;
         for (Constructor<?> constructor : constructors) {
             pts = constructor.getParameterTypes();
-            if (ClassUtil.isAllAssignableFrom(pts, parameterTypes)) {
+            if (ClassUtils.isAllAssignableFrom(pts, parameterTypes)) {
                 // 构造可访问
                 setAccessible(constructor);
                 return (Constructor<T>) constructor;
@@ -162,7 +160,7 @@ public class ReflectUtils {
      */
     public static Map<String, Field> getFieldMap(Class<?> beanClass) {
         final Field[] fields = getFields(beanClass);
-        final HashMap<String, Field> map = MapUtil.newHashMap(fields.length);
+        final HashMap<String, Field> map = MapUtils.newHashMap(fields.length);
         for (Field field : fields) {
             map.put(field.getName(), field);
         }
@@ -205,7 +203,7 @@ public class ReflectUtils {
             if (null == allFields) {
                 allFields = declaredFields;
             } else {
-                allFields = ArrayUtil.append(allFields, declaredFields);
+                allFields = ArrayUtils.append(allFields, declaredFields);
             }
             searchType = withSuperClassFieds ? searchType.getSuperclass() : null;
         }
@@ -327,7 +325,7 @@ public class ReflectUtils {
             }
         } else {
             // 获取null对应默认值，防止原始类型造成空指针问题
-            value = ClassUtil.getDefaultValue(fieldType);
+            value = ClassUtils.getDefaultValue(fieldType);
         }
 
         setAccessible(field);
@@ -350,7 +348,7 @@ public class ReflectUtils {
     public static Set<String> getPublicMethodNames(Class<?> clazz) {
         final HashSet<String> methodSet = new HashSet<>();
         final Method[] methodArray = getPublicMethods(clazz);
-        if (ArrayUtil.isNotEmpty(methodArray)) {
+        if (ArrayUtils.isNotEmpty(methodArray)) {
             for (Method method : methodArray) {
                 methodSet.add(method.getName());
             }
@@ -450,10 +448,10 @@ public class ReflectUtils {
      * @throws SecurityException 无访问权限抛出异常
      */
     public static Method getMethodOfObj(Object obj, String methodName, Object... args) throws SecurityException {
-        if (null == obj || StrUtil.isBlank(methodName)) {
+        if (null == obj || StringUtils.isBlank(methodName)) {
             return null;
         }
-        return getMethod(obj.getClass(), methodName, ClassUtil.getClasses(args));
+        return getMethod(obj.getClass(), methodName, ClassUtils.getClasses(args));
     }
 
     /**
@@ -507,15 +505,15 @@ public class ReflectUtils {
      * @since 3.2.0
      */
     public static Method getMethod(Class<?> clazz, boolean ignoreCase, String methodName, Class<?>... paramTypes) throws SecurityException {
-        if (null == clazz || StrUtil.isBlank(methodName)) {
+        if (null == clazz || StringUtils.isBlank(methodName)) {
             return null;
         }
 
         final Method[] methods = getMethods(clazz);
-        if (ArrayUtil.isNotEmpty(methods)) {
+        if (ArrayUtils.isNotEmpty(methods)) {
             for (Method method : methods) {
-                if (StrUtil.equals(methodName, method.getName(), ignoreCase)) {
-                    if (ClassUtil.isAllAssignableFrom(method.getParameterTypes(), paramTypes)) {
+                if (StringUtils.equals(methodName, method.getName(), ignoreCase)) {
+                    if (ClassUtils.isAllAssignableFrom(method.getParameterTypes(), paramTypes)) {
                         return method;
                     }
                 }
@@ -573,14 +571,14 @@ public class ReflectUtils {
      * @since 4.3.2
      */
     public static Method getMethodByName(Class<?> clazz, boolean ignoreCase, String methodName) throws SecurityException {
-        if (null == clazz || StrUtil.isBlank(methodName)) {
+        if (null == clazz || StringUtils.isBlank(methodName)) {
             return null;
         }
 
         final Method[] methods = getMethods(clazz);
-        if (ArrayUtil.isNotEmpty(methods)) {
+        if (ArrayUtils.isNotEmpty(methods)) {
             for (Method method : methods) {
-                if (StrUtil.equals(methodName, method.getName(), ignoreCase)) {
+                if (StringUtils.equals(methodName, method.getName(), ignoreCase)) {
                     return method;
                 }
             }
@@ -617,7 +615,7 @@ public class ReflectUtils {
         if (null == clazz) {
             return null;
         }
-        return ArrayUtil.filter(getMethods(clazz), filter);
+        return ArrayUtils.filter(getMethods(clazz), filter);
     }
 
     /**
@@ -656,7 +654,7 @@ public class ReflectUtils {
             if (null == allMethods) {
                 allMethods = declaredMethods;
             } else {
-                allMethods = ArrayUtil.append(allMethods, declaredMethods);
+                allMethods = ArrayUtils.append(allMethods, declaredMethods);
             }
             searchType = withSuperClassMethods ? searchType.getSuperclass() : null;
         }
@@ -742,7 +740,7 @@ public class ReflectUtils {
      * @throws UtilException 包装各类异常
      */
     public static <T> T newInstance(Class<T> clazz, Object... params) throws UtilException {
-        if (ArrayUtil.isEmpty(params)) {
+        if (ArrayUtils.isEmpty(params)) {
             final Constructor<T> constructor = getConstructor(clazz);
             try {
                 return constructor.newInstance();
@@ -751,7 +749,7 @@ public class ReflectUtils {
             }
         }
 
-        final Class<?>[] paramTypes = ClassUtil.getClasses(params);
+        final Class<?>[] paramTypes = ClassUtils.getClasses(params);
         final Constructor<T> constructor = getConstructor(clazz, paramTypes);
         if (null == constructor) {
             throw new UtilException("No Constructor matched for parameter types: [{}]", new Object[]{paramTypes});
@@ -807,7 +805,7 @@ public class ReflectUtils {
             }
             setAccessible(constructor);
             try {
-                return constructor.newInstance(ClassUtil.getDefaultValues(parameterTypes));
+                return constructor.newInstance(ClassUtils.getDefaultValues(parameterTypes));
             } catch (Exception ignore) {
                 // 构造出错时继续尝试下一种构造方式
             }
@@ -855,7 +853,7 @@ public class ReflectUtils {
                 type = types[i];
                 if (type.isPrimitive() && null == args[i]) {
                     // 参数是原始类型，而传入参数为null时赋予默认值
-                    args[i] = ClassUtil.getDefaultValue(type);
+                    args[i] = ClassUtils.getDefaultValue(type);
                 }
             }
         }
@@ -897,7 +895,7 @@ public class ReflectUtils {
             for (int i = 0; i < actualArgs.length; i++) {
                 if (i >= args.length || null == args[i]) {
                     // 越界或者空值
-                    actualArgs[i] = ClassUtil.getDefaultValue(parameterTypes[i]);
+                    actualArgs[i] = ClassUtils.getDefaultValue(parameterTypes[i]);
                 } else if (false == parameterTypes[i].isAssignableFrom(args[i].getClass())) {
                     //对于类型不同的字段，尝试转换，转换失败则使用原对象类型
                     final Object targetValue = Convert.convert(parameterTypes[i], args[i]);
@@ -911,7 +909,7 @@ public class ReflectUtils {
         }
 
         try {
-            return (T) method.invoke(ClassUtil.isStatic(method) ? null : obj, actualArgs);
+            return (T) method.invoke(ClassUtils.isStatic(method) ? null : obj, actualArgs);
         } catch (Exception e) {
             throw new UtilException(e);
         }

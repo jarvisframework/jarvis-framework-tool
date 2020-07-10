@@ -1,10 +1,10 @@
 package com.jarvisframework.tool.core.convert.impl;
 
 import cn.hutool.core.date.DateTime;
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
 import com.jarvisframework.tool.core.convert.AbstractConverter;
+import com.jarvisframework.tool.core.date.DateUtils;
+import com.jarvisframework.tool.core.util.ObjectUtils;
+import com.jarvisframework.tool.core.util.StringUtils;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -84,7 +84,7 @@ public class TemporalAccessorConverter extends AbstractConverter<TemporalAccesso
         } else if (value instanceof TemporalAccessor) {
             return parseFromTemporalAccessor((TemporalAccessor) value);
         } else if (value instanceof Date) {
-            final DateTime dateTime = DateUtil.date((Date) value);
+            final DateTime dateTime = DateUtils.date((Date) value);
             return parseFromInstant(dateTime.toInstant(), dateTime.getZoneId());
         } else if (value instanceof Calendar) {
             final Calendar calendar = (Calendar) value;
@@ -101,7 +101,7 @@ public class TemporalAccessorConverter extends AbstractConverter<TemporalAccesso
      * @return 日期对象
      */
     private TemporalAccessor parseFromCharSequence(CharSequence value) {
-        if (StrUtil.isBlank(value)) {
+        if (StringUtils.isBlank(value)) {
             return null;
         }
 
@@ -112,7 +112,7 @@ public class TemporalAccessorConverter extends AbstractConverter<TemporalAccesso
             instant = formatter.parse(value, Instant::from);
             zoneId = formatter.getZone();
         } else {
-            final DateTime dateTime = DateUtil.parse(value);
+            final DateTime dateTime = DateUtils.parse(value);
             instant = Objects.requireNonNull(dateTime).toInstant();
             zoneId = dateTime.getZoneId();
         }
@@ -144,7 +144,7 @@ public class TemporalAccessorConverter extends AbstractConverter<TemporalAccesso
         }
 
         if (null == result) {
-            result = parseFromInstant(DateUtil.toInstant(temporalAccessor), null);
+            result = parseFromInstant(DateUtils.toInstant(temporalAccessor), null);
         }
 
         return result;
@@ -158,7 +158,7 @@ public class TemporalAccessorConverter extends AbstractConverter<TemporalAccesso
      */
     private TemporalAccessor parseFromLocalDateTime(LocalDateTime localDateTime) {
         if (Instant.class.equals(this.targetType)) {
-            return DateUtil.toInstant(localDateTime);
+            return DateUtils.toInstant(localDateTime);
         }
         if (LocalDate.class.equals(this.targetType)) {
             return localDateTime.toLocalDate();
@@ -187,7 +187,7 @@ public class TemporalAccessorConverter extends AbstractConverter<TemporalAccesso
      */
     private TemporalAccessor parseFromZonedDateTime(ZonedDateTime zonedDateTime) {
         if (Instant.class.equals(this.targetType)) {
-            return DateUtil.toInstant(zonedDateTime);
+            return DateUtils.toInstant(zonedDateTime);
         }
         if (LocalDateTime.class.equals(this.targetType)) {
             return zonedDateTime.toLocalDateTime();
@@ -220,7 +220,7 @@ public class TemporalAccessorConverter extends AbstractConverter<TemporalAccesso
             return instant;
         }
 
-        zoneId = ObjectUtil.defaultIfNull(zoneId, ZoneId.systemDefault());
+        zoneId = ObjectUtils.defaultIfNull(zoneId, ZoneId.systemDefault());
 
         TemporalAccessor result = null;
         if (LocalDateTime.class.equals(this.targetType)) {

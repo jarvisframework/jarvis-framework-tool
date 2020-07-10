@@ -6,9 +6,9 @@ import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.bean.copier.ValueProvider;
 import cn.hutool.core.convert.AbstractConverter;
 import cn.hutool.core.map.MapProxy;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.ReflectUtil;
-import cn.hutool.core.util.TypeUtil;
+import com.jarvisframework.tool.core.util.ObjectUtils;
+import com.jarvisframework.tool.core.util.ReflectUtils;
+import com.jarvisframework.tool.core.util.TypeUtils;
 
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -59,7 +59,7 @@ public class BeanConverter<T> extends AbstractConverter<T> {
 	@SuppressWarnings("unchecked")
 	public BeanConverter(Type beanType, CopyOptions copyOptions) {
 		this.beanType = beanType;
-		this.beanClass = (Class<T>) TypeUtil.getClass(beanType);
+		this.beanClass = (Class<T>) TypeUtils.getClass(beanType);
 		this.copyOptions = copyOptions;
 	}
 
@@ -74,10 +74,10 @@ public class BeanConverter<T> extends AbstractConverter<T> {
 			}
 
 			//限定被转换对象类型
-			return BeanCopier.create(value, ReflectUtil.newInstanceIfPossible(this.beanClass), this.beanType, this.copyOptions).copy();
+			return BeanCopier.create(value, ReflectUtils.newInstanceIfPossible(this.beanClass), this.beanType, this.copyOptions).copy();
 		} else if(value instanceof byte[]){
 			// 尝试反序列化
-			return ObjectUtil.deserialize((byte[])value);
+			return ObjectUtils.deserialize((byte[])value);
 		}
 		return null;
 	}

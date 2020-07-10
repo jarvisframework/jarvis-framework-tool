@@ -1,6 +1,6 @@
 package com.jarvisframework.tool.core.convert;
 
-import cn.hutool.core.util.StrUtil;
+import com.jarvisframework.tool.core.util.StringUtils;
 
 /**
  * 数字转中文类<br>
@@ -87,7 +87,7 @@ public class NumberChineseFormatter {
 		for (int i = 0; i < numParts; i++) {
 			String partChinese = toChinese(parts[i], isUseTraditional);
 			if (i % 2 == 0) {
-				beforeWanIsZero = StrUtil.isEmpty(partChinese);
+				beforeWanIsZero = StringUtils.isEmpty(partChinese);
 			}
 
 			if (i != 0) {
@@ -113,7 +113,7 @@ public class NumberChineseFormatter {
 		}
 
 		// 整数部分为 0, 则表达为"零"
-		if (StrUtil.EMPTY.equals(chineseStr.toString())) {
+		if (StringUtils.EMPTY.equals(chineseStr.toString())) {
 			chineseStr = new StringBuilder(numArray[0]);
 		}
 		//负数

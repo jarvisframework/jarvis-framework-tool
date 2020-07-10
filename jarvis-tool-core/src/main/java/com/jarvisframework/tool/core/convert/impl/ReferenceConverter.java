@@ -1,9 +1,9 @@
 package com.jarvisframework.tool.core.convert.impl;
 
 import cn.hutool.core.convert.ConverterRegistry;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.util.TypeUtil;
 import com.jarvisframework.tool.core.convert.AbstractConverter;
+import com.jarvisframework.tool.core.util.StringUtils;
+import com.jarvisframework.tool.core.util.TypeUtils;
 
 import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;
@@ -36,8 +36,8 @@ public class ReferenceConverter extends AbstractConverter<Reference> {
 		
 		//尝试将值转换为Reference泛型的类型
 		Object targetValue = null;
-		final Type paramType = TypeUtil.getTypeArgument(targetType);
-		if(false == TypeUtil.isUnknow(paramType)){
+		final Type paramType = TypeUtils.getTypeArgument(targetType);
+		if(false == TypeUtils.isUnknow(paramType)){
 			targetValue = ConverterRegistry.getInstance().convert(paramType, value);
 		}
 		if(null == targetValue){
@@ -50,7 +50,7 @@ public class ReferenceConverter extends AbstractConverter<Reference> {
 			return new SoftReference(targetValue);
 		}
 		
-		throw new UnsupportedOperationException(StrUtil.format("Unsupport Reference type: {}", this.targetType.getName()));
+		throw new UnsupportedOperationException(StringUtils.format("Unsupport Reference type: {}", this.targetType.getName()));
 	}
 
 }

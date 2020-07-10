@@ -1,11 +1,11 @@
 package com.jarvisframework.tool.core.convert.impl;
 
 import cn.hutool.core.convert.AbstractConverter;
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.EnumUtil;
 import cn.hutool.core.util.ModifierUtil;
-import cn.hutool.core.util.ReflectUtil;
+import com.jarvisframework.tool.core.map.MapUtils;
+import com.jarvisframework.tool.core.util.ClassUtils;
+import com.jarvisframework.tool.core.util.ReflectUtils;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -73,11 +73,11 @@ public class EnumConverter extends AbstractConverter<Object> {
 		// 尝试查找其它用户自定义方法
 		if(null == enumResult){
 			final Map<Class<?>, Method> valueOfMethods = getValueOfMethods(enumClass);
-			if (MapUtil.isNotEmpty(valueOfMethods)) {
+			if (MapUtils.isNotEmpty(valueOfMethods)) {
 				final Class<?> valueClass = value.getClass();
 				for (Map.Entry<Class<?>, Method> entry : valueOfMethods.entrySet()) {
-					if (ClassUtil.isAssignable(entry.getKey(), valueClass)) {
-						enumResult = ReflectUtil.invokeStatic(entry.getValue(), value);
+					if (ClassUtils.isAssignable(entry.getKey(), valueClass)) {
+						enumResult = ReflectUtils.invokeStatic(entry.getValue(), value);
 					}
 				}
 			}

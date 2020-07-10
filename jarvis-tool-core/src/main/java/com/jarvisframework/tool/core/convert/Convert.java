@@ -7,9 +7,11 @@ import cn.hutool.core.lang.Assert;
 import cn.hutool.core.lang.TypeReference;
 import cn.hutool.core.text.UnicodeUtil;
 import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.HexUtil;
-import cn.hutool.core.util.StrUtil;
+import com.jarvisframework.tool.core.util.CharsetUtils;
+import com.jarvisframework.tool.core.util.ClassUtils;
+import com.jarvisframework.tool.core.util.HexUtils;
+import com.jarvisframework.tool.core.util.StringUtils;
 
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
@@ -605,7 +607,7 @@ public class Convert {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T convertByClassName(String className, Object value) throws ConvertException{
-		return (T) convert(ClassUtil.loadClass(className), value);
+		return (T) convert(ClassUtils.loadClass(className), value);
 	}
 	
 	/**
@@ -784,7 +786,7 @@ public class Convert {
 	 * @return 替换后的字符
 	 */
 	public static String toDBC(String text, Set<Character> notConvertSet) {
-		if(StrUtil.isBlank(text)) {
+		if(StringUtils.isBlank(text)) {
 			return text;
 		}
 		final char[] c = text.toCharArray();
@@ -812,10 +814,10 @@ public class Convert {
 	 * @param str 待转换的ASCII字符串
 	 * @param charset 编码
 	 * @return 16进制字符串
-	 * @see HexUtil#encodeHexStr(String, Charset)
+	 * @see HexUtils#encodeHexStr(String, Charset)
 	 */
 	public static String toHex(String str, Charset charset) {
-		return HexUtil.encodeHexStr(str, charset);
+		return HexUtils.encodeHexStr(str, charset);
 	}
 
 	/**
@@ -823,10 +825,10 @@ public class Convert {
 	 * 
 	 * @param bytes 被转换的byte数组
 	 * @return 转换后的值
-	 * @see HexUtil#encodeHexStr(byte[])
+	 * @see HexUtils#encodeHexStr(byte[])
 	 */
 	public static String toHex(byte[] bytes) {
-		return HexUtil.encodeHexStr(bytes);
+		return HexUtils.encodeHexStr(bytes);
 	}
 
 	/**
@@ -834,10 +836,10 @@ public class Convert {
 	 * 
 	 * @param src Byte字符串，每个Byte之间没有分隔符
 	 * @return byte[]
-	 * @see HexUtil#decodeHex(char[])
+	 * @see HexUtils#decodeHex(char[])
 	 */
 	public static byte[] hexToBytes(String src) {
-		return HexUtil.decodeHex(src.toCharArray());
+		return HexUtils.decodeHex(src.toCharArray());
 	}
 
 	/**
@@ -860,11 +862,11 @@ public class Convert {
 	 * @param hexStr Byte字符串(Byte之间无分隔符 如:[616C6B])
 	 * @param charset 编码 {@link Charset}
 	 * @return 对应的字符串
-	 * @see HexUtil#decodeHexStr(String, Charset)
+	 * @see HexUtils#decodeHexStr(String, Charset)
 	 * @since 4.1.11
 	 */
 	public static String hexToStr(String hexStr, Charset charset) {
-		return HexUtil.decodeHexStr(hexStr, charset);
+		return HexUtils.decodeHexStr(hexStr, charset);
 	}
 
 	/**
@@ -900,11 +902,11 @@ public class Convert {
 	 * @see CharsetUtil#convert(String, String, String)
 	 */
 	public static String convertCharset(String str, String sourceCharset, String destCharset) {
-		if (StrUtil.hasBlank(str, sourceCharset, destCharset)) {
+		if (StringUtils.hasBlank(str, sourceCharset, destCharset)) {
 			return str;
 		}
 
-		return CharsetUtil.convert(str, sourceCharset, destCharset);
+		return CharsetUtils.convert(str, sourceCharset, destCharset);
 	}
 
 	/**

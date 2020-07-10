@@ -1,9 +1,9 @@
 package com.jarvisframework.tool.core.convert.impl;
 
 import cn.hutool.core.date.DateTime;
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.StrUtil;
 import com.jarvisframework.tool.core.convert.AbstractConverter;
+import com.jarvisframework.tool.core.date.DateUtils;
+import com.jarvisframework.tool.core.util.StringUtils;
 
 import java.time.temporal.TemporalAccessor;
 import java.util.Calendar;
@@ -71,15 +71,15 @@ public class DateConverter extends AbstractConverter<Date> {
             // Handle Number
             mills = ((Number) value).longValue();
         } else if (value instanceof TemporalAccessor) {
-            return DateUtil.date((TemporalAccessor) value);
+            return DateUtils.date((TemporalAccessor) value);
         } else {
             // 统一按照字符串处理
             final String valueStr = convertToStr(value);
             Date date = null;
             try {
-                date = StrUtil.isBlank(this.format) //
-                        ? DateUtil.parse(valueStr) //
-                        : DateUtil.parse(valueStr, this.format);
+                date = StringUtils.isBlank(this.format) //
+                        ? DateUtils.parse(valueStr) //
+                        : DateUtils.parse(valueStr, this.format);
             } catch (Exception e) {
                 // Ignore Exception
             }
@@ -106,7 +106,7 @@ public class DateConverter extends AbstractConverter<Date> {
             return new java.sql.Timestamp(mills);
         }
 
-        throw new UnsupportedOperationException(StrUtil.format("Unsupport Date type: {}", this.targetType.getName()));
+        throw new UnsupportedOperationException(StringUtils.format("Unsupport Date type: {}", this.targetType.getName()));
     }
 
 }

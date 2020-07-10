@@ -7,11 +7,9 @@ import cn.hutool.core.text.StrBuilder;
 import cn.hutool.core.text.StrFormatter;
 import cn.hutool.core.text.StrSpliter;
 import cn.hutool.core.text.TextSimilarity;
-import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.NumberUtil;
-import cn.hutool.core.util.ReUtil;
 import com.jarvisframework.tool.core.convert.Convert;
+import com.jarvisframework.tool.core.lang.Assert;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -429,7 +427,7 @@ public class StringUtils {
      * 除去字符串头尾部的空白，如果字符串是<code>null</code>，依然返回<code>null</code>。
      *
      * <p>
-     * 注意，和<code>String.trim</code>不同，此方法使用<code>NumberUtil.isBlankChar</code> 来判定空白， 因而可以除去英文字符集之外的其它空白，如中文空格。
+     * 注意，和<code>String.trim</code>不同，此方法使用<code>NumberUtils.isBlankChar</code> 来判定空白， 因而可以除去英文字符集之外的其它空白，如中文空格。
      *
      * <pre>
      * trim(null)          = null
@@ -1678,7 +1676,7 @@ public class StringUtils {
 
         byte[] b;
         int counterOfDoubleByte = 0;
-        b = str.toString().getBytes(CharsetUtil.CHARSET_GBK);
+        b = str.toString().getBytes(CharsetUtils.CHARSET_GBK);
         if (b.length <= len) {
             return str.toString();
         }
@@ -1691,7 +1689,7 @@ public class StringUtils {
         if (counterOfDoubleByte % 2 != 0) {
             len += 1;
         }
-        return new String(b, 0, len, CharsetUtil.CHARSET_GBK) + suffix;
+        return new String(b, 0, len, CharsetUtils.CHARSET_GBK) + suffix;
     }
 
     /**
@@ -2377,7 +2375,7 @@ public class StringUtils {
      * @return 编码后的字节码
      */
     public static byte[] utf8Bytes(CharSequence str) {
-        return bytes(str, CharsetUtil.CHARSET_UTF_8);
+        return bytes(str, CharsetUtils.CHARSET_UTF_8);
     }
 
     /**
@@ -2428,7 +2426,7 @@ public class StringUtils {
      * @return 字符串
      */
     public static String utf8Str(Object obj) {
-        return str(obj, CharsetUtil.CHARSET_UTF_8);
+        return str(obj, CharsetUtils.CHARSET_UTF_8);
     }
 
     /**
@@ -3294,7 +3292,7 @@ public class StringUtils {
         if (len < partLength) {
             return new String[]{str.toString()};
         }
-        int part = NumberUtil.count(len, partLength);
+        int part = NumberUtils.count(len, partLength);
         final String[] array = new String[part];
 
         final String str2 = str.toString();
@@ -4012,11 +4010,11 @@ public class StringUtils {
      * @param pattern    用于匹配的正则式
      * @param replaceFun 决定如何替换的函数
      * @return 替换后的字符串
-     * @see ReUtil#replaceAll(CharSequence, Pattern, Func1)
+     * @see RegexUtils#replaceAll(CharSequence, Pattern, Func1)
      * @since 4.2.2
      */
     public static String replace(CharSequence str, Pattern pattern, Func1<java.util.regex.Matcher, String> replaceFun) {
-        return ReUtil.replaceAll(str, pattern, replaceFun);
+        return RegexUtils.replaceAll(str, pattern, replaceFun);
     }
 
     /**
@@ -4026,11 +4024,11 @@ public class StringUtils {
      * @param regex      用于匹配的正则式
      * @param replaceFun 决定如何替换的函数
      * @return 替换后的字符串
-     * @see ReUtil#replaceAll(CharSequence, String, Func1)
+     * @see RegexUtils#replaceAll(CharSequence, String, Func1)
      * @since 4.2.2
      */
     public static String replace(CharSequence str, String regex, Func1<java.util.regex.Matcher, String> replaceFun) {
-        return ReUtil.replaceAll(str, regex, replaceFun);
+        return RegexUtils.replaceAll(str, regex, replaceFun);
     }
 
     /**

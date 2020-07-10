@@ -1,8 +1,8 @@
 package com.jarvisframework.tool.core.convert.impl;
 
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Converter;
-import cn.hutool.core.util.TypeUtil;
+import com.jarvisframework.tool.core.collection.CollectionUtils;
+import com.jarvisframework.tool.core.util.TypeUtils;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -34,7 +34,7 @@ public class CollectionConverter implements Converter<Collection<?>> {
 	 * @param collectionType 集合类型
 	 */
 	public CollectionConverter(Type collectionType) {
-		this(collectionType, TypeUtil.getTypeArgument(collectionType));
+		this(collectionType, TypeUtils.getTypeArgument(collectionType));
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class CollectionConverter implements Converter<Collection<?>> {
 	 * @param collectionType 集合类型
 	 */
 	public CollectionConverter(Class<?> collectionType) {
-		this(collectionType, TypeUtil.getTypeArgument(collectionType));
+		this(collectionType, TypeUtils.getTypeArgument(collectionType));
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class CollectionConverter implements Converter<Collection<?>> {
 	 * @return 转换后的集合对象
 	 */
 	protected Collection<?> convertInternal(Object value) {
-		final Collection<Object> collection = CollUtil.create(TypeUtil.getClass(this.collectionType));
-		return CollUtil.addAll(collection, value, this.elementType);
+		final Collection<Object> collection = CollectionUtils.create(TypeUtils.getClass(this.collectionType));
+		return CollectionUtils.addAll(collection, value, this.elementType);
 	}
 }

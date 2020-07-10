@@ -1,6 +1,8 @@
-package com.jarvisframework.tool.core.util;
+package com.jarvisframework.tool.core.lang;
 
 import com.jarvisframework.tool.core.collection.CollectionUtils;
+import com.jarvisframework.tool.core.util.ArrayUtils;
+import com.jarvisframework.tool.core.util.StringUtils;
 
 import java.util.Collection;
 import java.util.Map;

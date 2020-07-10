@@ -1,7 +1,7 @@
 package com.jarvisframework.tool.core.convert.impl;
 
-import cn.hutool.core.util.ClassUtil;
 import com.jarvisframework.tool.core.convert.AbstractConverter;
+import com.jarvisframework.tool.core.util.ClassUtils;
 
 /**
  * 类转换器<br>
@@ -16,7 +16,7 @@ public class ClassConverter extends AbstractConverter<Class<?>> {
 	protected Class<?> convertInternal(Object value) {
 		String valueStr = convertToStr(value);
 		try {
-			return ClassUtil.getClassLoader().loadClass(valueStr);
+			return ClassUtils.getClassLoader().loadClass(valueStr);
 		} catch (Exception e) {
 			// Ignore Exception
 		}

@@ -1,6 +1,5 @@
 package com.jarvisframework.tool.core.lang;
 
-import com.jarvisframework.tool.core.util.Assert;
 import com.jarvisframework.tool.core.util.CharUtils;
 import com.jarvisframework.tool.core.util.StringUtils;
 
@@ -19,6 +18,7 @@ import static java.lang.System.out;
 public class Console {
 
     // ---------------------------Log---------------------------
+
     /**
      * 同 System.out.println()方法，打印控制台日志
      */
@@ -55,7 +55,7 @@ public class Console {
      * 打印进度条
      *
      * @param showChar 进度条提示字符，例如“#”
-     * @param len 打印长度
+     * @param len      打印长度
      * @since 4.5.6
      */
     public static void printProgress(char showChar, int len) {
@@ -67,7 +67,7 @@ public class Console {
      *
      * @param showChar 进度条提示字符，例如“#”
      * @param totalLen 总长度
-     * @param rate 总长度所占比取值0~1
+     * @param rate     总长度所占比取值0~1
      * @since 4.5.6
      */
     public static void printProgress(char showChar, int totalLen, double rate) {
@@ -79,7 +79,7 @@ public class Console {
      * 同 System.out.println()方法，打印控制台日志
      *
      * @param template 文本模板，被替换的部分用 {} 表示
-     * @param values 值
+     * @param values   值
      */
     public static void log(String template, Object... values) {
         log(null, template, values);
@@ -89,7 +89,7 @@ public class Console {
      * 同 System.out.print()方法，打印控制台日志
      *
      * @param template 文本模板，被替换的部分用 {} 表示
-     * @param values 值
+     * @param values   值
      * @since 3.3.1
      */
     public static void print(String template, Object... values) {
@@ -99,9 +99,9 @@ public class Console {
     /**
      * 同 System.out.println()方法，打印控制台日志
      *
-     * @param t 异常对象
+     * @param t        异常对象
      * @param template 文本模板，被替换的部分用 {} 表示
-     * @param values 值
+     * @param values   值
      */
     public static void log(Throwable t, String template, Object... values) {
         out.println(StringUtils.format(template, values));
@@ -112,6 +112,7 @@ public class Console {
     }
 
     // ---------------------------Error---------------------------
+
     /**
      * 同 System.err.println()方法，打印控制台日志
      */
@@ -137,7 +138,7 @@ public class Console {
      * 同 System.err.println()方法，打印控制台日志
      *
      * @param template 文本模板，被替换的部分用 {} 表示
-     * @param values 值
+     * @param values   值
      */
     public static void error(String template, Object... values) {
         error(null, template, values);
@@ -146,9 +147,9 @@ public class Console {
     /**
      * 同 System.err.println()方法，打印控制台日志
      *
-     * @param t 异常对象
+     * @param t        异常对象
      * @param template 文本模板，被替换的部分用 {} 表示
-     * @param values 值
+     * @param values   值
      */
     public static void error(Throwable t, String template, Object... values) {
         err.println(StringUtils.format(template, values));
@@ -159,6 +160,7 @@ public class Console {
     }
 
     // ---------------------------in---------------------------
+
     /**
      * 创建从控制台读取内容的{@link Scanner}
      *
@@ -180,6 +182,7 @@ public class Console {
     }
 
     // ---------------------------console lineNumber---------------------------
+
     /**
      * 返回当前位置+行号 (不支持Lambda、内部类、递归内使用)
      *
@@ -193,7 +196,7 @@ public class Console {
         final String methodName = stackTraceElement.getMethodName();
         final String fileName = stackTraceElement.getFileName();
         final Integer lineNumber = stackTraceElement.getLineNumber();
-        return String.format("%s.%s(%s:%s)", className,methodName,fileName,lineNumber);
+        return String.format("%s.%s(%s:%s)", className, methodName, fileName, lineNumber);
     }
 
     /**

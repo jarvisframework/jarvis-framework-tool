@@ -4,10 +4,10 @@ package com.jarvisframework.tool.core.convert;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.lang.TypeReference;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.TypeUtil;
 import com.jarvisframework.tool.core.convert.impl.*;
+import com.jarvisframework.tool.core.util.ObjectUtils;
 import com.jarvisframework.tool.core.util.ReflectUtils;
+import com.jarvisframework.tool.core.util.TypeUtils;
 
 import java.io.Serializable;
 import java.lang.ref.SoftReference;
@@ -160,14 +160,14 @@ public class ConverterRegistry implements Serializable{
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T convert(Type type, Object value, T defaultValue, boolean isCustomFirst) throws ConvertException {
-		if (TypeUtil.isUnknow(type) && null == defaultValue) {
+		if (TypeUtils.isUnknow(type) && null == defaultValue) {
 			// 对于用户不指定目标类型的情况，返回原值
 			return (T) value;
 		}
-		if (ObjectUtil.isNull(value)) {
+		if (ObjectUtils.isNull(value)) {
 			return defaultValue;
 		}
-		if (TypeUtil.isUnknow(type)) {
+		if (TypeUtils.isUnknow(type)) {
 			type = defaultValue.getClass();
 		}
 		
@@ -181,7 +181,7 @@ public class ConverterRegistry implements Serializable{
 			return converter.convert(value, defaultValue);
 		}
 
-		Class<T> rowType = (Class<T>) TypeUtil.getClass(type);
+		Class<T> rowType = (Class<T>) TypeUtils.getClass(type);
 		if (null == rowType) {
 			if (null != defaultValue) {
 				rowType = (Class<T>) defaultValue.getClass();

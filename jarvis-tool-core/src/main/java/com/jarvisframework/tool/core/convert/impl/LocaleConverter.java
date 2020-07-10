@@ -1,7 +1,7 @@
 package com.jarvisframework.tool.core.convert.impl;
 
-import cn.hutool.core.util.StrUtil;
 import com.jarvisframework.tool.core.convert.AbstractConverter;
+import com.jarvisframework.tool.core.util.StringUtils;
 
 import java.util.Locale;
 
@@ -20,7 +20,7 @@ public class LocaleConverter extends AbstractConverter<Locale> {
 	protected Locale convertInternal(Object value) {
 		try {
 			String str = convertToStr(value);
-			if (StrUtil.isEmpty(str)) {
+			if (StringUtils.isEmpty(str)) {
 				return null;
 			}
 

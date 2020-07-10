@@ -1,7 +1,7 @@
 package com.jarvisframework.tool.core.convert.impl;
 
-import cn.hutool.core.util.CharsetUtil;
 import com.jarvisframework.tool.core.convert.AbstractConverter;
+import com.jarvisframework.tool.core.util.CharsetUtils;
 
 import java.nio.charset.Charset;
 
@@ -15,7 +15,7 @@ public class CharsetConverter extends AbstractConverter<Charset> {
 
 	@Override
 	protected Charset convertInternal(Object value) {
-		return CharsetUtil.charset(convertToStr(value));
+		return CharsetUtils.charset(convertToStr(value));
 	}
 
 }

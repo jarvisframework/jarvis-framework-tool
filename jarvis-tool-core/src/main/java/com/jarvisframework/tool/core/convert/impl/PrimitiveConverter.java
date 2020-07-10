@@ -1,10 +1,10 @@
 package com.jarvisframework.tool.core.convert.impl;
 
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.BooleanUtil;
-import cn.hutool.core.util.NumberUtil;
-import cn.hutool.core.util.StrUtil;
 import com.jarvisframework.tool.core.convert.AbstractConverter;
+import com.jarvisframework.tool.core.date.DateUtils;
+import com.jarvisframework.tool.core.util.BooleanUtils;
+import com.jarvisframework.tool.core.util.NumberUtils;
+import com.jarvisframework.tool.core.util.StringUtils;
 
 import java.time.temporal.TemporalAccessor;
 import java.util.Calendar;
@@ -53,10 +53,10 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 				if (value instanceof Number) {
 					return ((Number) value).byteValue();
 				} else if (value instanceof Boolean) {
-					return BooleanUtil.toByte((Boolean) value);
+					return BooleanUtils.toByte((Boolean) value);
 				}
 				final String valueStr = convertToStr(value);
-				if (StrUtil.isBlank(valueStr)) {
+				if (StringUtils.isBlank(valueStr)) {
 					return 0;
 				}
 				return Byte.parseByte(valueStr);
@@ -65,10 +65,10 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 				if (value instanceof Number) {
 					return ((Number) value).shortValue();
 				} else if (value instanceof Boolean) {
-					return BooleanUtil.toShort((Boolean) value);
+					return BooleanUtils.toShort((Boolean) value);
 				}
 				final String valueStr = convertToStr(value);
-				if (StrUtil.isBlank(valueStr)) {
+				if (StringUtils.isBlank(valueStr)) {
 					return 0;
 				}
 				return Short.parseShort(valueStr);
@@ -77,48 +77,48 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 				if (value instanceof Number) {
 					return ((Number) value).intValue();
 				} else if (value instanceof Boolean) {
-					return BooleanUtil.toInt((Boolean) value);
+					return BooleanUtils.toInt((Boolean) value);
 				} else if (value instanceof Date) {
 					return ((Date) value).getTime();
 				} else if (value instanceof Calendar) {
 					return ((Calendar) value).getTimeInMillis();
 				} else if (value instanceof TemporalAccessor) {
-					return DateUtil.toInstant((TemporalAccessor) value).toEpochMilli();
+					return DateUtils.toInstant((TemporalAccessor) value).toEpochMilli();
 				}
 
 				final String valueStr = convertToStr(value);
-				if (StrUtil.isBlank(valueStr)) {
+				if (StringUtils.isBlank(valueStr)) {
 					return 0;
 				}
-				return NumberUtil.parseInt(valueStr);
+				return NumberUtils.parseInt(valueStr);
 
 			} else if (long.class == this.targetType) {
 				if (value instanceof Number) {
 					return ((Number) value).longValue();
 				} else if (value instanceof Boolean) {
-					return BooleanUtil.toLong((Boolean) value);
+					return BooleanUtils.toLong((Boolean) value);
 				} else if (value instanceof Date) {
 					return ((Date) value).getTime();
 				} else if (value instanceof Calendar) {
 					return ((Calendar) value).getTimeInMillis();
 				} else if (value instanceof TemporalAccessor) {
-					return DateUtil.toInstant((TemporalAccessor) value).toEpochMilli();
+					return DateUtils.toInstant((TemporalAccessor) value).toEpochMilli();
 				}
 
 				final String valueStr = convertToStr(value);
-				if (StrUtil.isBlank(valueStr)) {
+				if (StringUtils.isBlank(valueStr)) {
 					return 0;
 				}
-				return NumberUtil.parseLong(valueStr);
+				return NumberUtils.parseLong(valueStr);
 
 			} else if (float.class == this.targetType) {
 				if (value instanceof Number) {
 					return ((Number) value).floatValue();
 				} else if (value instanceof Boolean) {
-					return BooleanUtil.toFloat((Boolean) value);
+					return BooleanUtils.toFloat((Boolean) value);
 				}
 				final String valueStr = convertToStr(value);
-				if (StrUtil.isBlank(valueStr)) {
+				if (StringUtils.isBlank(valueStr)) {
 					return 0;
 				}
 				return Float.parseFloat(valueStr);
@@ -127,10 +127,10 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 				if (value instanceof Number) {
 					return ((Number) value).doubleValue();
 				} else if (value instanceof Boolean) {
-					return BooleanUtil.toDouble((Boolean) value);
+					return BooleanUtils.toDouble((Boolean) value);
 				}
 				final String valueStr = convertToStr(value);
-				if (StrUtil.isBlank(valueStr)) {
+				if (StringUtils.isBlank(valueStr)) {
 					return 0;
 				}
 				return Double.parseDouble(valueStr);
@@ -140,10 +140,10 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 					//noinspection UnnecessaryUnboxing
 					return ((Character) value).charValue();
 				} else if (value instanceof Boolean) {
-					return BooleanUtil.toChar((Boolean) value);
+					return BooleanUtils.toChar((Boolean) value);
 				}
 				final String valueStr = convertToStr(value);
-				if (StrUtil.isBlank(valueStr)) {
+				if (StringUtils.isBlank(valueStr)) {
 					return 0;
 				}
 				return valueStr.charAt(0);
@@ -153,7 +153,7 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 					return ((Boolean) value).booleanValue();
 				}
 				String valueStr = convertToStr(value);
-				return BooleanUtil.toBoolean(valueStr);
+				return BooleanUtils.toBoolean(valueStr);
 			}
 		} catch (Exception e) {
 			// Ignore Exception
@@ -163,7 +163,7 @@ public class PrimitiveConverter extends AbstractConverter<Object> {
 
 	@Override
 	protected String convertToStr(Object value) {
-		return StrUtil.trim(super.convertToStr(value));
+		return StringUtils.trim(super.convertToStr(value));
 	}
 
 	@Override
