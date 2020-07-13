@@ -7,7 +7,6 @@ import cn.hutool.core.text.StrBuilder;
 import cn.hutool.core.text.StrFormatter;
 import cn.hutool.core.text.StrSpliter;
 import cn.hutool.core.text.TextSimilarity;
-import cn.hutool.core.util.IdUtil;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.lang.Assert;
 
@@ -970,7 +969,7 @@ public class StringUtils {
      * 移除字符串中所有给定字符串，当某个字符串出现多次，则全部移除<br>
      * 例：removeAny("aa-bb-cc-dd", "a", "b") =》 --cc-dd
      *
-     * @param str         字符串
+     * @param str          字符串
      * @param strsToRemove 被移除的字符串
      * @return 移除后的字符串
      * @since 5.3.8
@@ -4197,7 +4196,7 @@ public class StringUtils {
      * @since 4.0.10
      */
     public static String uuid() {
-        return IdUtil.randomUUID();
+        return IdUtils.randomUUID();
     }
 
     /**

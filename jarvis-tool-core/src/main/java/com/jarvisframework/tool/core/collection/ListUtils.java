@@ -4,10 +4,10 @@ import cn.hutool.core.comparator.PinyinComparator;
 import cn.hutool.core.comparator.PropertyComparator;
 import cn.hutool.core.lang.Editor;
 import cn.hutool.core.lang.Matcher;
-import cn.hutool.core.util.PageUtil;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.util.ArrayUtils;
 import com.jarvisframework.tool.core.util.ObjectUtils;
+import com.jarvisframework.tool.core.util.PageUtils;
 
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -109,15 +109,15 @@ public class ListUtils {
      *
      * @param <T>        集合元素类型
      * @param isLinked   是否新建LinkedList
-     * @param enumration {@link Enumeration}
+     * @param enumRation {@link Enumeration}
      * @return ArrayList对象
      * @since 3.0.8
      */
-    public static <T> List<T> list(boolean isLinked, Enumeration<T> enumration) {
+    public static <T> List<T> list(boolean isLinked, Enumeration<T> enumRation) {
         final List<T> list = list(isLinked);
-        if (null != enumration) {
-            while (enumration.hasMoreElements()) {
-                list.add(enumration.nextElement());
+        if (null != enumRation) {
+            while (enumRation.hasMoreElements()) {
+                list.add(enumRation.nextElement());
             }
         }
         return list;
@@ -234,7 +234,7 @@ public class ListUtils {
                 return new ArrayList<>(0);
             }
         }
-        final int[] startEnd = PageUtil.transToStartEnd(pageNo, pageSize);
+        final int[] startEnd = PageUtils.transToStartEnd(pageNo, pageSize);
         if (startEnd[1] > resultSize) {
             startEnd[1] = resultSize;
         }

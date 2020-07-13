@@ -1,11 +1,9 @@
 package com.jarvisframework.tool.core.io;
 
-import cn.hutool.core.io.*;
+import cn.hutool.core.io.BOMInputStream;
+import cn.hutool.core.io.LineHandler;
 import cn.hutool.core.io.file.FileWriter;
 import cn.hutool.core.io.file.*;
-import cn.hutool.core.io.resource.ResourceUtil;
-import cn.hutool.core.util.URLUtil;
-import cn.hutool.core.util.ZipUtil;
 import com.jarvisframework.tool.core.collection.CollectionUtils;
 import com.jarvisframework.tool.core.lang.Assert;
 import com.jarvisframework.tool.core.util.*;
@@ -60,7 +58,7 @@ public class FileUtils {
     /**
      * 当Path为文件形式时, path会加入一个表示文件的前缀
      */
-    public static final String PATH_FILE_PRE = URLUtil.FILE_URL_PREFIX;
+    public static final String PATH_FILE_PRE = UrlUtils.FILE_URL_PREFIX;
 
     /**
      * 是否为Windows环境
@@ -303,7 +301,7 @@ public class FileUtils {
         try {
             jarFile = new JarFile(path.substring(0, index));
             // 防止出现jar!/cn/hutool/这类路径导致文件找不到
-            return ZipUtil.listFileNames(jarFile, StringUtils.removePrefix(path.substring(index + 1), "/"));
+            return ZipUtils.listFileNames(jarFile, StringUtils.removePrefix(path.substring(index + 1), "/"));
         } catch (IOException e) {
             throw new IORuntimeException(StringUtils.format("Can not read file path of [{}]", path), e);
         } finally {
@@ -431,7 +429,7 @@ public class FileUtils {
      * @return File
      */
     public static File file(URL url) {
-        return new File(URLUtil.toURI(url));
+        return new File(UrlUtils.toURI(url));
     }
 
     /**
@@ -1212,10 +1210,10 @@ public class FileUtils {
         }
 
         // 相对于ClassPath路径
-        final URL url = ResourceUtil.getResource(normalPath, baseClass);
+        final URL url = ResourceUtils.getResource(normalPath, baseClass);
         if (null != url) {
             // 对于jar中文件包含file:前缀，需要去掉此类前缀，在此做标准化，since 3.0.8 解决中文或空格路径被编码的问题
-            return FileUtils.normalize(URLUtil.getDecodedPath(url));
+            return FileUtils.normalize(UrlUtils.getDecodedPath(url));
         }
 
         // 如果资源不存在，则返回一个拼接的资源绝对路径
@@ -1581,9 +1579,9 @@ public class FileUtils {
 
 
         // 兼容Spring风格的ClassPath路径，去除前缀，不区分大小写
-        String pathToUse = StringUtils.removePrefixIgnoreCase(path, URLUtil.CLASSPATH_URL_PREFIX);
+        String pathToUse = StringUtils.removePrefixIgnoreCase(path, UrlUtils.CLASSPATH_URL_PREFIX);
         // 去除file:前缀
-        pathToUse = StringUtils.removePrefixIgnoreCase(pathToUse, URLUtil.FILE_URL_PREFIX);
+        pathToUse = StringUtils.removePrefixIgnoreCase(pathToUse, UrlUtils.FILE_URL_PREFIX);
 
         // 识别home目录形式，并转换为绝对路径
         if (pathToUse.startsWith("~")) {
@@ -1967,10 +1965,10 @@ public class FileUtils {
      * @param file 文件 {@link File}
      * @return 类型，文件的扩展名，未找到为<code>null</code>
      * @throws IORuntimeException IO异常
-     * @see FileTypeUtil#getType(File)
+     * @see FileTypeUtils#getType(File)
      */
     public static String getType(File file) throws IORuntimeException {
-        return FileTypeUtil.getType(file);
+        return FileTypeUtils.getType(file);
     }
 
     /**

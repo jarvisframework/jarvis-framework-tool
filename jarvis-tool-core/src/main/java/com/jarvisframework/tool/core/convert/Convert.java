@@ -8,6 +8,7 @@ import cn.hutool.core.lang.TypeReference;
 import cn.hutool.core.text.UnicodeUtil;
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.HexUtil;
+import com.jarvisframework.tool.core.text.UnicodeUtils;
 import com.jarvisframework.tool.core.util.CharsetUtils;
 import com.jarvisframework.tool.core.util.ClassUtils;
 import com.jarvisframework.tool.core.util.HexUtils;
@@ -877,7 +878,7 @@ public class Convert {
 	 * @see UnicodeUtil#toUnicode(String)
 	 */
 	public static String strToUnicode(String strText) {
-		return UnicodeUtil.toUnicode(strText);
+		return UnicodeUtils.toUnicode(strText);
 	}
 
 	/**
@@ -888,7 +889,7 @@ public class Convert {
 	 * @see UnicodeUtil#toString(String)
 	 */
 	public static String unicodeToStr(String unicode) {
-		return UnicodeUtil.toString(unicode);
+		return UnicodeUtils.toString(unicode);
 	}
 
 	/**

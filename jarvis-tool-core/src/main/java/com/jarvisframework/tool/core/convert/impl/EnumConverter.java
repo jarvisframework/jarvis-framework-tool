@@ -1,10 +1,10 @@
 package com.jarvisframework.tool.core.convert.impl;
 
 import cn.hutool.core.convert.AbstractConverter;
-import cn.hutool.core.util.EnumUtil;
 import cn.hutool.core.util.ModifierUtil;
 import com.jarvisframework.tool.core.map.MapUtils;
 import com.jarvisframework.tool.core.util.ClassUtils;
+import com.jarvisframework.tool.core.util.EnumUtils;
 import com.jarvisframework.tool.core.util.ReflectUtils;
 
 import java.lang.reflect.Method;
@@ -61,7 +61,7 @@ public class EnumConverter extends AbstractConverter<Object> {
 	protected static Enum tryConvertEnum(Object value, Class enumClass) {
 		Enum enumResult = null;
 		if (value instanceof Integer) {
-			enumResult = EnumUtil.getEnumAt(enumClass, (Integer)value);
+			enumResult = EnumUtils.getEnumAt(enumClass, (Integer)value);
 		} else if (value instanceof String) {
 			try {
 				enumResult = Enum.valueOf(enumClass, (String) value);

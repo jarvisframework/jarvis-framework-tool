@@ -1,11 +1,11 @@
 package com.jarvisframework.tool.core.convert.impl;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.BeanCopier;
 import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.bean.copier.ValueProvider;
 import cn.hutool.core.convert.AbstractConverter;
 import cn.hutool.core.map.MapProxy;
+import com.jarvisframework.tool.core.bean.BeanUtils;
 import com.jarvisframework.tool.core.util.ObjectUtils;
 import com.jarvisframework.tool.core.util.ReflectUtils;
 import com.jarvisframework.tool.core.util.TypeUtils;
@@ -67,7 +67,7 @@ public class BeanConverter<T> extends AbstractConverter<T> {
 	protected T convertInternal(Object value) {
 		if(value instanceof Map ||
 				value instanceof ValueProvider ||
-				BeanUtil.isBean(value.getClass())) {
+				BeanUtils.isBean(value.getClass())) {
 			if(value instanceof Map && this.beanClass.isInterface()) {
 				// 将Map动态代理为Bean
 				return MapProxy.create((Map<?, ?>)value).toProxyBean(this.beanClass);

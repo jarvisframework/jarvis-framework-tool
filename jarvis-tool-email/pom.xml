@@ -5,9 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.jarvis.framework</groupId>
-    <artifactId>jarvis-framework</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.jarvisframework</groupId>
+    <artifactId>jarvis-tool</artifactId>
+    <version>0.0.1</version>
   </parent>
 
   <artifactId>jarvis-tool-email</artifactId>

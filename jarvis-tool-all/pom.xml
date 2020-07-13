@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.jarvis.framework</groupId>
-        <artifactId>jarvis-framework</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>com.jarvisframework</groupId>
+        <artifactId>jarvis-tool</artifactId>
+        <version>0.0.1</version>
     </parent>
 
     <artifactId>jarvis-tool-all</artifactId>
@@ -16,32 +16,32 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.jarvis.framework</groupId>
+            <groupId>com.jarvisframework</groupId>
             <artifactId>jarvis-tool-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.jarvis.framework</groupId>
+            <groupId>com.jarvisframework</groupId>
             <artifactId>jarvis-tool-crypto</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.jarvis.framework</groupId>
+            <groupId>com.jarvisframework</groupId>
             <artifactId>jarvis-tool-email</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.jarvis.framework</groupId>
+            <groupId>com.jarvisframework</groupId>
             <artifactId>jarvis-tool-http</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.jarvis.framework</groupId>
+            <groupId>com.jarvisframework</groupId>
             <artifactId>jarvis-tool-poi</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.jarvis.framework</groupId>
+            <groupId>com.jarvisframework</groupId>
             <artifactId>jarvis-tool-redis</artifactId>
             <version>${project.parent.version}</version>
         </dependency>

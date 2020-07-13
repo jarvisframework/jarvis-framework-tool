@@ -10,6 +10,7 @@ import cn.hutool.core.lang.Matcher;
 import cn.hutool.core.lang.func.Func1;
 import cn.hutool.core.lang.hash.Hash32;
 import cn.hutool.core.map.MapUtil;
+import com.jarvisframework.tool.core.bean.BeanUtils;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.convert.ConverterRegistry;
 import com.jarvisframework.tool.core.exception.UtilException;
@@ -2528,7 +2529,7 @@ public class CollectionUtils {
 
             @Override
             public int hash32(T t) {
-                if (null == t || false == BeanUtil.isBean(t.getClass())) {
+                if (null == t || false == BeanUtils.isBean(t.getClass())) {
                     // 非Bean放在同一子分组中
                     return 0;
                 }

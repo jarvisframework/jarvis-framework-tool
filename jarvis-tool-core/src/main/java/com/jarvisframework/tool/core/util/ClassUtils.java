@@ -7,7 +7,6 @@ import cn.hutool.core.lang.ClassScanner;
 import cn.hutool.core.lang.Filter;
 import cn.hutool.core.lang.Singleton;
 import cn.hutool.core.util.ClassLoaderUtil;
-import cn.hutool.core.util.URLUtil;
 import com.jarvisframework.tool.core.exception.UtilException;
 import com.jarvisframework.tool.core.io.FileUtils;
 import com.jarvisframework.tool.core.lang.Assert;
@@ -430,7 +429,7 @@ public class ClassUtils {
         String path;
         while (resources.hasMoreElements()) {
             path = resources.nextElement().getPath();
-            paths.add(isDecode ? URLUtil.decode(path, CharsetUtils.systemCharsetName()) : path);
+            paths.add(isDecode ? UrlUtils.decode(path, CharsetUtils.systemCharsetName()) : path);
         }
         return paths;
     }
@@ -454,7 +453,7 @@ public class ClassUtils {
      */
     public static String getClassPath(boolean isEncoded) {
         final URL classPathURL = getClassPathURL();
-        String url = isEncoded ? classPathURL.getPath() : URLUtil.getDecodedPath(classPathURL);
+        String url = isEncoded ? classPathURL.getPath() : UrlUtils.getDecodedPath(classPathURL);
         return FileUtils.normalize(url);
     }
 
@@ -481,7 +480,7 @@ public class ClassUtils {
      * @see ResourceUtil#getResource(String)
      */
     public static URL getResourceURL(String resource) throws IORuntimeException {
-        return ResourceUtil.getResource(resource);
+        return ResourceUtils.getResource(resource);
     }
 
     /**
@@ -498,7 +497,7 @@ public class ClassUtils {
      * @see ResourceUtil#getResources(String)
      */
     public static List<URL> getResources(String resource) {
-        return ResourceUtil.getResources(resource);
+        return ResourceUtils.getResources(resource);
     }
 
     /**
@@ -510,7 +509,7 @@ public class ClassUtils {
      * @see ResourceUtil#getResource(String, Class)
      */
     public static URL getResourceUrl(String resource, Class<?> baseClass) {
-        return ResourceUtil.getResource(resource, baseClass);
+        return ResourceUtils.getResource(resource, baseClass);
     }
 
     /**
@@ -527,7 +526,7 @@ public class ClassUtils {
      * @see ClassLoaderUtil#getClassLoader()
      */
     public static ClassLoader getContextClassLoader() {
-        return ClassLoaderUtil.getContextClassLoader();
+        return ClassLoaderUtils.getContextClassLoader();
     }
 
     /**
@@ -543,7 +542,7 @@ public class ClassUtils {
      * @return 类加载器
      */
     public static ClassLoader getClassLoader() {
-        return ClassLoaderUtil.getClassLoader();
+        return ClassLoaderUtils.getClassLoader();
     }
 
     /**
@@ -592,7 +591,7 @@ public class ClassUtils {
      */
     @SuppressWarnings("unchecked")
     public static <T> Class<T> loadClass(String className, boolean isInitialized) {
-        return (Class<T>) ClassLoaderUtil.loadClass(className, isInitialized);
+        return (Class<T>) ClassLoaderUtils.loadClass(className, isInitialized);
     }
 
     /**

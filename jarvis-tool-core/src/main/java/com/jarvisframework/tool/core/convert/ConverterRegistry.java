@@ -4,6 +4,7 @@ package com.jarvisframework.tool.core.convert;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.lang.TypeReference;
+import com.jarvisframework.tool.core.bean.BeanUtils;
 import com.jarvisframework.tool.core.convert.impl.*;
 import com.jarvisframework.tool.core.util.ObjectUtils;
 import com.jarvisframework.tool.core.util.ReflectUtils;
@@ -198,7 +199,7 @@ public class ConverterRegistry implements Serializable{
 		}
 		
 		// 尝试转Bean
-		if (BeanUtil.isBean(rowType)) {
+		if (BeanUtils.isBean(rowType)) {
 			return new BeanConverter<T>(type).convert(value, defaultValue);
 		}
 		

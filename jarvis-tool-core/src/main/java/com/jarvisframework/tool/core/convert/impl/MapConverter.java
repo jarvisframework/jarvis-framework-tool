@@ -1,8 +1,8 @@
 package com.jarvisframework.tool.core.convert.impl;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.convert.AbstractConverter;
 import cn.hutool.core.convert.ConverterRegistry;
+import com.jarvisframework.tool.core.bean.BeanUtils;
 import com.jarvisframework.tool.core.map.MapUtils;
 import com.jarvisframework.tool.core.util.StringUtils;
 import com.jarvisframework.tool.core.util.TypeUtils;
@@ -65,8 +65,8 @@ public class MapConverter extends AbstractConverter<Map<?, ?>> {
 			}
 			map = MapUtils.createMap(TypeUtils.getClass(this.mapType));
 			convertMapToMap((Map) value, map);
-		} else if (BeanUtil.isBean(value.getClass())) {
-			map = BeanUtil.beanToMap(value);
+		} else if (BeanUtils.isBean(value.getClass())) {
+			map = BeanUtils.beanToMap(value);
 			// 二次转换，转换键值类型
 			map = convertInternal(map);
 		} else {
