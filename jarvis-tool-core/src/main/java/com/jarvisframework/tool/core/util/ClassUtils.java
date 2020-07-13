@@ -89,8 +89,8 @@ public class ClassUtils {
      * 例如：ClassUtil这个类<br>
      *
      * <pre>
-     * isSimple为false: "com.xiaoleilu.hutool.util.ClassUtil"
-     * isSimple为true: "ClassUtil"
+     * isSimple为false: "com.jarvisframework.tool.util.ClassUtils"
+     * isSimple为true: "ClassUtils"
      * </pre>
      *
      * @param clazz    类
@@ -358,7 +358,7 @@ public class ClassUtils {
         try {
             return clazz.getDeclaredField(fieldName);
         } catch (NoSuchFieldException e) {
-            // e.printStackTrace();
+            e.printStackTrace();
         }
         return null;
     }
@@ -452,8 +452,8 @@ public class ClassUtils {
      * @since 3.2.1
      */
     public static String getClassPath(boolean isEncoded) {
-        final URL classPathURL = getClassPathURL();
-        String url = isEncoded ? classPathURL.getPath() : UrlUtils.getDecodedPath(classPathURL);
+        final URL classPathUrl = getClassPathUrl();
+        String url = isEncoded ? classPathUrl.getPath() : UrlUtils.getDecodedPath(classPathUrl);
         return FileUtils.normalize(url);
     }
 
@@ -462,8 +462,8 @@ public class ClassUtils {
      *
      * @return ClassPath URL
      */
-    public static URL getClassPathURL() {
-        return getResourceURL(StringUtils.EMPTY);
+    public static URL getClassPathUrl() {
+        return getResourceUrl(StringUtils.EMPTY);
     }
 
     /**
@@ -479,7 +479,7 @@ public class ClassUtils {
      * @return 资源URL
      * @see ResourceUtil#getResource(String)
      */
-    public static URL getResourceURL(String resource) throws IORuntimeException {
+    public static URL getResourceUrl(String resource) throws IORuntimeException {
         return ResourceUtils.getResource(resource);
     }
 
@@ -757,17 +757,17 @@ public class ClassUtils {
      * @return 是否为简单值类型
      */
     public static boolean isSimpleValueType(Class<?> clazz) {
-        return isBasicType(clazz) //
-                || clazz.isEnum() //
-                || CharSequence.class.isAssignableFrom(clazz) //
-                || Number.class.isAssignableFrom(clazz) //
-                || Date.class.isAssignableFrom(clazz) //
-                || clazz.equals(URI.class) //
-                || clazz.equals(URL.class) //
-                || clazz.equals(Locale.class) //
-                || clazz.equals(Class.class)//
+        return isBasicType(clazz)
+                || clazz.isEnum()
+                || CharSequence.class.isAssignableFrom(clazz)
+                || Number.class.isAssignableFrom(clazz)
+                || Date.class.isAssignableFrom(clazz)
+                || clazz.equals(URI.class)
+                || clazz.equals(URL.class)
+                || clazz.equals(Locale.class)
+                || clazz.equals(Class.class)
                 // jdk8 date object
-                || TemporalAccessor.class.isAssignableFrom(clazz); //
+                || TemporalAccessor.class.isAssignableFrom(clazz);
     }
 
     /**
@@ -823,7 +823,7 @@ public class ClassUtils {
      * @return 是否为public
      */
     public static boolean isPublic(Method method) {
-        cn.hutool.core.lang.Assert.notNull(method, "Method to provided is null.");
+        Assert.notNull(method, "Method to provided is null.");
         return Modifier.isPublic(method.getModifiers());
     }
 

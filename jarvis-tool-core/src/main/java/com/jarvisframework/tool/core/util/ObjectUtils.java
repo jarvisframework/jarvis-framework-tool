@@ -1,7 +1,6 @@
 package com.jarvisframework.tool.core.util;
 
 import cn.hutool.core.io.FastByteArrayOutputStream;
-import cn.hutool.core.io.IoUtil;
 import com.jarvisframework.tool.core.collection.IterUtils;
 import com.jarvisframework.tool.core.comparator.CompareUtils;
 import com.jarvisframework.tool.core.convert.Convert;
@@ -533,7 +532,7 @@ public class ObjectUtils {
             return obj.toString();
         }
 
-        return Convert.toStr(obj);
+        return Convert.toString(obj);
     }
 
     /**

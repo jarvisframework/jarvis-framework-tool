@@ -982,7 +982,7 @@ public class IoUtils {
             osw = getWriter(out, charset);
             for (Object content : contents) {
                 if (content != null) {
-                    osw.write(Convert.toStr(content, StringUtils.EMPTY));
+                    osw.write(Convert.toString(content, StringUtils.EMPTY));
                 }
             }
             osw.flush();

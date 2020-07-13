@@ -35,11 +35,11 @@ public class IterUtils {
     /**
      * Iterator是否为空
      *
-     * @param Iterator Iterator对象
+     * @param iterator Iterator对象
      * @return 是否为空
      */
-    public static boolean isEmpty(Iterator<?> Iterator) {
-        return null == Iterator || false == Iterator.hasNext();
+    public static boolean isEmpty(Iterator<?> iterator) {
+        return null == iterator || false == iterator.hasNext();
     }
 
     /**
@@ -55,11 +55,11 @@ public class IterUtils {
     /**
      * Iterator是否为空
      *
-     * @param Iterator Iterator对象
+     * @param iterator Iterator对象
      * @return 是否为空
      */
-    public static boolean isNotEmpty(Iterator<?> Iterator) {
-        return null != Iterator && Iterator.hasNext();
+    public static boolean isNotEmpty(Iterator<?> iterator) {
+        return null != iterator && iterator.hasNext();
     }
 
     /**

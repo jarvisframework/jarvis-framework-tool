@@ -87,26 +87,24 @@ public class CompareUtils {
     public static <T> int compare(T o1, T o2, boolean isNullGreater) {
         if (o1 == o2) {
             return 0;
-        } else if (null == o1) { // null 排在后面
+        } else if (null == o1) {
             return isNullGreater ? 1 : -1;
         } else if (null == o2) {
             return isNullGreater ? -1 : 1;
         }
 
         if (o1 instanceof Comparable && o2 instanceof Comparable) {
-            //如果bean可比较，直接比较bean
+            // 如果bean可比较，直接比较bean
             return ((Comparable) o1).compareTo(o2);
         }
 
         if (o1.equals(o2)) {
             return 0;
         }
-
         int result = Integer.compare(o1.hashCode(), o2.hashCode());
         if (0 == result) {
             result = compare(o1.toString(), o2.toString());
         }
-
         return result;
     }
 }

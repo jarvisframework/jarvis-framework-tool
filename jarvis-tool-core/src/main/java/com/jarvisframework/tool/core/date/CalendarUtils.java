@@ -62,7 +62,7 @@ public class CalendarUtils {
      * @param calendar {@link Calendar}
      * @return 是否为上午
      */
-    public static boolean isAM(Calendar calendar) {
+    public static boolean isAm(Calendar calendar) {
         return Calendar.AM == calendar.get(Calendar.AM_PM);
     }
 
@@ -72,7 +72,7 @@ public class CalendarUtils {
      * @param calendar {@link Calendar}
      * @return 是否为下午
      */
-    public static boolean isPM(Calendar calendar) {
+    public static boolean isPm(Calendar calendar) {
         return Calendar.PM == calendar.get(Calendar.AM_PM);
     }
 

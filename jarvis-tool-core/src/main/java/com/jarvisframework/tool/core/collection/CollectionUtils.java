@@ -1,6 +1,5 @@
 package com.jarvisframework.tool.core.collection;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.*;
 import cn.hutool.core.comparator.PinyinComparator;
 import cn.hutool.core.comparator.PropertyComparator;
@@ -1114,7 +1113,7 @@ public class CollectionUtils {
      */
     public static <T> Collection<T> filterNew(Collection<T> collection, Filter<T> filter) {
         if (null == collection || null == filter) {
-            return collection;
+            return null;
         }
 
         Collection<T> collection2 = ObjectUtils.clone(collection);
@@ -1538,12 +1537,12 @@ public class CollectionUtils {
     /**
      * Iterator是否为空
      *
-     * @param Iterator Iterator对象
+     * @param iterator Iterator对象
      * @return 是否为空
      * @see IterUtil#isEmpty(Iterator)
      */
-    public static boolean isEmpty(Iterator<?> Iterator) {
-        return IterUtils.isEmpty(Iterator);
+    public static boolean isEmpty(Iterator<?> iterator) {
+        return IterUtils.isEmpty(iterator);
     }
 
     /**
@@ -1593,12 +1592,12 @@ public class CollectionUtils {
     /**
      * Iterator是否为空
      *
-     * @param Iterator Iterator对象
+     * @param iterator Iterator对象
      * @return 是否为空
      * @see IterUtils#isNotEmpty(Iterator)
      */
-    public static boolean isNotEmpty(Iterator<?> Iterator) {
-        return IterUtils.isNotEmpty(Iterator);
+    public static boolean isNotEmpty(Iterator<?> iterator) {
+        return IterUtils.isNotEmpty(iterator);
     }
 
     /**
@@ -1948,8 +1947,8 @@ public class CollectionUtils {
             iter = new ArrayIter<>(value);
         } else if (value instanceof CharSequence) {
             // String按照逗号分隔的列表对待
-            final String ArrayStr = StringUtils.unWrap((CharSequence) value, '[', ']');
-            iter = StringUtils.splitTrim(ArrayStr, CharUtils.COMMA).iterator();
+            final String arrayStr = StringUtils.unWrap((CharSequence) value, '[', ']');
+            iter = StringUtils.splitTrim(arrayStr, CharUtils.COMMA).iterator();
         } else {
             // 其它类型按照单一元素处理
             iter = CollectionUtils.newArrayList(value).iterator();

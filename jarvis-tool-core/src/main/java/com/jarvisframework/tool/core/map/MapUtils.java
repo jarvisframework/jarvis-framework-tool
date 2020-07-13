@@ -556,7 +556,7 @@ public class MapUtils {
                     } else {
                         strBuilder.append(separator);
                     }
-                    strBuilder.append(Convert.toStr(entry.getKey())).append(keyValueSeparator).append(Convert.toStr(entry.getValue()));
+                    strBuilder.append(Convert.toString(entry.getKey())).append(keyValueSeparator).append(Convert.toString(entry.getValue()));
                 }
             }
         }

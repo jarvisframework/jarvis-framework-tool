@@ -1,7 +1,6 @@
 package com.jarvisframework.tool.core.convert;
 
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.lang.TypeReference;
 import com.jarvisframework.tool.core.bean.BeanUtils;
@@ -301,6 +300,7 @@ public class ConverterRegistry implements Serializable{
 	 * @return 转换器
 	 */
 	private ConverterRegistry defaultConverter() {
+
 		defaultConverterMap = new ConcurrentHashMap<>();
 
 		// 原始类型转换器
@@ -316,16 +316,19 @@ public class ConverterRegistry implements Serializable{
 		// 包装类转换器
 		defaultConverterMap.put(Number.class, new NumberConverter());
 		defaultConverterMap.put(Integer.class, new NumberConverter(Integer.class));
-		defaultConverterMap.put(AtomicInteger.class, new NumberConverter(AtomicInteger.class));// since 3.0.8
+		// since 3.0.8
+		defaultConverterMap.put(AtomicInteger.class, new NumberConverter(AtomicInteger.class));
 		defaultConverterMap.put(Long.class, new NumberConverter(Long.class));
-		defaultConverterMap.put(AtomicLong.class, new NumberConverter(AtomicLong.class));// since 3.0.8
+		// since 3.0.8
+		defaultConverterMap.put(AtomicLong.class, new NumberConverter(AtomicLong.class));
 		defaultConverterMap.put(Byte.class, new NumberConverter(Byte.class));
 		defaultConverterMap.put(Short.class, new NumberConverter(Short.class));
 		defaultConverterMap.put(Float.class, new NumberConverter(Float.class));
 		defaultConverterMap.put(Double.class, new NumberConverter(Double.class));
 		defaultConverterMap.put(Character.class, new CharacterConverter());
 		defaultConverterMap.put(Boolean.class, new BooleanConverter());
-		defaultConverterMap.put(AtomicBoolean.class, new AtomicBooleanConverter());// since 3.0.8
+		// since 3.0.8
+		defaultConverterMap.put(AtomicBoolean.class, new AtomicBooleanConverter());
 		defaultConverterMap.put(BigDecimal.class, new NumberConverter(BigDecimal.class));
 		defaultConverterMap.put(BigInteger.class, new NumberConverter(BigInteger.class));
 		defaultConverterMap.put(CharSequence.class, new StringConverter());
@@ -356,9 +359,12 @@ public class ConverterRegistry implements Serializable{
 		defaultConverterMap.put(Duration.class, new DurationConverter());
 
 		// Reference
-		defaultConverterMap.put(WeakReference.class, new ReferenceConverter(WeakReference.class));// since 3.0.8
-		defaultConverterMap.put(SoftReference.class, new ReferenceConverter(SoftReference.class));// since 3.0.8
-		defaultConverterMap.put(AtomicReference.class, new AtomicReferenceConverter());// since 3.0.8
+		// since 3.0.8
+		defaultConverterMap.put(WeakReference.class, new ReferenceConverter(WeakReference.class));
+		// since 3.0.8
+		defaultConverterMap.put(SoftReference.class, new ReferenceConverter(SoftReference.class));
+		// since 3.0.8
+		defaultConverterMap.put(AtomicReference.class, new AtomicReferenceConverter());
 
 		// 其它类型
 		defaultConverterMap.put(Class.class, new ClassConverter());
@@ -366,10 +372,14 @@ public class ConverterRegistry implements Serializable{
 		defaultConverterMap.put(Locale.class, new LocaleConverter());
 		defaultConverterMap.put(Charset.class, new CharsetConverter());
 		defaultConverterMap.put(Path.class, new PathConverter());
-		defaultConverterMap.put(Currency.class, new CurrencyConverter());// since 3.0.8
-		defaultConverterMap.put(UUID.class, new UUIDConverter());// since 4.0.10
-		defaultConverterMap.put(StackTraceElement.class, new StackTraceElementConverter());// since 4.5.2
-		defaultConverterMap.put(Optional.class, new OptionalConverter());// since 5.0.0
+		// since 3.0.8
+		defaultConverterMap.put(Currency.class, new CurrencyConverter());
+		// since 4.0.10
+		defaultConverterMap.put(UUID.class, new UUIDConverter());
+		// since 4.5.2
+		defaultConverterMap.put(StackTraceElement.class, new StackTraceElementConverter());
+		// since 5.0.0
+		defaultConverterMap.put(Optional.class, new OptionalConverter());
 
 		return this;
 	}

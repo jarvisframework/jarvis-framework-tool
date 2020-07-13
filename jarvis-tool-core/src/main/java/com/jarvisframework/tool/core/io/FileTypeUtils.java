@@ -19,96 +19,96 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class FileTypeUtils {
 
-    private static final Map<String, String> fileTypeMap;
+    private static final Map<String, String> FILE_TYPE_MAP;
 
     static {
-        fileTypeMap = new ConcurrentHashMap<>();
+        FILE_TYPE_MAP = new ConcurrentHashMap<>();
 
         // JPEG (jpg)
-        fileTypeMap.put("ffd8ff", "jpg");
+        FILE_TYPE_MAP.put("ffd8ff", "jpg");
         // PNG (png)
-        fileTypeMap.put("89504e47", "png");
+        FILE_TYPE_MAP.put("89504e47", "png");
         // GIF (gif)
-        fileTypeMap.put("4749463837", "gif");
+        FILE_TYPE_MAP.put("4749463837", "gif");
         // GIF (gif)
-        fileTypeMap.put("4749463839", "gif");
+        FILE_TYPE_MAP.put("4749463839", "gif");
         // TIFF (tif)
-        fileTypeMap.put("49492a00227105008037", "tif");
+        FILE_TYPE_MAP.put("49492a00227105008037", "tif");
         // 16色位图(bmp)
-        fileTypeMap.put("424d228c010000000000", "bmp");
+        FILE_TYPE_MAP.put("424d228c010000000000", "bmp");
         // 24位位图(bmp)
-        fileTypeMap.put("424d8240090000000000", "bmp");
+        FILE_TYPE_MAP.put("424d8240090000000000", "bmp");
         // 256色位图(bmp)
-        fileTypeMap.put("424d8e1b030000000000", "bmp");
+        FILE_TYPE_MAP.put("424d8e1b030000000000", "bmp");
         // CAD (dwg)
-        fileTypeMap.put("41433130313500000000", "dwg");
+        FILE_TYPE_MAP.put("41433130313500000000", "dwg");
         // Rich Text Format (rtf)
-        fileTypeMap.put("7b5c727466315c616e73", "rtf");
+        FILE_TYPE_MAP.put("7b5c727466315c616e73", "rtf");
         // Photoshop (psd)
-        fileTypeMap.put("38425053000100000000", "psd");
+        FILE_TYPE_MAP.put("38425053000100000000", "psd");
         // Email [Outlook Express 6] (eml)
-        fileTypeMap.put("46726f6d3a203d3f6762", "eml");
+        FILE_TYPE_MAP.put("46726f6d3a203d3f6762", "eml");
         // MS Access (mdb)
-        fileTypeMap.put("5374616E64617264204A", "mdb");
-        fileTypeMap.put("252150532D41646F6265", "ps");
+        FILE_TYPE_MAP.put("5374616E64617264204A", "mdb");
+        FILE_TYPE_MAP.put("252150532D41646F6265", "ps");
         // Adobe Acrobat (pdf)
-        fileTypeMap.put("255044462d312e", "pdf");
+        FILE_TYPE_MAP.put("255044462d312e", "pdf");
         // rmvb/rm相同
-        fileTypeMap.put("2e524d46000000120001", "rmvb");
+        FILE_TYPE_MAP.put("2e524d46000000120001", "rmvb");
         // flv与f4v相同
-        fileTypeMap.put("464c5601050000000900", "flv");
-        fileTypeMap.put("00000020667479706", "mp4");
-        fileTypeMap.put("00000018667479706D70", "mp4");
-        fileTypeMap.put("49443303000000002176", "mp3");
-        fileTypeMap.put("000001ba210001000180", "mpg");
+        FILE_TYPE_MAP.put("464c5601050000000900", "flv");
+        FILE_TYPE_MAP.put("00000020667479706", "mp4");
+        FILE_TYPE_MAP.put("00000018667479706D70", "mp4");
+        FILE_TYPE_MAP.put("49443303000000002176", "mp3");
+        FILE_TYPE_MAP.put("000001ba210001000180", "mpg");
         // wmv与asf相同
-        fileTypeMap.put("3026b2758e66cf11a6d9", "wmv");
+        FILE_TYPE_MAP.put("3026b2758e66cf11a6d9", "wmv");
         // Wave (wav)
-        fileTypeMap.put("52494646e27807005741", "wav");
-        fileTypeMap.put("52494646d07d60074156", "avi");
+        FILE_TYPE_MAP.put("52494646e27807005741", "wav");
+        FILE_TYPE_MAP.put("52494646d07d60074156", "avi");
         // MIDI (mid)
-        fileTypeMap.put("4d546864000000060001", "mid");
+        FILE_TYPE_MAP.put("4d546864000000060001", "mid");
         // WinRAR
-        fileTypeMap.put("526172211a0700cf9073", "rar");
-        fileTypeMap.put("235468697320636f6e66", "ini");
-        fileTypeMap.put("504B03040a0000000000", "jar");
-        fileTypeMap.put("504B0304140008000800", "jar");
+        FILE_TYPE_MAP.put("526172211a0700cf9073", "rar");
+        FILE_TYPE_MAP.put("235468697320636f6e66", "ini");
+        FILE_TYPE_MAP.put("504B03040a0000000000", "jar");
+        FILE_TYPE_MAP.put("504B0304140008000800", "jar");
         // MS Excel 注意：word、msi 和 excel的文件头一样
-        fileTypeMap.put("d0cf11e0a1b11ae10", "xls");
-        fileTypeMap.put("504B0304", "zip");
+        FILE_TYPE_MAP.put("d0cf11e0a1b11ae10", "xls");
+        FILE_TYPE_MAP.put("504B0304", "zip");
         // 可执行文件
-        fileTypeMap.put("4d5a9000030000000400", "exe");
+        FILE_TYPE_MAP.put("4d5a9000030000000400", "exe");
         // jsp文件
-        fileTypeMap.put("3c25402070616765206c", "jsp");
+        FILE_TYPE_MAP.put("3c25402070616765206c", "jsp");
         // MF文件
-        fileTypeMap.put("4d616e69666573742d56", "mf");
+        FILE_TYPE_MAP.put("4d616e69666573742d56", "mf");
         // java文件
-        fileTypeMap.put("7061636b616765207765", "java");
+        FILE_TYPE_MAP.put("7061636b616765207765", "java");
         // bat文件
-        fileTypeMap.put("406563686f206f66660d", "bat");
+        FILE_TYPE_MAP.put("406563686f206f66660d", "bat");
         // gz文件
-        fileTypeMap.put("1f8b0800000000000000", "gz");
+        FILE_TYPE_MAP.put("1f8b0800000000000000", "gz");
         // bat文件
-        fileTypeMap.put("cafebabe0000002e0041", "class");
+        FILE_TYPE_MAP.put("cafebabe0000002e0041", "class");
         // bat文件
-        fileTypeMap.put("49545346030000006000", "chm");
+        FILE_TYPE_MAP.put("49545346030000006000", "chm");
         // bat文件
-        fileTypeMap.put("04000000010000001300", "mxp");
-        fileTypeMap.put("6431303a637265617465", "torrent");
+        FILE_TYPE_MAP.put("04000000010000001300", "mxp");
+        FILE_TYPE_MAP.put("6431303a637265617465", "torrent");
         // Quicktime (mov)
-        fileTypeMap.put("6D6F6F76", "mov");
+        FILE_TYPE_MAP.put("6D6F6F76", "mov");
         // WordPerfect (wpd)
-        fileTypeMap.put("FF575043", "wpd");
+        FILE_TYPE_MAP.put("FF575043", "wpd");
         // Outlook Express (dbx)
-        fileTypeMap.put("CFAD12FEC5FD746F", "dbx");
+        FILE_TYPE_MAP.put("CFAD12FEC5FD746F", "dbx");
         // Outlook (pst)
-        fileTypeMap.put("2142444E", "pst");
+        FILE_TYPE_MAP.put("2142444E", "pst");
         // Quicken (qdf)
-        fileTypeMap.put("AC9EBD8F", "qdf");
+        FILE_TYPE_MAP.put("AC9EBD8F", "qdf");
         // Windows Password (pwl)
-        fileTypeMap.put("E3828596", "pwl");
+        FILE_TYPE_MAP.put("E3828596", "pwl");
         // Real Audio (ram)
-        fileTypeMap.put("2E7261FD", "ram");
+        FILE_TYPE_MAP.put("2E7261FD", "ram");
     }
 
     /**
@@ -120,7 +120,7 @@ public class FileTypeUtils {
      * @return 之前已经存在的文件扩展名
      */
     public static String putFileType(String fileStreamHexHead, String extName) {
-        return fileTypeMap.put(fileStreamHexHead.toLowerCase(), extName);
+        return FILE_TYPE_MAP.put(fileStreamHexHead.toLowerCase(), extName);
     }
 
     /**
@@ -130,7 +130,7 @@ public class FileTypeUtils {
      * @return 移除的文件扩展名
      */
     public static String removeFileType(String fileStreamHexHead) {
-        return fileTypeMap.remove(fileStreamHexHead.toLowerCase());
+        return FILE_TYPE_MAP.remove(fileStreamHexHead.toLowerCase());
     }
 
     /**
@@ -140,7 +140,7 @@ public class FileTypeUtils {
      * @return 文件类型，未找到为<code>null</code>
      */
     public static String getType(String fileStreamHexHead) {
-        for (Map.Entry<String, String> fileTypeEntry : fileTypeMap.entrySet()) {
+        for (Map.Entry<String, String> fileTypeEntry : FILE_TYPE_MAP.entrySet()) {
             if (StringUtils.startWithIgnoreCase(fileStreamHexHead, fileTypeEntry.getKey())) {
                 return fileTypeEntry.getValue();
             }

@@ -33,8 +33,8 @@ public class ClassLoaderUtils {
     private static final char INNER_CLASS_SEPARATOR = '$';
 
     /** 原始类型名和其class对应表，例如：int =》 int.class */
-    private static final Map<String, Class<?>> primitiveTypeNameMap = new ConcurrentHashMap<>(32);
-    private static final SimpleCache<String, Class<?>> classCache = new SimpleCache<>();
+    private static final Map<String, Class<?>> PRIMITIVE_TYPE_NAME_MAP = new ConcurrentHashMap<>(32);
+    private static final SimpleCache<String, Class<?>> CLASS_CACHE = new SimpleCache<>();
 
     static {
         List<Class<?>> primitiveTypes = new ArrayList<>(32);
@@ -51,7 +51,7 @@ public class ClassLoaderUtils {
         primitiveTypes.add(short[].class);
         primitiveTypes.add(void.class);
         for (Class<?> primitiveType : primitiveTypes) {
-            primitiveTypeNameMap.put(primitiveType.getName(), primitiveType);
+            PRIMITIVE_TYPE_NAME_MAP.put(primitiveType.getName(), primitiveType);
         }
     }
 
@@ -150,7 +150,7 @@ public class ClassLoaderUtils {
         // 加载原始类型和缓存中的类
         Class<?> clazz = loadPrimitiveClass(name);
         if (clazz == null) {
-            clazz = classCache.get(name);
+            clazz = CLASS_CACHE.get(name);
         }
         if (clazz != null) {
             return clazz;
@@ -186,9 +186,8 @@ public class ClassLoaderUtils {
                 }
             }
         }
-
         // 加入缓存并返回
-        return classCache.put(name, clazz);
+        return CLASS_CACHE.put(name, clazz);
     }
 
     /**
@@ -202,7 +201,7 @@ public class ClassLoaderUtils {
         if (StringUtils.isNotBlank(name)) {
             name = name.trim();
             if (name.length() <= 8) {
-                result = primitiveTypeNameMap.get(name);
+                result = PRIMITIVE_TYPE_NAME_MAP.get(name);
             }
         }
         return result;
@@ -279,7 +278,8 @@ public class ClassLoaderUtils {
     private static Class<?> tryLoadInnerClass(String name, ClassLoader classLoader, boolean isInitialized) {
         // 尝试获取内部类，例如java.lang.Thread.State =》java.lang.Thread$State
         final int lastDotIndex = name.lastIndexOf(PACKAGE_SEPARATOR);
-        if (lastDotIndex > 0) {// 类与内部类的分隔符不能在第一位，因此>0
+        // 类与内部类的分隔符不能在第一位，因此>0
+        if (lastDotIndex > 0) {
             final String innerClassName = name.substring(0, lastDotIndex) + INNER_CLASS_SEPARATOR + name.substring(lastDotIndex + 1);
             try {
                 return Class.forName(innerClassName, isInitialized, classLoader);

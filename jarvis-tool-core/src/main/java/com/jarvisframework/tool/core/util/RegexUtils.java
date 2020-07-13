@@ -539,11 +539,11 @@ public class RegexUtils {
     /**
      * 从字符串中获得第一个整数
      *
-     * @param StringWithNumber 带数字的字符串
+     * @param stringWithNumber 带数字的字符串
      * @return 整数
      */
-    public static Integer getFirstNumber(CharSequence StringWithNumber) {
-        return Convert.toInt(get(PatternPool.NUMBERS, StringWithNumber, 0), null);
+    public static Integer getFirstNumber(CharSequence stringWithNumber) {
+        return Convert.toInt(get(PatternPool.NUMBERS, stringWithNumber, 0), null);
     }
 
     /**
