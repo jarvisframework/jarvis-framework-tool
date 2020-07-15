@@ -28,6 +28,7 @@
         <module>jarvis-tool-http</module>
         <module>jarvis-tool-poi</module>
         <module>jarvis-tool-email</module>
+        <module>jarvis-tool-extra</module>
     </modules>
 
     <dependencies>
