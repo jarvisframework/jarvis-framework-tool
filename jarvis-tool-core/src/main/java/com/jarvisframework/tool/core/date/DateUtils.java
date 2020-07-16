@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 
 /**
- * <p>description</p>
+ * <p>时间工具类</p>
  *
  * @author 王涛
  * @since 1.0, 2020-07-10 17:33:02

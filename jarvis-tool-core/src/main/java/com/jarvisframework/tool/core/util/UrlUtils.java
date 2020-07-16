@@ -4,7 +4,7 @@ import cn.hutool.core.io.IORuntimeException;
 import cn.hutool.core.net.url.UrlQuery;
 import com.jarvisframework.tool.core.exception.UtilException;
 import com.jarvisframework.tool.core.io.FileUtils;
-import com.jarvisframework.tool.core.io.IoUtils;
+import com.jarvisframework.tool.core.io.IOUtils;
 import com.jarvisframework.tool.core.lang.Assert;
 
 import java.io.*;
@@ -632,7 +632,7 @@ public class UrlUtils {
      * @since 3.2.1
      */
     public static BufferedReader getReader(URL url, Charset charset) {
-        return IoUtils.getReader(getStream(url), charset);
+        return IOUtils.getReader(getStream(url), charset);
     }
 
     /**

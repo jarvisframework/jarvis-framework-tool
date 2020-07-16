@@ -7,13 +7,14 @@
     <parent>
         <groupId>com.jarvisframework</groupId>
         <artifactId>jarvis-tool</artifactId>
-        <version>0.0.1</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>jarvis-tool-extra</artifactId>
 
     <properties>
         <net.version>3.6</net.version>
+        <mail.version>1.6.2</mail.version>
     </properties>
 
     <dependencies>
@@ -25,11 +26,47 @@
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
+        <!-- 邮件 -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>${mail.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.11.1</version>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>1.1.6</version>
+        </dependency>
         <dependency>
             <groupId>com.jarvisframework</groupId>
             <artifactId>jarvis-tool-core</artifactId>
-            <version>0.0.1</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jarvisframework</groupId>
+            <artifactId>jarvis-tool-http</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao</groupId>
+            <artifactId>taobao-sdk-java-auto</artifactId>
+            <version>20200716</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/src/main/resources/libs/taobao-sdk-java-auto_1594802809428-20200716.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

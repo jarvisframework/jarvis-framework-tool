@@ -4192,7 +4192,7 @@ public class StringUtils {
      * 生成随机UUID
      *
      * @return UUID字符串
-     * @see IdUtil#randomUUID()
+     * @see IdUtils#randomUUID()
      * @since 4.0.10
      */
     public static String uuid() {
@@ -4319,5 +4319,23 @@ public class StringUtils {
             }
         }
         return new String(buffer);
+    }
+
+    /**
+     * 检查指定的字符串列表是否不为空。
+     *
+     * @param values 字符串数组
+     * @return 判空结果
+     */
+    public static boolean areNotEmpty(String... values) {
+        boolean result = true;
+        if (values == null || values.length == 0) {
+            result = false;
+        } else {
+            for (String value : values) {
+                result &= !isEmpty(value);
+            }
+        }
+        return result;
     }
 }

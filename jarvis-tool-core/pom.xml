@@ -7,7 +7,7 @@
   <parent>
     <groupId>com.jarvisframework</groupId>
     <artifactId>jarvis-tool</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.1</version>
   </parent>
 
   <artifactId>jarvis-tool-core</artifactId>
@@ -28,6 +28,21 @@
       <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.4.11.1</version>
+    </dependency>
+    <dependency>
+      <groupId>dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+    <dependency>
+      <groupId>jaxen</groupId>
+      <artifactId>jaxen</artifactId>
+      <version>1.1.6</version>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>

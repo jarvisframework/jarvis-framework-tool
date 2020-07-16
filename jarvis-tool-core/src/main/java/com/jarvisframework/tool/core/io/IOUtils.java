@@ -30,7 +30,7 @@ import java.util.zip.Checksum;
  * @author 王涛
  * @since 1.0, 2020-07-10 19:51:13
  */
-public class IoUtils {
+public class IOUtils {
 
     /**
      * 默认缓存大小 8192
@@ -213,8 +213,8 @@ public class IoUtils {
         } catch (IOException e) {
             throw new IORuntimeException(e);
         } finally {
-            close(outChannel);
-            close(inChannel);
+            closeQuietly(outChannel);
+            closeQuietly(inChannel);
         }
     }
 
@@ -554,7 +554,7 @@ public class IoUtils {
         final FastByteArrayOutputStream out = new FastByteArrayOutputStream();
         copy(in, out);
         if (isCloseStream) {
-            close(in);
+            closeQuietly(in);
         }
         return out.toByteArray();
     }
@@ -935,7 +935,7 @@ public class IoUtils {
             throw new IORuntimeException(e);
         } finally {
             if (isCloseOut) {
-                close(out);
+                closeQuietly(out);
             }
         }
     }
@@ -990,7 +990,7 @@ public class IoUtils {
             throw new IORuntimeException(e);
         } finally {
             if (isCloseOut) {
-                close(osw);
+                closeQuietly(osw);
             }
         }
     }
@@ -1030,7 +1030,7 @@ public class IoUtils {
             throw new IORuntimeException(e);
         } finally {
             if (isCloseOut) {
-                close(osw);
+                closeQuietly(osw);
             }
         }
     }
@@ -1057,7 +1057,7 @@ public class IoUtils {
      *
      * @param closeable 被关闭的对象
      */
-    public static void close(Closeable closeable) {
+    public static void closeQuietly(Closeable closeable) {
         if (null != closeable) {
             try {
                 closeable.close();
@@ -1073,7 +1073,7 @@ public class IoUtils {
      *
      * @param closeable 被关闭的对象
      */
-    public static void close(AutoCloseable closeable) {
+    public static void closeQuietly(AutoCloseable closeable) {
         if (null != closeable) {
             try {
                 closeable.close();
@@ -1092,7 +1092,7 @@ public class IoUtils {
      */
     public static void closeIfPosible(Object obj) {
         if (obj instanceof AutoCloseable) {
-            close((AutoCloseable) obj);
+            closeQuietly((AutoCloseable) obj);
         }
     }
 
@@ -1217,9 +1217,9 @@ public class IoUtils {
         }
         try {
             in = new CheckedInputStream(in, checksum);
-            IoUtils.copy(in, new NullOutputStream());
+            IOUtils.copy(in, new NullOutputStream());
         } finally {
-            IoUtils.close(in);
+            IOUtils.closeQuietly(in);
         }
         return checksum;
     }

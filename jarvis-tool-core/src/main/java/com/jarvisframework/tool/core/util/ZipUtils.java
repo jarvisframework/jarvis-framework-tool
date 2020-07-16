@@ -4,7 +4,7 @@ import cn.hutool.core.io.FastByteArrayOutputStream;
 import cn.hutool.core.io.IORuntimeException;
 import com.jarvisframework.tool.core.exception.UtilException;
 import com.jarvisframework.tool.core.io.FileUtils;
-import com.jarvisframework.tool.core.io.IoUtils;
+import com.jarvisframework.tool.core.io.IOUtils;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -245,7 +245,7 @@ public class ZipUtils {
      * @since 3.2.2
      */
     public static File zip(File zipFile, String path, String data, Charset charset) throws UtilException {
-        return zip(zipFile, path, IoUtils.toStream(data, charset), charset);
+        return zip(zipFile, path, IOUtils.toStream(data, charset), charset);
     }
 
     /**
@@ -320,7 +320,7 @@ public class ZipUtils {
                 addFile(ins[i], paths[i], out);
             }
         } finally {
-            IoUtils.close(out);
+            IOUtils.closeQuietly(out);
         }
         return zipFile;
     }
@@ -466,7 +466,7 @@ public class ZipUtils {
                 }
             }
         } finally {
-            IoUtils.close(zipFile);
+            IOUtils.closeQuietly(zipFile);
         }
         return outFile;
     }
@@ -518,7 +518,7 @@ public class ZipUtils {
         } catch (IOException e) {
             throw new UtilException(e);
         } finally {
-            IoUtils.close(zipStream);
+            IOUtils.closeQuietly(zipStream);
         }
         return outFile;
     }
@@ -579,13 +579,13 @@ public class ZipUtils {
             while (em.hasMoreElements()) {
                 zipEntry = em.nextElement();
                 if ((false == zipEntry.isDirectory()) && name.equals(zipEntry.getName())) {
-                    return IoUtils.readBytes(zipFileObj.getInputStream(zipEntry));
+                    return IOUtils.readBytes(zipFileObj.getInputStream(zipEntry));
                 }
             }
         } catch (IOException e) {
             throw new UtilException(e);
         } finally {
-            IoUtils.close(zipFileObj);
+            IOUtils.closeQuietly(zipFileObj);
         }
         return null;
     }
@@ -628,7 +628,7 @@ public class ZipUtils {
             in = FileUtils.getInputStream(file);
             return gzip(in, (int) file.length());
         } finally {
-            IoUtils.close(in);
+            IOUtils.closeQuietly(in);
         }
     }
 
@@ -658,11 +658,11 @@ public class ZipUtils {
         GZIPOutputStream gos = null;
         try {
             gos = new GZIPOutputStream(bos);
-            IoUtils.copy(in, gos);
+            IOUtils.copy(in, gos);
         } catch (IOException e) {
             throw new UtilException(e);
         } finally {
-            IoUtils.close(gos);
+            IOUtils.closeQuietly(gos);
         }
         // 返回必须在关闭gos后进行，因为关闭时会自动执行finish()方法，保证数据全部写出
         return bos.toByteArray();
@@ -717,11 +717,11 @@ public class ZipUtils {
         try {
             gzi = (in instanceof GZIPInputStream) ? (GZIPInputStream) in : new GZIPInputStream(in);
             bos = new FastByteArrayOutputStream(length);
-            IoUtils.copy(gzi, bos);
+            IOUtils.copy(gzi, bos);
         } catch (IOException e) {
             throw new UtilException(e);
         } finally {
-            IoUtils.close(gzi);
+            IOUtils.closeQuietly(gzi);
         }
         // 返回必须在关闭gos后进行，因为关闭时会自动执行finish()方法，保证数据全部写出
         return bos.toByteArray();
@@ -756,7 +756,7 @@ public class ZipUtils {
             in = FileUtils.getInputStream(file);
             return zlib(in, level, (int) file.length());
         } finally {
-            IoUtils.close(in);
+            IOUtils.closeQuietly(in);
         }
     }
 
@@ -962,11 +962,11 @@ public class ZipUtils {
         }
         try {
             out.putNextEntry(new ZipEntry(path));
-            IoUtils.copy(in, out);
+            IOUtils.copy(in, out);
         } catch (IOException e) {
             throw new UtilException(e);
         } finally {
-            IoUtils.close(in);
+            IOUtils.closeQuietly(in);
             closeEntry(out);
         }
     }
@@ -1050,7 +1050,7 @@ public class ZipUtils {
         } catch (IOException e) {
             throw new IORuntimeException(e);
         } finally {
-            IoUtils.close(in);
+            IOUtils.closeQuietly(in);
         }
     }
 
@@ -1064,7 +1064,7 @@ public class ZipUtils {
     @SuppressWarnings("SameParameterValue")
     private static void inflater(InputStream in, OutputStream out, boolean nowrap) {
         final InflaterOutputStream ios = (out instanceof InflaterOutputStream) ? (InflaterOutputStream) out : new InflaterOutputStream(out, new Inflater(nowrap));
-        IoUtils.copy(in, ios);
+        IOUtils.copy(in, ios);
         try {
             ios.finish();
         } catch (IOException e) {
@@ -1083,7 +1083,7 @@ public class ZipUtils {
     @SuppressWarnings("SameParameterValue")
     private static void deflater(InputStream in, OutputStream out, int level, boolean nowrap) {
         final DeflaterOutputStream ios = (out instanceof DeflaterOutputStream) ? (DeflaterOutputStream) out : new DeflaterOutputStream(out, new Deflater(level, nowrap));
-        IoUtils.copy(in, ios);
+        IOUtils.copy(in, ios);
         try {
             ios.finish();
         } catch (IOException e) {

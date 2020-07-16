@@ -1,4 +1,4 @@
-package com.jarvisframework.extra.ftp;
+package com.jarvisframework.tool.extra.ftp;
 
 
 import cn.hutool.core.lang.Filter;

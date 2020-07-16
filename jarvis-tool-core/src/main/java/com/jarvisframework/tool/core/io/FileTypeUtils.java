@@ -156,7 +156,7 @@ public class FileTypeUtils {
      * @throws IORuntimeException 读取流引起的异常
      */
     public static String getType(InputStream in) throws IORuntimeException {
-        return getType(IoUtils.readHex28Upper(in));
+        return getType(IOUtils.readHex28Upper(in));
     }
 
     /**
@@ -176,10 +176,10 @@ public class FileTypeUtils {
         String typeName;
         FileInputStream in = null;
         try {
-            in = IoUtils.toStream(file);
+            in = IOUtils.toStream(file);
             typeName = getType(in);
         } finally {
-            IoUtils.close(in);
+            IOUtils.closeQuietly(in);
         }
 
         if (null == typeName) {

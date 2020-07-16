@@ -305,7 +305,7 @@ public class FileUtils {
         } catch (IOException e) {
             throw new IORuntimeException(StringUtils.format("Can not read file path of [{}]", path), e);
         } finally {
-            IoUtils.close(jarFile);
+            IOUtils.closeQuietly(jarFile);
         }
     }
 
@@ -1413,11 +1413,11 @@ public class FileUtils {
         try {
             input1 = getInputStream(file1);
             input2 = getInputStream(file2);
-            return IoUtils.contentEquals(input1, input2);
+            return IOUtils.contentEquals(input1, input2);
 
         } finally {
-            IoUtils.close(input1);
-            IoUtils.close(input2);
+            IOUtils.closeQuietly(input1);
+            IOUtils.closeQuietly(input2);
         }
     }
 
@@ -1461,10 +1461,10 @@ public class FileUtils {
         try {
             input1 = getReader(file1, charset);
             input2 = getReader(file2, charset);
-            return IoUtils.contentEqualsIgnoreEOL(input1, input2);
+            return IOUtils.contentEqualsIgnoreEOL(input1, input2);
         } finally {
-            IoUtils.close(input1);
-            IoUtils.close(input2);
+            IOUtils.closeQuietly(input1);
+            IOUtils.closeQuietly(input2);
         }
     }
 
@@ -2019,7 +2019,7 @@ public class FileUtils {
      * @throws IORuntimeException 文件未找到
      */
     public static BufferedInputStream getInputStream(File file) throws IORuntimeException {
-        return new BufferedInputStream(IoUtils.toStream(file));
+        return new BufferedInputStream(IOUtils.toStream(file));
     }
 
     /**
@@ -2092,7 +2092,7 @@ public class FileUtils {
      * @since 4.0.0
      */
     public static BufferedReader getReader(Path path, Charset charset) throws IORuntimeException {
-        return IoUtils.getReader(getInputStream(path), charset);
+        return IOUtils.getReader(getInputStream(path), charset);
     }
 
     /**
@@ -2104,7 +2104,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static BufferedReader getReader(File file, String charsetName) throws IORuntimeException {
-        return IoUtils.getReader(getInputStream(file), charsetName);
+        return IOUtils.getReader(getInputStream(file), charsetName);
     }
 
     /**
@@ -2116,7 +2116,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static BufferedReader getReader(File file, Charset charset) throws IORuntimeException {
-        return IoUtils.getReader(getInputStream(file), charset);
+        return IOUtils.getReader(getInputStream(file), charset);
     }
 
     /**
@@ -2256,11 +2256,11 @@ public class FileUtils {
         InputStream in = null;
         try {
             in = url.openStream();
-            return IoUtils.read(in, charset);
+            return IOUtils.read(in, charset);
         } catch (IOException e) {
             throw new IORuntimeException(e);
         } finally {
-            IoUtils.close(in);
+            IOUtils.closeQuietly(in);
         }
     }
 
@@ -2390,11 +2390,11 @@ public class FileUtils {
         InputStream in = null;
         try {
             in = url.openStream();
-            return IoUtils.readLines(in, charset, collection);
+            return IOUtils.readLines(in, charset, collection);
         } catch (IOException e) {
             throw new IORuntimeException(e);
         } finally {
-            IoUtils.close(in);
+            IOUtils.closeQuietly(in);
         }
     }
 
@@ -3409,7 +3409,7 @@ public class FileUtils {
             throw new IllegalArgumentException("Checksums can't be computed on directories");
         }
         try {
-            return IoUtils.checksum(new FileInputStream(file), checksum);
+            return IOUtils.checksum(new FileInputStream(file), checksum);
         } catch (FileNotFoundException e) {
             throw new IORuntimeException(e);
         }

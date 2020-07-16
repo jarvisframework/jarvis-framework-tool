@@ -1,4 +1,4 @@
-package com.jarvisframework.extra.ftp;
+package com.jarvisframework.tool.extra.ftp;
 
 import com.jarvisframework.tool.core.lang.Console;
 import com.jarvisframework.tool.core.util.StringUtils;

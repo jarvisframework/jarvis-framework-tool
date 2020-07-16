@@ -1,4 +1,4 @@
-package com.jarvisframework.extra.ftp;
+package com.jarvisframework.tool.extra.ftp;
 
 import java.io.Serializable;
 import java.nio.charset.Charset;

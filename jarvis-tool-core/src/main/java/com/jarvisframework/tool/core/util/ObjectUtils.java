@@ -5,7 +5,7 @@ import com.jarvisframework.tool.core.collection.IterUtils;
 import com.jarvisframework.tool.core.comparator.CompareUtils;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.exception.UtilException;
-import com.jarvisframework.tool.core.io.IoUtils;
+import com.jarvisframework.tool.core.io.IOUtils;
 import com.jarvisframework.tool.core.map.MapUtils;
 
 import java.io.ByteArrayInputStream;
@@ -382,7 +382,7 @@ public class ObjectUtils {
         } catch (Exception e) {
             throw new UtilException(e);
         } finally {
-            IoUtils.close(out);
+            IOUtils.closeQuietly(out);
         }
     }
 
@@ -399,7 +399,7 @@ public class ObjectUtils {
             return null;
         }
         final FastByteArrayOutputStream byteOut = new FastByteArrayOutputStream();
-        IoUtils.writeObjects(byteOut, false, (Serializable) obj);
+        IOUtils.writeObjects(byteOut, false, (Serializable) obj);
         return byteOut.toByteArray();
     }
 
@@ -416,7 +416,7 @@ public class ObjectUtils {
      * @return 反序列化后的对象
      */
     public static <T> T deserialize(byte[] bytes) {
-        return IoUtils.readObj(new ByteArrayInputStream(bytes));
+        return IOUtils.readObj(new ByteArrayInputStream(bytes));
     }
 
     /**

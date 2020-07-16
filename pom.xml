@@ -6,7 +6,7 @@
 
     <groupId>com.jarvisframework</groupId>
     <artifactId>jarvis-tool</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.1</version>
     <packaging>pom</packaging>
     <!-- 还未注册的域名 -->
     <url>jarvisframework.com</url>
