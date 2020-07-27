@@ -1,0 +1,6 @@
+host = smtp.exmail.qq.com
+port = 465
+from = 系统管理员<tao.wang@lnet.cn>
+user = tao.wang@lnet.cn
+pass = *******
+starttlsEnable = true

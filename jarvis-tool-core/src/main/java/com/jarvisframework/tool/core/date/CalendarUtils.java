@@ -1,8 +1,5 @@
 package com.jarvisframework.tool.core.date;
 
-import cn.hutool.core.date.DateField;
-import cn.hutool.core.date.DateModifier;
-import cn.hutool.core.date.DateTime;
 import com.jarvisframework.tool.core.comparator.CompareUtils;
 import com.jarvisframework.tool.core.util.StringUtils;
 
@@ -62,7 +59,7 @@ public class CalendarUtils {
      * @param calendar {@link Calendar}
      * @return 是否为上午
      */
-    public static boolean isAm(Calendar calendar) {
+    public static boolean isAM(Calendar calendar) {
         return Calendar.AM == calendar.get(Calendar.AM_PM);
     }
 
@@ -83,7 +80,7 @@ public class CalendarUtils {
      * @param dateField 时间字段
      * @return 原{@link Calendar}
      */
-    public static Calendar truncate(Calendar calendar, DateField dateField) {
+    public static Calendar truncate(Calendar calendar, DateFieldEnum dateField) {
         return DateModifier.modify(calendar, dateField.getValue(), DateModifier.ModifyType.TRUNCATE);
     }
 
@@ -94,7 +91,7 @@ public class CalendarUtils {
      * @param dateField 时间字段
      * @return 原{@link Calendar}
      */
-    public static Calendar round(Calendar calendar, DateField dateField) {
+    public static Calendar round(Calendar calendar, DateFieldEnum dateField) {
         return DateModifier.modify(calendar, dateField.getValue(), DateModifier.ModifyType.ROUND);
     }
 
@@ -105,7 +102,7 @@ public class CalendarUtils {
      * @param dateField 时间字段
      * @return 原{@link Calendar}
      */
-    public static Calendar ceiling(Calendar calendar, DateField dateField) {
+    public static Calendar ceiling(Calendar calendar, DateFieldEnum dateField) {
         return DateModifier.modify(calendar, dateField.getValue(), DateModifier.ModifyType.CEILING);
     }
 
@@ -117,7 +114,7 @@ public class CalendarUtils {
      * @since 4.6.2
      */
     public static Calendar beginOfSecond(Calendar calendar) {
-        return truncate(calendar, DateField.SECOND);
+        return truncate(calendar, DateFieldEnum.SECOND);
     }
 
     /**
@@ -128,7 +125,7 @@ public class CalendarUtils {
      * @since 4.6.2
      */
     public static Calendar endOfSecond(Calendar calendar) {
-        return ceiling(calendar, DateField.SECOND);
+        return ceiling(calendar, DateFieldEnum.SECOND);
     }
 
     /**
@@ -138,7 +135,7 @@ public class CalendarUtils {
      * @return {@link Calendar}
      */
     public static Calendar beginOfDay(Calendar calendar) {
-        return truncate(calendar, DateField.DAY_OF_MONTH);
+        return truncate(calendar, DateFieldEnum.DAY_OF_MONTH);
     }
 
     /**
@@ -148,7 +145,7 @@ public class CalendarUtils {
      * @return {@link Calendar}
      */
     public static Calendar endOfDay(Calendar calendar) {
-        return ceiling(calendar, DateField.DAY_OF_MONTH);
+        return ceiling(calendar, DateFieldEnum.DAY_OF_MONTH);
     }
 
     /**
@@ -172,7 +169,7 @@ public class CalendarUtils {
     public static Calendar beginOfWeek(Calendar calendar, boolean isMondayAsFirstDay) {
         calendar.setFirstDayOfWeek(isMondayAsFirstDay ? Calendar.MONDAY : Calendar.SUNDAY);
         // WEEK_OF_MONTH为上限的字段（不包括），实际调整的为DAY_OF_MONTH
-        return truncate(calendar, DateField.WEEK_OF_MONTH);
+        return truncate(calendar, DateFieldEnum.WEEK_OF_MONTH);
     }
 
     /**
@@ -195,7 +192,7 @@ public class CalendarUtils {
     public static Calendar endOfWeek(Calendar calendar, boolean isSundayAsLastDay) {
         calendar.setFirstDayOfWeek(isSundayAsLastDay ? Calendar.MONDAY : Calendar.SUNDAY);
         // WEEK_OF_MONTH为上限的字段（不包括），实际调整的为DAY_OF_MONTH
-        return ceiling(calendar, DateField.WEEK_OF_MONTH);
+        return ceiling(calendar, DateFieldEnum.WEEK_OF_MONTH);
     }
 
     /**
@@ -205,7 +202,7 @@ public class CalendarUtils {
      * @return {@link Calendar}
      */
     public static Calendar beginOfMonth(Calendar calendar) {
-        return truncate(calendar, DateField.MONTH);
+        return truncate(calendar, DateFieldEnum.MONTH);
     }
 
     /**
@@ -215,7 +212,7 @@ public class CalendarUtils {
      * @return {@link Calendar}
      */
     public static Calendar endOfMonth(Calendar calendar) {
-        return ceiling(calendar, DateField.MONTH);
+        return ceiling(calendar, DateFieldEnum.MONTH);
     }
 
     /**
@@ -227,7 +224,7 @@ public class CalendarUtils {
      */
     public static Calendar beginOfQuarter(Calendar calendar) {
         //noinspection MagicConstant
-        calendar.set(Calendar.MONTH, calendar.get(DateField.MONTH.getValue()) / 3 * 3);
+        calendar.set(Calendar.MONTH, calendar.get(DateFieldEnum.MONTH.getValue()) / 3 * 3);
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         return beginOfDay(calendar);
     }
@@ -241,7 +238,7 @@ public class CalendarUtils {
      */
     public static Calendar endOfQuarter(Calendar calendar) {
         //noinspection MagicConstant
-        calendar.set(Calendar.MONTH, calendar.get(DateField.MONTH.getValue()) / 3 * 3 + 2);
+        calendar.set(Calendar.MONTH, calendar.get(DateFieldEnum.MONTH.getValue()) / 3 * 3 + 2);
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
         return endOfDay(calendar);
     }
@@ -253,7 +250,7 @@ public class CalendarUtils {
      * @return {@link Calendar}
      */
     public static Calendar beginOfYear(Calendar calendar) {
-        return truncate(calendar, DateField.YEAR);
+        return truncate(calendar, DateFieldEnum.YEAR);
     }
 
     /**
@@ -263,7 +260,7 @@ public class CalendarUtils {
      * @return {@link Calendar}
      */
     public static Calendar endOfYear(Calendar calendar) {
-        return ceiling(calendar, DateField.YEAR);
+        return ceiling(calendar, DateFieldEnum.YEAR);
     }
 
     /**
@@ -319,7 +316,7 @@ public class CalendarUtils {
      * 获取指定日期字段的最小值，例如分钟的最小值是0
      *
      * @param calendar  {@link Calendar}
-     * @param dateField {@link DateField}
+     * @param dateField {@link DateFieldEnum}
      * @return 字段最小值
      * @see Calendar#getActualMinimum(int)
      * @since 4.5.7
@@ -335,7 +332,7 @@ public class CalendarUtils {
      * 获取指定日期字段的最大值，例如分钟的最大值是59
      *
      * @param calendar  {@link Calendar}
-     * @param dateField {@link DateField}
+     * @param dateField {@link DateFieldEnum}
      * @return 字段最大值
      * @see Calendar#getActualMaximum(int)
      * @since 4.5.7

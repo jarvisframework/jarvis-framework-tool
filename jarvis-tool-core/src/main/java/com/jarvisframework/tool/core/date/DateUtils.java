@@ -1,15 +1,13 @@
 package com.jarvisframework.tool.core.date;
 
-import cn.hutool.core.date.Month;
-import cn.hutool.core.date.*;
-import cn.hutool.core.date.format.DateParser;
-import cn.hutool.core.date.format.DatePrinter;
-import cn.hutool.core.date.format.FastDateFormat;
-import cn.hutool.core.lang.PatternPool;
 import com.jarvisframework.tool.core.collection.CollectionUtils;
 import com.jarvisframework.tool.core.comparator.CompareUtils;
 import com.jarvisframework.tool.core.convert.Convert;
+import com.jarvisframework.tool.core.date.format.DateParser;
+import com.jarvisframework.tool.core.date.format.DatePrinter;
+import com.jarvisframework.tool.core.date.format.FastDateFormat;
 import com.jarvisframework.tool.core.lang.Assert;
+import com.jarvisframework.tool.core.lang.PatternPool;
 import com.jarvisframework.tool.core.util.CharUtils;
 import com.jarvisframework.tool.core.util.NumberUtils;
 import com.jarvisframework.tool.core.util.RegexUtils;
@@ -31,7 +29,7 @@ import java.util.regex.Matcher;
  * @author 王涛
  * @since 1.0, 2020-07-10 17:33:02
  */
-public class DateUtils extends CalendarUtil {
+public class DateUtils extends CalendarUtils {
 
     /**
      * java.util.Date EEE MMM zzz 缩写数组
@@ -189,7 +187,7 @@ public class DateUtils extends CalendarUtil {
      * @return 第几个季度枚举
      * @since 4.1.0
      */
-    public static Quarter quarterEnum(Date date) {
+    public static QuarterEnum quarterEnum(Date date) {
         return DateTime.of(date).quarterEnum();
     }
 
@@ -209,7 +207,7 @@ public class DateUtils extends CalendarUtil {
      * @param date 日期
      * @return {@link Month}
      */
-    public static Month monthEnum(Date date) {
+    public static MonthEnum monthEnum(Date date) {
         return DateTime.of(date).monthEnum();
     }
 
@@ -268,9 +266,9 @@ public class DateUtils extends CalendarUtil {
      * 获得指定日期是星期几
      *
      * @param date 日期
-     * @return {@link Week}
+     * @return {@link WeekEnum}
      */
-    public static Week dayOfWeekEnum(Date date) {
+    public static WeekEnum dayOfWeekEnum(Date date) {
         return DateTime.of(date).dayOfWeekEnum();
     }
 
@@ -353,7 +351,7 @@ public class DateUtils extends CalendarUtil {
     /**
      * @return 当前月份 {@link Month}
      */
-    public static Month thisMonthEnum() {
+    public static MonthEnum thisMonthEnum() {
         return monthEnum(date());
     }
 
@@ -386,9 +384,9 @@ public class DateUtils extends CalendarUtil {
     }
 
     /**
-     * @return 当前日期是星期几 {@link Week}
+     * @return 当前日期是星期几 {@link WeekEnum}
      */
-    public static Week thisDayOfWeekEnum() {
+    public static WeekEnum thisDayOfWeekEnum() {
         return dayOfWeekEnum(date());
     }
 
@@ -937,7 +935,7 @@ public class DateUtils extends CalendarUtil {
      * @return {@link DateTime}
      * @since 4.5.7
      */
-    public static DateTime truncate(Date date, DateField dateField) {
+    public static DateTime truncate(Date date, DateFieldEnum dateField) {
         return new DateTime(truncate(calendar(date), dateField));
     }
 
@@ -949,7 +947,7 @@ public class DateUtils extends CalendarUtil {
      * @return {@link DateTime}
      * @since 4.5.7
      */
-    public static DateTime round(Date date, DateField dateField) {
+    public static DateTime round(Date date, DateFieldEnum dateField) {
         return new DateTime(round(calendar(date), dateField));
     }
 
@@ -961,7 +959,7 @@ public class DateUtils extends CalendarUtil {
      * @return {@link DateTime}
      * @since 4.5.7
      */
-    public static DateTime ceiling(Date date, DateField dateField) {
+    public static DateTime ceiling(Date date, DateFieldEnum dateField) {
         return new DateTime(ceiling(calendar(date), dateField));
     }
 
@@ -1153,7 +1151,7 @@ public class DateUtils extends CalendarUtil {
      * @return 偏移后的日期
      */
     public static DateTime offsetMillisecond(Date date, int offset) {
-        return offset(date, DateField.MILLISECOND, offset);
+        return offset(date, DateFieldEnum.MILLISECOND, offset);
     }
 
     /**
@@ -1164,7 +1162,7 @@ public class DateUtils extends CalendarUtil {
      * @return 偏移后的日期
      */
     public static DateTime offsetSecond(Date date, int offset) {
-        return offset(date, DateField.SECOND, offset);
+        return offset(date, DateFieldEnum.SECOND, offset);
     }
 
     /**
@@ -1175,7 +1173,7 @@ public class DateUtils extends CalendarUtil {
      * @return 偏移后的日期
      */
     public static DateTime offsetMinute(Date date, int offset) {
-        return offset(date, DateField.MINUTE, offset);
+        return offset(date, DateFieldEnum.MINUTE, offset);
     }
 
     /**
@@ -1186,7 +1184,7 @@ public class DateUtils extends CalendarUtil {
      * @return 偏移后的日期
      */
     public static DateTime offsetHour(Date date, int offset) {
-        return offset(date, DateField.HOUR_OF_DAY, offset);
+        return offset(date, DateFieldEnum.HOUR_OF_DAY, offset);
     }
 
     /**
@@ -1197,7 +1195,7 @@ public class DateUtils extends CalendarUtil {
      * @return 偏移后的日期
      */
     public static DateTime offsetDay(Date date, int offset) {
-        return offset(date, DateField.DAY_OF_YEAR, offset);
+        return offset(date, DateFieldEnum.DAY_OF_YEAR, offset);
     }
 
     /**
@@ -1208,7 +1206,7 @@ public class DateUtils extends CalendarUtil {
      * @return 偏移后的日期
      */
     public static DateTime offsetWeek(Date date, int offset) {
-        return offset(date, DateField.WEEK_OF_YEAR, offset);
+        return offset(date, DateFieldEnum.WEEK_OF_YEAR, offset);
     }
 
     /**
@@ -1219,18 +1217,18 @@ public class DateUtils extends CalendarUtil {
      * @return 偏移后的日期
      */
     public static DateTime offsetMonth(Date date, int offset) {
-        return offset(date, DateField.MONTH, offset);
+        return offset(date, DateFieldEnum.MONTH, offset);
     }
 
     /**
      * 获取指定日期偏移指定时间后的时间，生成的偏移日期不影响原日期
      *
      * @param date      基准日期
-     * @param dateField 偏移的粒度大小（小时、天、月等）{@link DateField}
+     * @param dateField 偏移的粒度大小（小时、天、月等）{@link DateFieldEnum}
      * @param offset    偏移量，正数为向后偏移，负数为向前偏移
      * @return 偏移后的日期
      */
-    public static DateTime offset(Date date, DateField dateField, int offset) {
+    public static DateTime offset(Date date, DateFieldEnum dateField, int offset) {
         return dateNew(date).offset(dateField, offset);
     }
 
@@ -1238,13 +1236,13 @@ public class DateUtils extends CalendarUtil {
      * 获取指定日期偏移指定时间后的时间
      *
      * @param date      基准日期
-     * @param dateField 偏移的粒度大小（小时、天、月等）{@link DateField}
+     * @param dateField 偏移的粒度大小（小时、天、月等）{@link DateFieldEnum}
      * @param offset    偏移量，正数为向后偏移，负数为向前偏移
      * @return 偏移后的日期
-     * @deprecated please use {@link DateUtil#offset(Date, DateField, int)}
+     * @deprecated please use {@link DateUtils#offset(Date, DateFieldEnum, int)}
      */
     @Deprecated
-    public static DateTime offsetDate(Date date, DateField dateField, int offset) {
+    public static DateTime offsetDate(Date date, DateFieldEnum dateField, int offset) {
         return offset(date, dateField, offset);
     }
     // ------------------------------------ Offset end ----------------------------------------------
@@ -1254,10 +1252,10 @@ public class DateUtils extends CalendarUtil {
      *
      * @param beginDate 起始日期
      * @param endDate   结束日期
-     * @param unit      相差的单位：相差 天{@link DateUnit#DAY}、小时{@link DateUnit#HOUR} 等
+     * @param unit      相差的单位：相差 天{@link DateUnitEnum#DAY}、小时{@link DateUnitEnum#HOUR} 等
      * @return 日期差
      */
-    public static long between(Date beginDate, Date endDate, DateUnit unit) {
+    public static long between(Date beginDate, Date endDate, DateUnitEnum unit) {
         return between(beginDate, endDate, unit, true);
     }
 
@@ -1266,12 +1264,12 @@ public class DateUtils extends CalendarUtil {
      *
      * @param beginDate 起始日期
      * @param endDate   结束日期
-     * @param unit      相差的单位：相差 天{@link DateUnit#DAY}、小时{@link DateUnit#HOUR} 等
+     * @param unit      相差的单位：相差 天{@link DateUnitEnum#DAY}、小时{@link DateUnitEnum#HOUR} 等
      * @param isAbs     日期间隔是否只保留绝对值正数
      * @return 日期差
      * @since 3.3.1
      */
-    public static long between(Date beginDate, Date endDate, DateUnit unit, boolean isAbs) {
+    public static long between(Date beginDate, Date endDate, DateUnitEnum unit, boolean isAbs) {
         return new DateBetween(beginDate, endDate, isAbs).between(unit);
     }
 
@@ -1284,7 +1282,7 @@ public class DateUtils extends CalendarUtil {
      * @since 3.0.1
      */
     public static long betweenMs(Date beginDate, Date endDate) {
-        return new DateBetween(beginDate, endDate).between(DateUnit.MS);
+        return new DateBetween(beginDate, endDate).between(DateUnitEnum.MS);
     }
 
     /**
@@ -1308,7 +1306,7 @@ public class DateUtils extends CalendarUtil {
             beginDate = beginOfDay(beginDate);
             endDate = beginOfDay(endDate);
         }
-        return between(beginDate, endDate, DateUnit.DAY);
+        return between(beginDate, endDate, DateUnitEnum.DAY);
     }
 
     /**
@@ -1324,7 +1322,7 @@ public class DateUtils extends CalendarUtil {
             beginDate = beginOfDay(beginDate);
             endDate = beginOfDay(endDate);
         }
-        return between(beginDate, endDate, DateUnit.WEEK);
+        return between(beginDate, endDate, DateUnitEnum.WEEK);
     }
 
     /**
@@ -1363,8 +1361,8 @@ public class DateUtils extends CalendarUtil {
      * @param level     级别，按照天、小时、分、秒、毫秒分为5个等级
      * @return XX天XX小时XX分XX秒
      */
-    public static String formatBetween(Date beginDate, Date endDate, BetweenFormater.Level level) {
-        return formatBetween(between(beginDate, endDate, DateUnit.MS), level);
+    public static String formatBetween(Date beginDate, Date endDate, BetweenFormat.Level level) {
+        return formatBetween(between(beginDate, endDate, DateUnitEnum.MS), level);
     }
 
     /**
@@ -1376,7 +1374,7 @@ public class DateUtils extends CalendarUtil {
      * @since 3.0.1
      */
     public static String formatBetween(Date beginDate, Date endDate) {
-        return formatBetween(between(beginDate, endDate, DateUnit.MS));
+        return formatBetween(between(beginDate, endDate, DateUnitEnum.MS));
     }
 
     /**
@@ -1386,8 +1384,8 @@ public class DateUtils extends CalendarUtil {
      * @param level     级别，按照天、小时、分、秒、毫秒分为5个等级
      * @return XX天XX小时XX分XX秒XX毫秒
      */
-    public static String formatBetween(long betweenMs, BetweenFormater.Level level) {
-        return new BetweenFormater(betweenMs, level).format();
+    public static String formatBetween(long betweenMs, BetweenFormat.Level level) {
+        return new BetweenFormat(betweenMs, level).format();
     }
 
     /**
@@ -1398,7 +1396,7 @@ public class DateUtils extends CalendarUtil {
      * @since 3.0.1
      */
     public static String formatBetween(long betweenMs) {
-        return new BetweenFormater(betweenMs, BetweenFormater.Level.MILLSECOND).format();
+        return new BetweenFormat(betweenMs, BetweenFormat.Level.MILLSECOND).format();
     }
 
     /**
@@ -1630,7 +1628,7 @@ public class DateUtils extends CalendarUtil {
      * @deprecated 此方法存在一定的歧义，容易产生误导，废弃。
      */
     @Deprecated
-    public static boolean isExpired(Date startDate, DateField dateField, int timeLength, Date endDate) {
+    public static boolean isExpired(Date startDate, DateFieldEnum dateField, int timeLength, Date endDate) {
         final Date offsetDate = offset(startDate, dateField, timeLength);
         return offsetDate.after(endDate);
     }
@@ -1721,7 +1719,7 @@ public class DateUtils extends CalendarUtil {
      * @param unit  步进单位
      * @return {@link DateRange}
      */
-    public static DateRange range(Date start, Date end, final DateField unit) {
+    public static DateRange range(Date start, Date end, final DateFieldEnum unit) {
         return new DateRange(start, end, unit);
     }
 
@@ -1733,7 +1731,7 @@ public class DateUtils extends CalendarUtil {
      * @param unit  步进单位
      * @return {@link DateRange}
      */
-    public static List<DateTime> rangeToList(Date start, Date end, final DateField unit) {
+    public static List<DateTime> rangeToList(Date start, Date end, final DateFieldEnum unit) {
         return CollectionUtils.newArrayList((Iterable<DateTime>) range(start, end, unit));
     }
 
