@@ -23,7 +23,7 @@
     <modules>
         <module>jarvis-tool-all</module>
         <module>jarvis-tool-core</module>
-        <module>jarvis-tool-redis</module>
+        <module>jarvis-tool-cache</module>
         <module>jarvis-tool-crypto</module>
         <module>jarvis-tool-http</module>
         <module>jarvis-tool-poi</module>

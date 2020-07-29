@@ -10,7 +10,15 @@
         <version>1.0.1</version>
     </parent>
 
-    <artifactId>jarvis-tool-redis</artifactId>
+    <artifactId>jarvis-tool-cache</artifactId>
     <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.jarvisframework</groupId>
+            <artifactId>jarvis-tool-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

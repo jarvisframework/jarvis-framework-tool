@@ -46,7 +46,7 @@
         </dependency>
         <dependency>
             <groupId>com.jarvisframework</groupId>
-            <artifactId>jarvis-tool-redis</artifactId>
+            <artifactId>jarvis-tool-cache</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
