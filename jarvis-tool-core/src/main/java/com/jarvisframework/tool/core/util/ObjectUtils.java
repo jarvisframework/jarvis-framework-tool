@@ -1,10 +1,10 @@
 package com.jarvisframework.tool.core.util;
 
-import cn.hutool.core.io.FastByteArrayOutputStream;
 import com.jarvisframework.tool.core.collection.IterUtils;
 import com.jarvisframework.tool.core.comparator.CompareUtils;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.exception.UtilException;
+import com.jarvisframework.tool.core.io.FastByteArrayOutputStream;
 import com.jarvisframework.tool.core.io.IOUtils;
 import com.jarvisframework.tool.core.map.MapUtils;
 

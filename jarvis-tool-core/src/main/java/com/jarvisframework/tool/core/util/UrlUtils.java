@@ -1,11 +1,11 @@
 package com.jarvisframework.tool.core.util;
 
-import cn.hutool.core.io.IORuntimeException;
-import cn.hutool.core.net.url.UrlQuery;
 import com.jarvisframework.tool.core.exception.UtilException;
 import com.jarvisframework.tool.core.io.FileUtils;
+import com.jarvisframework.tool.core.io.IORuntimeException;
 import com.jarvisframework.tool.core.io.IOUtils;
 import com.jarvisframework.tool.core.lang.Assert;
+import com.jarvisframework.tool.core.net.url.UrlQuery;
 
 import java.io.*;
 import java.net.*;

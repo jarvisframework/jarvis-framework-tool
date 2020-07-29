@@ -1,14 +1,13 @@
 package com.jarvisframework.tool.core.bean;
 
-import cn.hutool.core.bean.*;
-import cn.hutool.core.bean.copier.BeanCopier;
-import cn.hutool.core.bean.copier.CopyOptions;
-import cn.hutool.core.bean.copier.ValueProvider;
-import cn.hutool.core.lang.Editor;
-import cn.hutool.core.lang.Filter;
-import cn.hutool.core.map.CaseInsensitiveMap;
+import com.jarvisframework.tool.core.bean.copier.BeanCopier;
+import com.jarvisframework.tool.core.bean.copier.CopyOptions;
 import com.jarvisframework.tool.core.collection.CollectionUtils;
 import com.jarvisframework.tool.core.convert.Convert;
+import com.jarvisframework.tool.core.lang.Editor;
+import com.jarvisframework.tool.core.lang.Filter;
+import com.jarvisframework.tool.core.lang.copier.ValueProvider;
+import com.jarvisframework.tool.core.map.CaseInsensitiveMap;
 import com.jarvisframework.tool.core.map.MapUtils;
 import com.jarvisframework.tool.core.util.*;
 
@@ -595,9 +594,9 @@ public class BeanUtils {
     /**
      * 按照Bean对象属性创建对应的Class对象，并忽略某些属性
      *
-     * @param <T>    对象类型
-     * @param source 源Bean对象
-     * @param tClass 目标Class
+     * @param <T>              对象类型
+     * @param source           源Bean对象
+     * @param tClass           目标Class
      * @param ignoreProperties 不拷贝的的属性列表
      * @return 目标对象
      */

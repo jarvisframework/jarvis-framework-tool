@@ -1,6 +1,5 @@
 package com.jarvisframework.tool.core.lang;
 
-import cn.hutool.core.lang.SimpleCache;
 import com.jarvisframework.tool.core.util.RegexUtils;
 
 import java.util.regex.Pattern;

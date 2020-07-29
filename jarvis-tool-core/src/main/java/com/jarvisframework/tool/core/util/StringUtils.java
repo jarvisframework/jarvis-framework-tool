@@ -3,7 +3,6 @@ package com.jarvisframework.tool.core.util;
 import cn.hutool.core.comparator.VersionComparator;
 import cn.hutool.core.lang.Matcher;
 import cn.hutool.core.lang.func.Func1;
-import cn.hutool.core.text.StrBuilder;
 import cn.hutool.core.text.StrFormatter;
 import cn.hutool.core.text.StrSpliter;
 import cn.hutool.core.text.TextSimilarity;
@@ -2178,7 +2177,7 @@ public class StringUtils {
         if (count <= 0) {
             return EMPTY;
         }
-        final StrBuilder builder = StrBuilder.create();
+        final com.jarvisframework.tool.core.text.StringBuilder builder = com.jarvisframework.tool.core.text.StringBuilder.create();
         boolean isFirst = true;
         while (count-- > 0) {
             if (isFirst) {
@@ -3144,13 +3143,13 @@ public class StringUtils {
     }
 
     /**
-     * 创建StrBuilder对象
+     * 创建com.jarvisframework.tool.core.text.StringBuilder对象
      *
-     * @return StrBuilder对象
+     * @return com.jarvisframework.tool.core.text.StringBuilder对象
      * @since 4.0.1
      */
-    public static StrBuilder strBuilder() {
-        return StrBuilder.create();
+    public static com.jarvisframework.tool.core.text.StringBuilder strBuilder() {
+        return com.jarvisframework.tool.core.text.StringBuilder.create();
     }
 
     /**
@@ -3164,14 +3163,14 @@ public class StringUtils {
     }
 
     /**
-     * 创建StrBuilder对象
+     * 创建com.jarvisframework.tool.core.text.StringBuilder对象
      *
      * @param capacity 初始大小
-     * @return StrBuilder对象
+     * @returncom.jarvisframework.tool.core.text.StringBuilder对象
      * @since 4.0.1
      */
-    public static StrBuilder strBuilder(int capacity) {
-        return StrBuilder.create(capacity);
+    public static com.jarvisframework.tool.core.text.StringBuilder strBuilder(int capacity) {
+        return com.jarvisframework.tool.core.text.StringBuilder.create(capacity);
     }
 
     /**
@@ -3189,13 +3188,13 @@ public class StringUtils {
     }
 
     /**
-     * 创建StrBuilder对象
+     * 创建com.jarvisframework.tool.core.text.StringBuilder对象
      *
      * @param strs 初始字符串列表
-     * @return StrBuilder对象
+     * @return com.jarvisframework.tool.core.text.StringBuilder对象
      */
-    public static StrBuilder strBuilder(CharSequence... strs) {
-        return StrBuilder.create(strs);
+    public static com.jarvisframework.tool.core.text.StringBuilder strBuilder(CharSequence... strs) {
+        return com.jarvisframework.tool.core.text.StringBuilder.create(strs);
     }
 
     /**
@@ -3945,7 +3944,7 @@ public class StringUtils {
             fromIndex = 0;
         }
 
-        final StrBuilder result = StrBuilder.create(strLength + 16);
+        final com.jarvisframework.tool.core.text.StringBuilder result = com.jarvisframework.tool.core.text.StringBuilder.create(strLength + 16);
         if (0 != fromIndex) {
             result.append(str.subSequence(0, fromIndex));
         }
@@ -4169,7 +4168,7 @@ public class StringUtils {
             // 循环位移，当越界时循环
             moveLength = moveLength % len;
         }
-        final StrBuilder strBuilder = StrBuilder.create(len);
+        final com.jarvisframework.tool.core.text.StringBuilder strBuilder = com.jarvisframework.tool.core.text.StringBuilder.create(len);
         if (moveLength > 0) {
             int endAfterMove = Math.min(endExclude + moveLength, str.length());
             strBuilder.append(str.subSequence(0, startInclude))//
@@ -4208,7 +4207,7 @@ public class StringUtils {
      * @since 4.1.0
      */
     public static String concat(boolean isNullToEmpty, CharSequence... strs) {
-        final StrBuilder sb = new StrBuilder();
+        final com.jarvisframework.tool.core.text.StringBuilder sb = new com.jarvisframework.tool.core.text.StringBuilder();
         for (CharSequence str : strs) {
             sb.append(isNullToEmpty ? nullToEmpty(str) : str);
         }

@@ -1,7 +1,5 @@
 package com.jarvisframework.tool.core.date;
 
-import cn.hutool.core.date.DateField;
-
 import java.util.Calendar;
 
 /**
@@ -119,7 +117,7 @@ public enum DateFieldEnum {
      * 将 {@link Calendar}相关值转换为DatePart枚举对象<br>
      *
      * @param calendarPartIntValue Calendar中关于Week的int值
-     * @return {@link DateField}
+     * @return {@link DateFieldEnum}
      */
     public static DateFieldEnum of(int calendarPartIntValue) {
         switch (calendarPartIntValue) {

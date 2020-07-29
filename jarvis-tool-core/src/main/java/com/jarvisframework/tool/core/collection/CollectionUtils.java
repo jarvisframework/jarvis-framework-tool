@@ -1,10 +1,10 @@
 package com.jarvisframework.tool.core.collection;
 
-import cn.hutool.core.collection.*;
+import cn.hutool.core.collection.BoundedPriorityQueue;
+import cn.hutool.core.collection.IterUtil;
+import cn.hutool.core.collection.IteratorEnumeration;
 import cn.hutool.core.comparator.PinyinComparator;
 import cn.hutool.core.comparator.PropertyComparator;
-import cn.hutool.core.lang.Editor;
-import cn.hutool.core.lang.Filter;
 import cn.hutool.core.lang.Matcher;
 import cn.hutool.core.lang.func.Func1;
 import cn.hutool.core.lang.hash.Hash32;
@@ -13,6 +13,8 @@ import com.jarvisframework.tool.core.bean.BeanUtils;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.convert.ConverterRegistry;
 import com.jarvisframework.tool.core.exception.UtilException;
+import com.jarvisframework.tool.core.lang.Editor;
+import com.jarvisframework.tool.core.lang.Filter;
 import com.jarvisframework.tool.core.map.MapUtils;
 import com.jarvisframework.tool.core.util.*;
 
@@ -1435,7 +1437,7 @@ public class CollectionUtils {
      * @param map    Map
      * @param filter 编辑器接口
      * @return 过滤后的Map
-     * @see MapUtil#filter(Map, Filter)
+     * @see MapUtils#filter(Map, Filter)
      * @since 3.1.0
      */
     public static <K, V> Map<K, V> filter(Map<K, V> map, Filter<Map.Entry<K, V>> filter) {

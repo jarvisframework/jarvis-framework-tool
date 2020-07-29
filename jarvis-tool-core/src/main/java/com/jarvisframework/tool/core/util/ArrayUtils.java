@@ -1,13 +1,11 @@
 package com.jarvisframework.tool.core.util;
 
-import cn.hutool.core.collection.IterUtil;
-import cn.hutool.core.lang.Editor;
-import cn.hutool.core.lang.Filter;
-import cn.hutool.core.util.ObjectUtil;
 import com.jarvisframework.tool.core.collection.CollectionUtils;
 import com.jarvisframework.tool.core.collection.IterUtils;
 import com.jarvisframework.tool.core.comparator.CompareUtils;
 import com.jarvisframework.tool.core.exception.UtilException;
+import com.jarvisframework.tool.core.lang.Editor;
+import com.jarvisframework.tool.core.lang.Filter;
 
 import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
@@ -4150,7 +4148,7 @@ public class ArrayUtils {
     }
 
     /**
-     * 计算{@code null}或空元素对象的个数，通过{@link ObjectUtil#isEmpty(Object)} 判断元素
+     * 计算{@code null}或空元素对象的个数，通过{@link ObjectUtils#isEmpty(Object)} 判断元素
      *
      * @param args 被检查的对象,一个或者多个
      * @return 存在{@code null}的数量
@@ -4169,7 +4167,7 @@ public class ArrayUtils {
     }
 
     /**
-     * 是否存在{@code null}或空对象，通过{@link ObjectUtil#isEmpty(Object)} 判断元素
+     * 是否存在{@code null}或空对象，通过{@link ObjectUtils#isEmpty(Object)} 判断元素
      *
      * @param args 被检查对象
      * @return 是否存在
@@ -4187,7 +4185,7 @@ public class ArrayUtils {
     }
 
     /**
-     * 是否存都为{@code null}或空对象，通过{@link ObjectUtil#isEmpty(Object)} 判断元素
+     * 是否存都为{@code null}或空对象，通过{@link ObjectUtils#isEmpty(Object)} 判断元素
      *
      * @param args 被检查的对象,一个或者多个
      * @return 是否都为空
@@ -4198,7 +4196,7 @@ public class ArrayUtils {
     }
 
     /**
-     * 是否存都不为{@code null}或空对象，通过{@link ObjectUtil#isEmpty(Object)} 判断元素
+     * 是否存都不为{@code null}或空对象，通过{@link ObjectUtils#isEmpty(Object)} 判断元素
      *
      * @param args 被检查的对象,一个或者多个
      * @return 是否都不为空

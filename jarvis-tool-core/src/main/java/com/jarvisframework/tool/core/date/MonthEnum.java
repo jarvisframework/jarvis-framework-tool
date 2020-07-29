@@ -1,7 +1,5 @@
 package com.jarvisframework.tool.core.date;
 
-import cn.hutool.core.date.Month;
-
 import java.util.Calendar;
 
 /**
@@ -124,7 +122,7 @@ public enum MonthEnum {
      * 将 {@link Calendar}月份相关值转换为Month枚举对象<br>
      *
      * @param calendarMonthIntValue Calendar中关于Month的int值
-     * @return {@link Month}
+     * @return {@link MonthEnum}
      * @see Calendar#JANUARY
      * @see Calendar#FEBRUARY
      * @see Calendar#MARCH
