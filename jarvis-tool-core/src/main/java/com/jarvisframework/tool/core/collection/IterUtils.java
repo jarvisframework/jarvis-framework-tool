@@ -1,9 +1,8 @@
 package com.jarvisframework.tool.core.collection;
 
-import cn.hutool.core.collection.EnumerationIter;
-import cn.hutool.core.lang.func.Func1;
 import com.jarvisframework.tool.core.exception.UtilException;
 import com.jarvisframework.tool.core.lang.Filter;
+import com.jarvisframework.tool.core.lang.func.Func1;
 import com.jarvisframework.tool.core.map.MapUtils;
 import com.jarvisframework.tool.core.util.ArrayUtils;
 import com.jarvisframework.tool.core.util.ObjectUtils;

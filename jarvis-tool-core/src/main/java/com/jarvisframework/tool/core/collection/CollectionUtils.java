@@ -1,20 +1,16 @@
 package com.jarvisframework.tool.core.collection;
 
-import cn.hutool.core.collection.BoundedPriorityQueue;
-import cn.hutool.core.collection.IterUtil;
-import cn.hutool.core.collection.IteratorEnumeration;
-import cn.hutool.core.comparator.PinyinComparator;
-import cn.hutool.core.comparator.PropertyComparator;
-import cn.hutool.core.lang.Matcher;
-import cn.hutool.core.lang.func.Func1;
-import cn.hutool.core.lang.hash.Hash32;
-import cn.hutool.core.map.MapUtil;
 import com.jarvisframework.tool.core.bean.BeanUtils;
+import com.jarvisframework.tool.core.comparator.PinyinComparator;
+import com.jarvisframework.tool.core.comparator.PropertyComparator;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.convert.ConverterRegistry;
 import com.jarvisframework.tool.core.exception.UtilException;
 import com.jarvisframework.tool.core.lang.Editor;
 import com.jarvisframework.tool.core.lang.Filter;
+import com.jarvisframework.tool.core.lang.Matcher;
+import com.jarvisframework.tool.core.lang.func.Func1;
+import com.jarvisframework.tool.core.lang.hash.Hash32;
 import com.jarvisframework.tool.core.map.MapUtils;
 import com.jarvisframework.tool.core.util.*;
 
@@ -410,7 +406,7 @@ public class CollectionUtils {
      * @param <T>        集合元素类型
      * @param collection 集合
      * @return {@link Map}
-     * @see IterUtil#countMap(Iterator)
+     * @see IterUtils#countMap(Iterator)
      */
     public static <T> Map<T, Integer> countMap(Iterable<T> collection) {
         return IterUtils.countMap(null == collection ? null : collection.iterator());
@@ -424,7 +420,7 @@ public class CollectionUtils {
      * @param iterable    {@link Iterable}
      * @param conjunction 分隔符
      * @return 连接后的字符串
-     * @see IterUtil#join(Iterator, CharSequence)
+     * @see IterUtils#join(Iterator, CharSequence)
      */
     public static <T> String join(Iterable<T> iterable, CharSequence conjunction) {
         if (null == iterable) {
@@ -532,7 +528,7 @@ public class CollectionUtils {
      * @param <K> Key类型
      * @param <V> Value类型
      * @return HashMap对象
-     * @see MapUtil#newHashMap()
+     * @see MapUtils#newHashMap()
      */
     public static <K, V> HashMap<K, V> newHashMap() {
         return MapUtils.newHashMap();
@@ -546,7 +542,7 @@ public class CollectionUtils {
      * @param size    初始大小，由于默认负载因子0.75，传入的size会实际初始大小为size / 0.75
      * @param isOrder Map的Key是否有序，有序返回 {@link LinkedHashMap}，否则返回 {@link HashMap}
      * @return HashMap对象
-     * @see MapUtil#newHashMap(int, boolean)
+     * @see MapUtils#newHashMap(int, boolean)
      * @since 3.0.4
      */
     public static <K, V> HashMap<K, V> newHashMap(int size, boolean isOrder) {
@@ -560,7 +556,7 @@ public class CollectionUtils {
      * @param <V>  Value类型
      * @param size 初始大小，由于默认负载因子0.75，传入的size会实际初始大小为size / 0.75
      * @return HashMap对象
-     * @see MapUtil#newHashMap(int)
+     * @see MapUtils#newHashMap(int)
      */
     public static <K, V> HashMap<K, V> newHashMap(int size) {
         return MapUtils.newHashMap(size);
@@ -934,7 +930,7 @@ public class CollectionUtils {
      * @param <V>     map值类型
      * @param mapType map类型
      * @return {@link Map}实例
-     * @see MapUtil#createMap(Class)
+     * @see MapUtils#createMap(Class)
      */
     public static <K, V> Map<K, V> createMap(Class<?> mapType) {
         return MapUtils.createMap(mapType);
@@ -1417,7 +1413,7 @@ public class CollectionUtils {
      * @param map    Map
      * @param editor 编辑器接口
      * @return 过滤后的Map
-     * @see MapUtil#filter(Map, Editor)
+     * @see MapUtils#filter(Map, Editor)
      */
     public static <K, V> Map<K, V> filter(Map<K, V> map, Editor<Map.Entry<K, V>> editor) {
         return MapUtils.filter(map, editor);
@@ -1519,7 +1515,7 @@ public class CollectionUtils {
      *
      * @param map 集合
      * @return 是否为空
-     * @see MapUtil#isEmpty(Map)
+     * @see MapUtils#isEmpty(Map)
      */
     public static boolean isEmpty(Map<?, ?> map) {
         return MapUtils.isEmpty(map);
@@ -1530,7 +1526,7 @@ public class CollectionUtils {
      *
      * @param iterable Iterable对象
      * @return 是否为空
-     * @see IterUtil#isEmpty(Iterable)
+     * @see IterUtils#isEmpty(Iterable)
      */
     public static boolean isEmpty(Iterable<?> iterable) {
         return IterUtils.isEmpty(iterable);
@@ -1541,7 +1537,7 @@ public class CollectionUtils {
      *
      * @param iterator Iterator对象
      * @return 是否为空
-     * @see IterUtil#isEmpty(Iterator)
+     * @see IterUtils#isEmpty(Iterator)
      */
     public static boolean isEmpty(Iterator<?> iterator) {
         return IterUtils.isEmpty(iterator);
@@ -1574,7 +1570,7 @@ public class CollectionUtils {
      *
      * @param map 集合
      * @return 是否为非空
-     * @see MapUtil#isNotEmpty(Map)
+     * @see MapUtils#isNotEmpty(Map)
      */
     public static boolean isNotEmpty(Map<?, ?> map) {
         return MapUtils.isNotEmpty(map);
@@ -1585,7 +1581,7 @@ public class CollectionUtils {
      *
      * @param iterable Iterable对象
      * @return 是否为空
-     * @see IterUtil#isNotEmpty(Iterable)
+     * @see IterUtils#isNotEmpty(Iterable)
      */
     public static boolean isNotEmpty(Iterable<?> iterable) {
         return IterUtils.isNotEmpty(iterable);
@@ -1617,7 +1613,7 @@ public class CollectionUtils {
      *
      * @param iterable 被检查的Iterable对象，如果为{@code null} 返回true
      * @return 是否包含{@code null}元素
-     * @see IterUtil#hasNull(Iterable)
+     * @see IterUtils#hasNull(Iterable)
      * @since 3.0.7
      */
     public static boolean hasNull(Iterable<?> iterable) {
@@ -1728,7 +1724,7 @@ public class CollectionUtils {
      *
      * @param array 数组。元素类型为Map.Entry、数组、Iterable、Iterator
      * @return {@link HashMap}
-     * @see MapUtil#of(Object[])
+     * @see MapUtils#of(Object[])
      * @since 3.0.8
      */
     public static HashMap<Object, Object> toMap(Object[] array) {
@@ -1830,7 +1826,7 @@ public class CollectionUtils {
      * @param <V>     值类型
      * @param mapList Map列表
      * @return Map
-     * @see MapUtil#toListMap(Iterable)
+     * @see MapUtils#toListMap(Iterable)
      */
     public static <K, V> Map<K, List<V>> toListMap(Iterable<? extends Map<K, V>> mapList) {
         return MapUtils.toListMap(mapList);
@@ -1864,7 +1860,7 @@ public class CollectionUtils {
      * @param <V>     值类型
      * @param listMap 列表Map
      * @return Map列表
-     * @see MapUtil#toMapList(Map)
+     * @see MapUtils#toMapList(Map)
      */
     public static <K, V> List<Map<K, V>> toMapList(Map<K, ? extends Iterable<V>> listMap) {
         return MapUtils.toMapList(listMap);

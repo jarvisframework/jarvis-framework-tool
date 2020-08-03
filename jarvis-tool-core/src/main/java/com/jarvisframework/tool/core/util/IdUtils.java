@@ -1,9 +1,9 @@
 package com.jarvisframework.tool.core.util;
 
-import cn.hutool.core.lang.ObjectId;
-import cn.hutool.core.lang.Singleton;
-import cn.hutool.core.lang.Snowflake;
-import cn.hutool.core.lang.UUID;
+import com.jarvisframework.tool.core.lang.ObjectId;
+import com.jarvisframework.tool.core.lang.Singleton;
+import com.jarvisframework.tool.core.lang.Snowflake;
+import com.jarvisframework.tool.core.lang.UUID;
 
 /**
  * ID生成器工具类，此工具类中主要封装：

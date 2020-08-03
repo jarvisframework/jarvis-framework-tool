@@ -5,14 +5,18 @@ import com.jarvisframework.tool.core.io.FileUtils;
 import com.jarvisframework.tool.core.io.IORuntimeException;
 import com.jarvisframework.tool.core.io.IOUtils;
 import com.jarvisframework.tool.core.lang.Assert;
+import com.jarvisframework.tool.core.net.URLDecoder;
+import com.jarvisframework.tool.core.net.URLEncoder;
 import com.jarvisframework.tool.core.net.url.UrlQuery;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.*;
 import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.jar.JarFile;
-
 /**
  * URL（Uniform Resource Locator）统一资源定位符相关工具类
  *
@@ -318,11 +322,8 @@ public class UrlUtils {
         if (null == charset) {
             return url;
         }
-        try {
-            return java.net.URLEncoder.encode(url, charset.toString());
-        } catch (UnsupportedEncodingException e) {
-            throw new UtilException(e);
-        }
+
+        return URLEncoder.ALL.encode(url, charset);
     }
 
     /**
@@ -370,7 +371,7 @@ public class UrlUtils {
         if (null == charset) {
             charset = CharsetUtils.defaultCharset();
         }
-        return cn.hutool.core.net.URLEncoder.DEFAULT.encode(url, charset);
+        return URLEncoder.DEFAULT.encode(url, charset);
     }
 
     /**
@@ -390,7 +391,7 @@ public class UrlUtils {
         if (null == charset) {
             charset = CharsetUtils.defaultCharset();
         }
-        return cn.hutool.core.net.URLEncoder.QUERY.encode(url, charset);
+        return URLEncoder.QUERY.encode(url, charset);
     }
 
     /**
@@ -450,7 +451,7 @@ public class UrlUtils {
         if (null == charset) {
             return content;
         }
-        return cn.hutool.core.net.URLDecoder.decode(content, charset);
+        return URLDecoder.decode(content, charset);
     }
 
     /**
@@ -603,7 +604,7 @@ public class UrlUtils {
      * @since 4.1
      */
     public static boolean isJarFileURL(URL url) {
-        return (URL_PROTOCOL_FILE.equals(url.getProtocol()) && //
+        return (URL_PROTOCOL_FILE.equals(url.getProtocol()) &&
                 url.getPath().toLowerCase().endsWith(FileUtils.JAR_FILE_EXT));
     }
 
@@ -801,7 +802,7 @@ public class UrlUtils {
      * @since 5.3.6
      */
     public static String getDataUri(String mimeType, Charset charset, String encoding, String data) {
-        final StringBuilder builder = StringUtils.builder("data:");
+        final com.jarvisframework.tool.core.text.StringBuilder builder = StringUtils.builder("data:");
         if (StringUtils.isNotBlank(mimeType)) {
             builder.append(mimeType);
         }
@@ -815,5 +816,4 @@ public class UrlUtils {
 
         return builder.toString();
     }
-
 }

@@ -52,13 +52,19 @@
         <dependency>
             <groupId>com.jarvisframework</groupId>
             <artifactId>jarvis-tool-core</artifactId>
-            <version>${project.version}</version>
+            <version>${project.parent.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.jarvisframework</groupId>
             <artifactId>jarvis-tool-http</artifactId>
-            <version>${project.version}</version>
+            <version>${project.parent.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jarvisframework</groupId>
+            <artifactId>jarvis-tool-setting</artifactId>
+            <version>${project.parent.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

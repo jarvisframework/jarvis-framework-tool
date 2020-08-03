@@ -1,6 +1,5 @@
 package com.jarvisframework.tool.core.text;
 
-import cn.hutool.core.text.StrBuilder;
 import com.jarvisframework.tool.core.util.CharUtils;
 import com.jarvisframework.tool.core.util.HexUtils;
 import com.jarvisframework.tool.core.util.StringUtils;
@@ -26,7 +25,7 @@ public class UnicodeUtils {
         }
 
         final int len = unicode.length();
-        StrBuilder sb = StrBuilder.create(len);
+        StringBuilder sb = StringBuilder.create(len);
         int i;
         int pos = 0;
         while ((i = StringUtils.indexOfIgnoreCase(unicode, "\\u", pos)) != -1) {
@@ -81,7 +80,7 @@ public class UnicodeUtils {
         }
 
         final int len = str.length();
-        final StrBuilder unicode = StrBuilder.create(str.length() * 6);
+        final StringBuilder unicode = StringBuilder.create(str.length() * 6);
         char c;
         for (int i = 0; i < len; i++) {
             c = str.charAt(i);

@@ -1,29 +1,59 @@
 package com.jarvisframework.tool.core.io;
 
-import cn.hutool.core.io.BOMInputStream;
-import cn.hutool.core.io.LineHandler;
-import cn.hutool.core.io.file.FileWriter;
-import cn.hutool.core.io.file.*;
 import com.jarvisframework.tool.core.collection.CollectionUtils;
+import com.jarvisframework.tool.core.io.file.FileReader;
+import com.jarvisframework.tool.core.io.file.FileWriter;
+import com.jarvisframework.tool.core.io.file.*;
 import com.jarvisframework.tool.core.lang.Assert;
 import com.jarvisframework.tool.core.util.*;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.RandomAccessFile;
+import java.io.Reader;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
-import java.nio.file.*;
+import java.nio.file.CopyOption;
+import java.nio.file.DirectoryStream;
+import java.nio.file.FileVisitOption;
+import java.nio.file.FileVisitResult;
+import java.nio.file.FileVisitor;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.EnumSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.jar.JarFile;
 import java.util.regex.Pattern;
 import java.util.zip.CRC32;
 import java.util.zip.Checksum;
 
 /**
- * <p>description</p>
+ * <p>文件工具类</p>
  *
  * @author 王涛
  * @since 1.0, 2020-07-10 14:58:48
@@ -1087,8 +1117,8 @@ public class FileUtils {
         if (src.isDirectory() && dest.isFile()) {
             throw new IORuntimeException(StringUtils.format("Can not move directory [{}] to file [{}]", src, dest));
         }
-
-        if (isOverride && dest.isFile()) {// 只有目标为文件的情况下覆盖之
+        // 只有目标为文件的情况下覆盖之
+        if (isOverride && dest.isFile()) {
             //noinspection ResultOfMethodCallIgnored
             dest.delete();
         }
@@ -2154,7 +2184,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static byte[] readBytes(File file) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileReader.create(file).readBytes();
+        return FileReader.create(file).readBytes();
     }
 
     /**
@@ -2213,7 +2243,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static String readString(File file, Charset charset) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileReader.create(file, charset).readString();
+        return FileReader.create(file, charset).readString();
     }
 
     /**
@@ -2331,7 +2361,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static <T extends Collection<String>> T readLines(File file, String charset, T collection) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileReader.create(file, CharsetUtils.charset(charset)).readLines(collection);
+        return FileReader.create(file, CharsetUtils.charset(charset)).readLines(collection);
     }
 
     /**
@@ -2345,7 +2375,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static <T extends Collection<String>> T readLines(File file, Charset charset, T collection) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileReader.create(file, charset).readLines(collection);
+        return FileReader.create(file, charset).readLines(collection);
     }
 
     /**
@@ -2526,7 +2556,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static void readLines(File file, Charset charset, LineHandler lineHandler) throws IORuntimeException {
-        cn.hutool.core.io.file.FileReader.create(file, charset).readLines(lineHandler);
+        FileReader.create(file, charset).readLines(lineHandler);
     }
 
     /**
@@ -2598,7 +2628,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      * @since 3.1.1
      */
-    public static <T> T loadUtf8(String path, cn.hutool.core.io.file.FileReader.ReaderHandler<T> readerHandler) throws IORuntimeException {
+    public static <T> T loadUtf8(String path, FileReader.ReaderHandler<T> readerHandler) throws IORuntimeException {
         return load(path, CharsetUtils.CHARSET_UTF_8, readerHandler);
     }
 
@@ -2613,8 +2643,8 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      * @since 3.1.1
      */
-    public static <T> T load(String path, String charset, cn.hutool.core.io.file.FileReader.ReaderHandler<T> readerHandler) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileReader.create(file(path), CharsetUtils.charset(charset)).read(readerHandler);
+    public static <T> T load(String path, String charset, FileReader.ReaderHandler<T> readerHandler) throws IORuntimeException {
+        return FileReader.create(file(path), CharsetUtils.charset(charset)).read(readerHandler);
     }
 
     /**
@@ -2628,8 +2658,8 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      * @since 3.1.1
      */
-    public static <T> T load(String path, Charset charset, cn.hutool.core.io.file.FileReader.ReaderHandler<T> readerHandler) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileReader.create(file(path), charset).read(readerHandler);
+    public static <T> T load(String path, Charset charset, FileReader.ReaderHandler<T> readerHandler) throws IORuntimeException {
+        return FileReader.create(file(path), charset).read(readerHandler);
     }
 
     /**
@@ -2642,7 +2672,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      * @since 3.1.1
      */
-    public static <T> T loadUtf8(File file, cn.hutool.core.io.file.FileReader.ReaderHandler<T> readerHandler) throws IORuntimeException {
+    public static <T> T loadUtf8(File file, FileReader.ReaderHandler<T> readerHandler) throws IORuntimeException {
         return load(file, CharsetUtils.CHARSET_UTF_8, readerHandler);
     }
 
@@ -2657,8 +2687,8 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      * @since 3.1.1
      */
-    public static <T> T load(File file, Charset charset, cn.hutool.core.io.file.FileReader.ReaderHandler<T> readerHandler) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileReader.create(file, charset).read(readerHandler);
+    public static <T> T load(File file, Charset charset, FileReader.ReaderHandler<T> readerHandler) throws IORuntimeException {
+        return FileReader.create(file, charset).read(readerHandler);
     }
 
     // -------------------------------------------------------------------------------------------- out start
@@ -2738,7 +2768,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static BufferedWriter getWriter(File file, Charset charset, boolean isAppend) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileWriter.create(file, charset).getWriter(isAppend);
+        return FileWriter.create(file, charset).getWriter(isAppend);
     }
 
     /**
@@ -2860,7 +2890,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static File writeString(String content, File file, String charset) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileWriter.create(file, CharsetUtils.charset(charset)).write(content);
+        return FileWriter.create(file, CharsetUtils.charset(charset)).write(content);
     }
 
     /**
@@ -2873,7 +2903,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static File writeString(String content, File file, Charset charset) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileWriter.create(file, charset).write(content);
+        return FileWriter.create(file, charset).write(content);
     }
 
     /**
@@ -2938,7 +2968,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static File appendString(String content, File file, String charset) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileWriter.create(file, CharsetUtils.charset(charset)).append(content);
+        return FileWriter.create(file, CharsetUtils.charset(charset)).append(content);
     }
 
     /**
@@ -2951,7 +2981,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static File appendString(String content, File file, Charset charset) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileWriter.create(file, charset).append(content);
+        return FileWriter.create(file, charset).append(content);
     }
 
     /**
@@ -3168,7 +3198,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static <T> File writeLines(Collection<T> list, File file, String charset, boolean isAppend) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileWriter.create(file, CharsetUtils.charset(charset)).writeLines(list, isAppend);
+        return FileWriter.create(file, CharsetUtils.charset(charset)).writeLines(list, isAppend);
     }
 
     /**
@@ -3183,7 +3213,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static <T> File writeLines(Collection<T> list, File file, Charset charset, boolean isAppend) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileWriter.create(file, charset).writeLines(list, isAppend);
+        return FileWriter.create(file, charset).writeLines(list, isAppend);
     }
 
     /**
@@ -3198,7 +3228,7 @@ public class FileUtils {
      * @since 4.0.5
      */
     public static File writeUtf8Map(Map<?, ?> map, File file, String kvSeparator, boolean isAppend) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileWriter.create(file, CharsetUtils.CHARSET_UTF_8).writeMap(map, kvSeparator, isAppend);
+        return FileWriter.create(file, CharsetUtils.CHARSET_UTF_8).writeMap(map, kvSeparator, isAppend);
     }
 
     /**
@@ -3214,7 +3244,7 @@ public class FileUtils {
      * @since 4.0.5
      */
     public static File writeMap(Map<?, ?> map, File file, Charset charset, String kvSeparator, boolean isAppend) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileWriter.create(file, charset).writeMap(map, kvSeparator, isAppend);
+        return FileWriter.create(file, charset).writeMap(map, kvSeparator, isAppend);
     }
 
     /**
@@ -3253,7 +3283,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static File writeBytes(byte[] data, File dest, int off, int len, boolean isAppend) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileWriter.create(dest).write(data, off, len, isAppend);
+        return FileWriter.create(dest).write(data, off, len, isAppend);
     }
 
     /**
@@ -3265,7 +3295,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static File writeFromStream(InputStream in, File dest) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileWriter.create(dest).writeFromStream(in);
+        return FileWriter.create(dest).writeFromStream(in);
     }
 
     /**
@@ -3289,7 +3319,7 @@ public class FileUtils {
      * @throws IORuntimeException IO异常
      */
     public static long writeToStream(File file, OutputStream out) throws IORuntimeException {
-        return cn.hutool.core.io.file.FileReader.create(file).writeToStream(out);
+        return FileReader.create(file).writeToStream(out);
     }
 
     /**
@@ -3351,11 +3381,11 @@ public class FileUtils {
      *
      * @param file          文件
      * @param charset       编码
-     * @param lineSeparator 换行符枚举{@link LineSeparator}
+     * @param lineSeparator 换行符枚举{@link LineSeparatorEnum}
      * @return 被修改的文件
      * @since 3.1.0
      */
-    public static File convertLineSeparator(File file, Charset charset, LineSeparator lineSeparator) {
+    public static File convertLineSeparator(File file, Charset charset, LineSeparatorEnum lineSeparator) {
         final List<String> lines = readLines(file, charset);
         return FileWriter.create(file, charset).writeLines(lines, lineSeparator, false);
     }
@@ -3553,11 +3583,11 @@ public class FileUtils {
      * 创建{@link RandomAccessFile}
      *
      * @param path 文件Path
-     * @param mode 模式，见{@link FileMode}
+     * @param mode 模式，见{@link FileModeEnum}
      * @return {@link RandomAccessFile}
      * @since 4.5.2
      */
-    public static RandomAccessFile createRandomAccessFile(Path path, FileMode mode) {
+    public static RandomAccessFile createRandomAccessFile(Path path, FileModeEnum mode) {
         return createRandomAccessFile(path.toFile(), mode);
     }
 
@@ -3565,11 +3595,11 @@ public class FileUtils {
      * 创建{@link RandomAccessFile}
      *
      * @param file 文件
-     * @param mode 模式，见{@link FileMode}
+     * @param mode 模式，见{@link FileModeEnum}
      * @return {@link RandomAccessFile}
      * @since 4.5.2
      */
-    public static RandomAccessFile createRandomAccessFile(File file, FileMode mode) {
+    public static RandomAccessFile createRandomAccessFile(File file, FileModeEnum mode) {
         try {
             return new RandomAccessFile(file, mode.name());
         } catch (FileNotFoundException e) {

@@ -1,7 +1,5 @@
 package com.jarvisframework.tool.ctypto.asymmetric;
 
-import cn.hutool.crypto.asymmetric.BaseAsymmetric;
-import cn.hutool.crypto.asymmetric.SignAlgorithm;
 import com.jarvisframework.tool.core.codec.Base64;
 import com.jarvisframework.tool.core.collection.CollectionUtils;
 import com.jarvisframework.tool.ctypto.CryptoException;
@@ -28,9 +26,9 @@ public class Sign extends BaseAsymmetric<Sign> {
     /**
      * 构造，创建新的私钥公钥对
      *
-     * @param algorithm {@link SignAlgorithm}
+     * @param algorithm {@link SignAlgorithmEnum}
      */
-    public Sign(SignAlgorithm algorithm) {
+    public Sign(SignAlgorithmEnum algorithm) {
         this(algorithm, null, (byte[]) null);
     }
 
@@ -47,11 +45,11 @@ public class Sign extends BaseAsymmetric<Sign> {
      * 构造 私钥和公钥同时为空时生成一对新的私钥和公钥<br>
      * 私钥和公钥可以单独传入一个，如此则只能使用此钥匙来做签名或验证
      *
-     * @param algorithm {@link SignAlgorithm}
+     * @param algorithm {@link SignAlgorithmEnum}
      * @param privateKeyStr 私钥Hex或Base64表示
      * @param publicKeyStr 公钥Hex或Base64表示
      */
-    public Sign(SignAlgorithm algorithm, String privateKeyStr, String publicKeyStr) {
+    public Sign(SignAlgorithmEnum algorithm, String privateKeyStr, String publicKeyStr) {
         this(algorithm.getValue(), SecureUtils.decode(privateKeyStr), SecureUtils.decode(publicKeyStr));
     }
 
@@ -59,11 +57,11 @@ public class Sign extends BaseAsymmetric<Sign> {
      * 构造 私钥和公钥同时为空时生成一对新的私钥和公钥<br>
      * 私钥和公钥可以单独传入一个，如此则只能使用此钥匙来做签名或验证
      *
-     * @param algorithm {@link SignAlgorithm}
+     * @param algorithm {@link SignAlgorithmEnum}
      * @param privateKey 私钥
      * @param publicKey 公钥
      */
-    public Sign(SignAlgorithm algorithm, byte[] privateKey, byte[] publicKey) {
+    public Sign(SignAlgorithmEnum algorithm, byte[] privateKey, byte[] publicKey) {
         this(algorithm.getValue(), privateKey, publicKey);
     }
 
@@ -71,10 +69,10 @@ public class Sign extends BaseAsymmetric<Sign> {
      * 构造 私钥和公钥同时为空时生成一对新的私钥和公钥<br>
      * 私钥和公钥可以单独传入一个，如此则只能使用此钥匙来做签名或验证
      *
-     * @param algorithm {@link SignAlgorithm}
+     * @param algorithm {@link SignAlgorithmEnum}
      * @param keyPair 密钥对（包括公钥和私钥）
      */
-    public Sign(SignAlgorithm algorithm, KeyPair keyPair) {
+    public Sign(SignAlgorithmEnum algorithm, KeyPair keyPair) {
         this(algorithm.getValue(), keyPair);
     }
 
@@ -82,11 +80,11 @@ public class Sign extends BaseAsymmetric<Sign> {
      * 构造 私钥和公钥同时为空时生成一对新的私钥和公钥<br>
      * 私钥和公钥可以单独传入一个，如此则只能使用此钥匙来做签名或验证
      *
-     * @param algorithm {@link SignAlgorithm}
+     * @param algorithm {@link SignAlgorithmEnum}
      * @param privateKey 私钥
      * @param publicKey 公钥
      */
-    public Sign(SignAlgorithm algorithm, PrivateKey privateKey, PublicKey publicKey) {
+    public Sign(SignAlgorithmEnum algorithm, PrivateKey privateKey, PublicKey publicKey) {
         this(algorithm.getValue(), privateKey, publicKey);
     }
 
@@ -123,7 +121,7 @@ public class Sign extends BaseAsymmetric<Sign> {
      * 构造 私钥和公钥同时为空时生成一对新的私钥和公钥<br>
      * 私钥和公钥可以单独传入一个，如此则只能使用此钥匙来做签名或验证
      *
-     * @param algorithm 算法，见{@link SignAlgorithm}
+     * @param algorithm 算法，见{@link SignAlgorithmEnum}
      * @param keyPair 密钥对（包括公钥和私钥）
      */
     public Sign(String algorithm, KeyPair keyPair) {

@@ -1,15 +1,13 @@
 package com.jarvisframework.tool.core.util;
 
-import cn.hutool.core.convert.BasicType;
-import cn.hutool.core.io.IORuntimeException;
-import cn.hutool.core.io.resource.ResourceUtil;
-import cn.hutool.core.lang.Singleton;
-import cn.hutool.core.util.ClassLoaderUtil;
+import com.jarvisframework.tool.core.convert.BasicType;
 import com.jarvisframework.tool.core.exception.UtilException;
 import com.jarvisframework.tool.core.io.FileUtils;
+import com.jarvisframework.tool.core.io.IORuntimeException;
 import com.jarvisframework.tool.core.lang.Assert;
 import com.jarvisframework.tool.core.lang.ClassScanner;
 import com.jarvisframework.tool.core.lang.Filter;
+import com.jarvisframework.tool.core.lang.Singleton;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -120,7 +118,7 @@ public class ClassUtils {
         }
 
         final int size = packages.size();
-        final StringBuilder result = StringUtils.builder();
+        final com.jarvisframework.tool.core.text.StringBuilder result = StringUtils.builder();
         result.append(packages.get(0).charAt(0));
         for (int i = 1; i < size - 1; i++) {
             result.append(CharUtils.DOT).append(packages.get(i).charAt(0));
@@ -477,7 +475,7 @@ public class ClassUtils {
      *
      * @param resource 资源（相对Classpath的路径）
      * @return 资源URL
-     * @see ResourceUtil#getResource(String)
+     * @see ResourceUtils#getResource(String)
      */
     public static URL getResourceUrl(String resource) throws IORuntimeException {
         return ResourceUtils.getResource(resource);
@@ -494,7 +492,7 @@ public class ClassUtils {
      *
      * @param resource 资源路径
      * @return 资源列表
-     * @see ResourceUtil#getResources(String)
+     * @see ResourceUtils#getResources(String)
      */
     public static List<URL> getResources(String resource) {
         return ResourceUtils.getResources(resource);
@@ -506,7 +504,7 @@ public class ClassUtils {
      * @param resource  资源相对路径
      * @param baseClass 基准Class，获得的相对路径相对于此Class所在路径，如果为{@code null}则相对ClassPath
      * @return {@link URL}
-     * @see ResourceUtil#getResource(String, Class)
+     * @see ResourceUtils#getResource(String, Class)
      */
     public static URL getResourceUrl(String resource, Class<?> baseClass) {
         return ResourceUtils.getResource(resource, baseClass);
@@ -523,7 +521,7 @@ public class ClassUtils {
      * 获取当前线程的{@link ClassLoader}
      *
      * @return 当前线程的class loader
-     * @see ClassLoaderUtil#getClassLoader()
+     * @see ClassLoaderUtils#getClassLoader()
      */
     public static ClassLoader getContextClassLoader() {
         return ClassLoaderUtils.getContextClassLoader();

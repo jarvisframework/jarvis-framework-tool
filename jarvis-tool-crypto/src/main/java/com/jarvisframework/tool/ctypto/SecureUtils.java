@@ -1,6 +1,5 @@
 package com.jarvisframework.tool.ctypto;
 
-import cn.hutool.crypto.asymmetric.SignAlgorithm;
 import com.jarvisframework.tool.core.codec.Base64;
 import com.jarvisframework.tool.core.io.FileUtils;
 import com.jarvisframework.tool.core.lang.Validator;
@@ -11,6 +10,7 @@ import com.jarvisframework.tool.core.util.StringUtils;
 import com.jarvisframework.tool.ctypto.asymmetric.AsymmetricAlgorithmEnum;
 import com.jarvisframework.tool.ctypto.asymmetric.RSA;
 import com.jarvisframework.tool.ctypto.asymmetric.Sign;
+import com.jarvisframework.tool.ctypto.asymmetric.SignAlgorithmEnum;
 import com.jarvisframework.tool.ctypto.digest.*;
 import com.jarvisframework.tool.ctypto.symmetric.*;
 
@@ -770,7 +770,7 @@ public class SecureUtils {
      * @return {@link Sign}
      * @since 3.3.0
      */
-    public static Sign sign(SignAlgorithm algorithm) {
+    public static Sign sign(SignAlgorithmEnum algorithm) {
         return new Sign(algorithm);
     }
 
@@ -785,7 +785,7 @@ public class SecureUtils {
      * @return {@link Sign}
      * @since 3.3.0
      */
-    public static Sign sign(SignAlgorithm algorithm, String privateKeyBase64, String publicKeyBase64) {
+    public static Sign sign(SignAlgorithmEnum algorithm, String privateKeyBase64, String publicKeyBase64) {
         return new Sign(algorithm, privateKeyBase64, publicKeyBase64);
     }
 
@@ -800,7 +800,7 @@ public class SecureUtils {
      * @return {@link Sign}
      * @since 3.3.0
      */
-    public static Sign sign(SignAlgorithm algorithm, byte[] privateKey, byte[] publicKey) {
+    public static Sign sign(SignAlgorithmEnum algorithm, byte[] privateKey, byte[] publicKey) {
         return new Sign(algorithm, privateKey, publicKey);
     }
 

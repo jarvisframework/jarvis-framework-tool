@@ -609,7 +609,7 @@ public class DateUtils extends CalendarUtils {
 
         String format = DatePattern.CHINESE_DATE_FORMAT.format(date);
         if (isUppercase) {
-            final StringBuilder builder = StringUtils.builder(format.length());
+            final com.jarvisframework.tool.core.text.StringBuilder builder = StringUtils.builder(format.length());
             builder.append(Convert.numberToChinese(Integer.parseInt(format.substring(0, 1)), false));
             builder.append(Convert.numberToChinese(Integer.parseInt(format.substring(1, 2)), false));
             builder.append(Convert.numberToChinese(Integer.parseInt(format.substring(2, 3)), false));
@@ -1918,7 +1918,7 @@ public class DateUtils extends CalendarUtils {
             return StringUtils.str(dateStr);
         }
 
-        final StringBuilder builder = StringUtils.builder();
+        final com.jarvisframework.tool.core.text.StringBuilder builder = StringUtils.builder();
 
         // 日期部分（"\"、"/"、"."、"年"、"月"都替换为"-"）
         String datePart = dateAndTime.get(0).replaceAll("[/.年月]", "-");

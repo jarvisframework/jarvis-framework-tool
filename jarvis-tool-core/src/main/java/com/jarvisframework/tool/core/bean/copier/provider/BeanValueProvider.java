@@ -4,7 +4,7 @@ import com.jarvisframework.tool.core.bean.BeanDesc.PropDesc;
 import com.jarvisframework.tool.core.bean.BeanUtils;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.exception.UtilException;
-import com.jarvisframework.tool.core.lang.copier.ValueProvider;
+import com.jarvisframework.tool.core.bean.copier.ValueProvider;
 import com.jarvisframework.tool.core.util.StringUtils;
 
 import java.lang.reflect.Method;

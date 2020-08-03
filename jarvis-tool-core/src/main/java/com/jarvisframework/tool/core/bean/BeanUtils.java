@@ -6,7 +6,7 @@ import com.jarvisframework.tool.core.collection.CollectionUtils;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.lang.Editor;
 import com.jarvisframework.tool.core.lang.Filter;
-import com.jarvisframework.tool.core.lang.copier.ValueProvider;
+import com.jarvisframework.tool.core.bean.copier.ValueProvider;
 import com.jarvisframework.tool.core.map.CaseInsensitiveMap;
 import com.jarvisframework.tool.core.map.MapUtils;
 import com.jarvisframework.tool.core.util.*;

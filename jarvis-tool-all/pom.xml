@@ -49,5 +49,15 @@
             <artifactId>jarvis-tool-cache</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.jarvisframework</groupId>
+            <artifactId>jarvis-tool-setting</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jarvisframework</groupId>
+            <artifactId>jarvis-tool-log</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
     </dependencies>
 </project>

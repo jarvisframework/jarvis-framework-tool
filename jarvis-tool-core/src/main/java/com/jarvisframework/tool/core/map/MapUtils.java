@@ -1,6 +1,5 @@
 package com.jarvisframework.tool.core.map;
 
-import cn.hutool.core.map.*;
 import com.jarvisframework.tool.core.collection.CollectionUtils;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.lang.Editor;
@@ -546,7 +545,7 @@ public class MapUtils {
      * @since 3.1.1
      */
     public static <K, V> String join(Map<K, V> map, String separator, String keyValueSeparator, boolean isIgnoreNull, String... otherParams) {
-        final StringBuilder strBuilder = StringUtils.builder();
+        final com.jarvisframework.tool.core.text.StringBuilder strBuilder = StringUtils.builder();
         boolean isFirst = true;
         if (isNotEmpty(map)) {
             for (Map.Entry<K, V> entry : map.entrySet()) {

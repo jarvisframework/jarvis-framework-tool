@@ -1,7 +1,7 @@
 package com.jarvisframework.tool.core.bean.copier.provider;
 
 import com.jarvisframework.tool.core.convert.Convert;
-import com.jarvisframework.tool.core.lang.copier.ValueProvider;
+import com.jarvisframework.tool.core.bean.copier.ValueProvider;
 import com.jarvisframework.tool.core.map.CaseInsensitiveMap;
 import com.jarvisframework.tool.core.util.StringUtils;
 

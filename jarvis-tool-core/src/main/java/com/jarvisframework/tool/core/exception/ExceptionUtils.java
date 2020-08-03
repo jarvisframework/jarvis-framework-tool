@@ -209,7 +209,7 @@ public class ExceptionUtils {
         }
 
         if (CollectionUtils.isNotEmpty(replaceCharToStrMap)) {
-            final StringBuilder sb = StringUtils.builder();
+            final com.jarvisframework.tool.core.text.StringBuilder sb = StringUtils.builder();
             char c;
             String value;
             for (int i = 0; i < length; i++) {

@@ -1,6 +1,5 @@
 package com.jarvisframework.tool.core.io;
 
-import cn.hutool.core.io.*;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.exception.UtilException;
 import com.jarvisframework.tool.core.lang.Assert;
@@ -477,7 +476,7 @@ public class IOUtils {
      * @throws IORuntimeException IO异常
      */
     public static String read(Reader reader) throws IORuntimeException {
-        final StringBuilder builder = StringUtils.builder();
+        final com.jarvisframework.tool.core.text.StringBuilder builder = StringUtils.builder();
         final CharBuffer buffer = CharBuffer.allocate(DEFAULT_BUFFER_SIZE);
         try {
             while (-1 != reader.read(buffer)) {

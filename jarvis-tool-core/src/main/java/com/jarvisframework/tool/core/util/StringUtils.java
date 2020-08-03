@@ -1,13 +1,14 @@
 package com.jarvisframework.tool.core.util;
 
-import cn.hutool.core.comparator.VersionComparator;
-import cn.hutool.core.lang.Matcher;
-import cn.hutool.core.lang.func.Func1;
-import cn.hutool.core.text.StrFormatter;
-import cn.hutool.core.text.StrSpliter;
-import cn.hutool.core.text.TextSimilarity;
+import com.jarvisframework.tool.core.comparator.VersionComparator;
 import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.lang.Assert;
+import com.jarvisframework.tool.core.lang.Matcher;
+import com.jarvisframework.tool.core.lang.func.Func1;
+import com.jarvisframework.tool.core.text.StringBuilder;
+import com.jarvisframework.tool.core.text.StringFormatter;
+import com.jarvisframework.tool.core.text.StringSpliter;
+import com.jarvisframework.tool.core.text.TextSimilarity;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -1433,7 +1434,7 @@ public class StringUtils {
         if (null == str) {
             return new String[]{};
         }
-        return StrSpliter.splitToArray(str.toString(), separator, limit, false, false);
+        return StringSpliter.splitToArray(str.toString(), separator, limit, false, false);
     }
 
     /**
@@ -1527,7 +1528,7 @@ public class StringUtils {
         if (null == str) {
             return new ArrayList<>(0);
         }
-        return StrSpliter.split(str.toString(), separator, limit, isTrim, ignoreEmpty);
+        return StringSpliter.split(str.toString(), separator, limit, isTrim, ignoreEmpty);
     }
 
     /**
@@ -1546,7 +1547,7 @@ public class StringUtils {
             return new ArrayList<>(0);
         }
         final String separatorStr = (null == separator) ? null : separator.toString();
-        return StrSpliter.split(str.toString(), separatorStr, limit, isTrim, ignoreEmpty);
+        return StringSpliter.split(str.toString(), separatorStr, limit, isTrim, ignoreEmpty);
     }
 
     /**
@@ -1562,7 +1563,7 @@ public class StringUtils {
         }
 
         final String separatorStr = (null == separator) ? null : separator.toString();
-        return StrSpliter.splitToArray(str.toString(), separatorStr, 0, false, false);
+        return StringSpliter.splitToArray(str.toString(), separatorStr, 0, false, false);
     }
 
     /**
@@ -1571,13 +1572,13 @@ public class StringUtils {
      * @param str 字符串
      * @param len 每一个小节的长度
      * @return 截取后的字符串数组
-     * @see StrSpliter#splitByLength(String, int)
+     * @see StringSpliter#splitByLength(String, int)
      */
     public static String[] split(CharSequence str, int len) {
         if (null == str) {
             return new String[]{};
         }
-        return StrSpliter.splitByLength(str.toString(), len);
+        return StringSpliter.splitByLength(str.toString(), len);
     }
 
     /**
@@ -2323,7 +2324,7 @@ public class StringUtils {
         if (ArrayUtils.isEmpty(params) || isBlank(template)) {
             return template.toString();
         }
-        return StrFormatter.format(template.toString(), params);
+        return StringFormatter.format(template.toString(), params);
     }
 
     /**

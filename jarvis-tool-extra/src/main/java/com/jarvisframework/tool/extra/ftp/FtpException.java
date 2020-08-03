@@ -1,7 +1,7 @@
 package com.jarvisframework.tool.extra.ftp;
 
-import cn.hutool.core.exceptions.ExceptionUtil;
-import cn.hutool.core.util.StrUtil;
+import com.jarvisframework.tool.core.exception.ExceptionUtils;
+import com.jarvisframework.tool.core.util.StringUtils;
 
 /**
  * <p>Ftp异常类</p>
@@ -14,7 +14,7 @@ public class FtpException extends RuntimeException {
     private static final long serialVersionUID = 8034331991006644355L;
 
     public FtpException(Throwable e) {
-        super(ExceptionUtil.getMessage(e), e);
+        super(ExceptionUtils.getMessage(e), e);
     }
 
     public FtpException(String message) {
@@ -22,7 +22,7 @@ public class FtpException extends RuntimeException {
     }
 
     public FtpException(String messageTemplate, Object... params) {
-        super(StrUtil.format(messageTemplate, params));
+        super(StringUtils.format(messageTemplate, params));
     }
 
     public FtpException(String message, Throwable throwable) {
@@ -30,6 +30,6 @@ public class FtpException extends RuntimeException {
     }
 
     public FtpException(Throwable throwable, String messageTemplate, Object... params) {
-        super(StrUtil.format(messageTemplate, params), throwable);
+        super(StringUtils.format(messageTemplate, params), throwable);
     }
 }

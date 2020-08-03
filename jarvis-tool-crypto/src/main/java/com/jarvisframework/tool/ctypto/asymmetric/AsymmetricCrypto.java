@@ -1,10 +1,10 @@
 package com.jarvisframework.tool.ctypto.asymmetric;
 
-import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import com.jarvisframework.tool.core.codec.Base64;
 import com.jarvisframework.tool.core.io.FastByteArrayOutputStream;
 import com.jarvisframework.tool.ctypto.CryptoException;
 import com.jarvisframework.tool.ctypto.SecureUtils;
+import com.jarvisframework.tool.ctypto.symmetric.SymmetricAlgorithmEnum;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -30,19 +30,26 @@ import java.security.PublicKey;
  */
 public class AsymmetricCrypto extends AbstractAsymmetricCrypto<AsymmetricCrypto> {
 
-    /** Cipher负责完成加密或解密工作 */
+    /**
+     * Cipher负责完成加密或解密工作
+     */
     protected Cipher cipher;
 
-    /** 加密的块大小 */
+    /**
+     * 加密的块大小
+     */
     protected int encryptBlockSize = -1;
-    /** 解密的块大小 */
+    /**
+     * 解密的块大小
+     */
     protected int decryptBlockSize = -1;
 
     // ------------------------------------------------------------------ Constructor start
+
     /**
      * 构造，创建新的私钥公钥对
      *
-     * @param algorithm {@link SymmetricAlgorithm}
+     * @param algorithm {@link SymmetricAlgorithmEnum}
      */
     @SuppressWarnings("RedundantCast")
     public AsymmetricCrypto(AsymmetricAlgorithmEnum algorithm) {
@@ -63,9 +70,9 @@ public class AsymmetricCrypto extends AbstractAsymmetricCrypto<AsymmetricCrypto>
      * 构造 私钥和公钥同时为空时生成一对新的私钥和公钥<br>
      * 私钥和公钥可以单独传入一个，如此则只能使用此钥匙来做加密或者解密
      *
-     * @param algorithm {@link SymmetricAlgorithm}
+     * @param algorithm     {@link SymmetricAlgorithmEnum}
      * @param privateKeyStr 私钥Hex或Base64表示
-     * @param publicKeyStr 公钥Hex或Base64表示
+     * @param publicKeyStr  公钥Hex或Base64表示
      */
     public AsymmetricCrypto(AsymmetricAlgorithmEnum algorithm, String privateKeyStr, String publicKeyStr) {
         this(algorithm.getValue(), SecureUtils.decode(privateKeyStr), SecureUtils.decode(publicKeyStr));
@@ -75,9 +82,9 @@ public class AsymmetricCrypto extends AbstractAsymmetricCrypto<AsymmetricCrypto>
      * 构造 私钥和公钥同时为空时生成一对新的私钥和公钥<br>
      * 私钥和公钥可以单独传入一个，如此则只能使用此钥匙来做加密或者解密
      *
-     * @param algorithm {@link SymmetricAlgorithm}
+     * @param algorithm  {@link SymmetricAlgorithmEnum}
      * @param privateKey 私钥
-     * @param publicKey 公钥
+     * @param publicKey  公钥
      */
     public AsymmetricCrypto(AsymmetricAlgorithmEnum algorithm, byte[] privateKey, byte[] publicKey) {
         this(algorithm.getValue(), privateKey, publicKey);
@@ -87,9 +94,9 @@ public class AsymmetricCrypto extends AbstractAsymmetricCrypto<AsymmetricCrypto>
      * 构造 私钥和公钥同时为空时生成一对新的私钥和公钥<br>
      * 私钥和公钥可以单独传入一个，如此则只能使用此钥匙来做加密或者解密
      *
-     * @param algorithm {@link SymmetricAlgorithm}
+     * @param algorithm  {@link SymmetricAlgorithmEnum}
      * @param privateKey 私钥
-     * @param publicKey 公钥
+     * @param publicKey  公钥
      * @since 3.1.1
      */
     public AsymmetricCrypto(AsymmetricAlgorithmEnum algorithm, PrivateKey privateKey, PublicKey publicKey) {
@@ -100,9 +107,9 @@ public class AsymmetricCrypto extends AbstractAsymmetricCrypto<AsymmetricCrypto>
      * 构造 私钥和公钥同时为空时生成一对新的私钥和公钥<br>
      * 私钥和公钥可以单独传入一个，如此则只能使用此钥匙来做加密或者解密
      *
-     * @param algorithm 非对称加密算法
+     * @param algorithm        非对称加密算法
      * @param privateKeyBase64 私钥Base64
-     * @param publicKeyBase64 公钥Base64
+     * @param publicKeyBase64  公钥Base64
      */
     public AsymmetricCrypto(String algorithm, String privateKeyBase64, String publicKeyBase64) {
         this(algorithm, Base64.decode(privateKeyBase64), Base64.decode(publicKeyBase64));
@@ -110,30 +117,30 @@ public class AsymmetricCrypto extends AbstractAsymmetricCrypto<AsymmetricCrypto>
 
     /**
      * 构造
-     *
+     * <p>
      * 私钥和公钥同时为空时生成一对新的私钥和公钥<br>
      * 私钥和公钥可以单独传入一个，如此则只能使用此钥匙来做加密或者解密
      *
-     * @param algorithm 算法
+     * @param algorithm  算法
      * @param privateKey 私钥
-     * @param publicKey 公钥
+     * @param publicKey  公钥
      */
     public AsymmetricCrypto(String algorithm, byte[] privateKey, byte[] publicKey) {
-        this(algorithm, //
-                SecureUtils.generatePrivateKey(algorithm, privateKey), //
-                SecureUtils.generatePublicKey(algorithm, publicKey)//
+        this(algorithm,
+                SecureUtils.generatePrivateKey(algorithm, privateKey),
+                SecureUtils.generatePublicKey(algorithm, publicKey)
         );
     }
 
     /**
      * 构造
-     *
+     * <p>
      * 私钥和公钥同时为空时生成一对新的私钥和公钥<br>
      * 私钥和公钥可以单独传入一个，如此则只能使用此钥匙来做加密或者解密
      *
-     * @param algorithm 算法
+     * @param algorithm  算法
      * @param privateKey 私钥
-     * @param publicKey 公钥
+     * @param publicKey  公钥
      * @since 3.1.1
      */
     public AsymmetricCrypto(String algorithm, PrivateKey privateKey, PublicKey publicKey) {
@@ -185,10 +192,11 @@ public class AsymmetricCrypto extends AbstractAsymmetricCrypto<AsymmetricCrypto>
     }
 
     // --------------------------------------------------------------------------------- Encrypt
+
     /**
      * 加密
      *
-     * @param data 被加密的bytes
+     * @param data    被加密的bytes
      * @param keyType 私钥或公钥 {@link KeyTypeEnum}
      * @return 加密后的bytes
      */
@@ -199,10 +207,10 @@ public class AsymmetricCrypto extends AbstractAsymmetricCrypto<AsymmetricCrypto>
         try {
             cipher.init(Cipher.ENCRYPT_MODE, key);
 
-            if(this.encryptBlockSize < 0){
+            if (this.encryptBlockSize < 0) {
                 // 在引入BC库情况下，自动获取块大小
                 final int blockSize = this.cipher.getBlockSize();
-                if(blockSize > 0){
+                if (blockSize > 0) {
                     this.encryptBlockSize = blockSize;
                 }
             }
@@ -216,10 +224,11 @@ public class AsymmetricCrypto extends AbstractAsymmetricCrypto<AsymmetricCrypto>
     }
 
     // --------------------------------------------------------------------------------- Decrypt
+
     /**
      * 解密
      *
-     * @param data 被解密的bytes
+     * @param data    被解密的bytes
      * @param keyType 私钥或公钥 {@link KeyTypeEnum}
      * @return 解密后的bytes
      */
@@ -230,10 +239,10 @@ public class AsymmetricCrypto extends AbstractAsymmetricCrypto<AsymmetricCrypto>
         try {
             cipher.init(Cipher.DECRYPT_MODE, key);
 
-            if(this.decryptBlockSize < 0){
+            if (this.decryptBlockSize < 0) {
                 // 在引入BC库情况下，自动获取块大小
                 final int blockSize = this.cipher.getBlockSize();
-                if(blockSize > 0){
+                if (blockSize > 0) {
                     this.decryptBlockSize = blockSize;
                 }
             }
@@ -269,12 +278,12 @@ public class AsymmetricCrypto extends AbstractAsymmetricCrypto<AsymmetricCrypto>
     /**
      * 加密或解密
      *
-     * @param data 被加密或解密的内容数据
+     * @param data         被加密或解密的内容数据
      * @param maxBlockSize 最大块（分段）大小
      * @return 加密或解密后的数据
      * @throws IllegalBlockSizeException 分段异常
-     * @throws BadPaddingException padding错误异常
-     * @throws IOException  IO异常，不会被触发
+     * @throws BadPaddingException       padding错误异常
+     * @throws IOException               IO异常，不会被触发
      */
     private byte[] doFinal(byte[] data, int maxBlockSize) throws IllegalBlockSizeException, BadPaddingException, IOException {
         // 模长
@@ -292,17 +301,16 @@ public class AsymmetricCrypto extends AbstractAsymmetricCrypto<AsymmetricCrypto>
     /**
      * 分段加密或解密
      *
-     * @param data 数据
+     * @param data         数据
      * @param maxBlockSize 最大分段的段大小，不能为小于1
      * @return 加密或解密后的数据
      * @throws IllegalBlockSizeException 分段异常
-     * @throws BadPaddingException padding错误异常
-     * @throws IOException IO异常，不会被触发
+     * @throws BadPaddingException       padding错误异常
+     * @throws IOException               IO异常，不会被触发
      */
     private byte[] doFinalWithBlock(byte[] data, int maxBlockSize) throws IllegalBlockSizeException, BadPaddingException, IOException {
         final int dataLength = data.length;
-        @SuppressWarnings("resource")
-        final FastByteArrayOutputStream out = new FastByteArrayOutputStream();
+        @SuppressWarnings("resource") final FastByteArrayOutputStream out = new FastByteArrayOutputStream();
 
         int offSet = 0;
         // 剩余长度

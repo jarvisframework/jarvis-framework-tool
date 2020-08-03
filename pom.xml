@@ -4,7 +4,7 @@
     <!-- The first line of code for the jarvis (2019-11-08 16:00:00) -->
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.jarvisframework</groupId>
+    <groupId>com.jarvisframework.tool</groupId>
     <artifactId>jarvis-tool</artifactId>
     <version>1.0.1</version>
     <packaging>pom</packaging>
@@ -29,6 +29,8 @@
         <module>jarvis-tool-poi</module>
         <module>jarvis-tool-email</module>
         <module>jarvis-tool-extra</module>
+        <module>jarvis-tool-setting</module>
+        <module>jarvis-tool-log</module>
     </modules>
 
     <dependencies>
@@ -38,12 +40,12 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
             <optional>true</optional>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <build>

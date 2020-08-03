@@ -9,7 +9,6 @@ import com.jarvisframework.tool.core.convert.Convert;
 import com.jarvisframework.tool.core.exception.UtilException;
 import com.jarvisframework.tool.core.lang.ParameterizedTypeImpl;
 import com.jarvisframework.tool.core.lang.copier.Copier;
-import com.jarvisframework.tool.core.lang.copier.ValueProvider;
 import com.jarvisframework.tool.core.map.MapUtils;
 import com.jarvisframework.tool.core.util.*;
 

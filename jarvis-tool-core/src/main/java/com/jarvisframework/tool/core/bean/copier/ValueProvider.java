@@ -1,4 +1,4 @@
-package com.jarvisframework.tool.core.lang.copier;
+package com.jarvisframework.tool.core.bean.copier;
 
 import java.lang.reflect.Type;
 

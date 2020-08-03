@@ -1,7 +1,7 @@
 package com.jarvisframework.tool.ctypto;
 
-import cn.hutool.core.exceptions.ExceptionUtil;
-import cn.hutool.core.util.StrUtil;
+import com.jarvisframework.tool.core.exception.ExceptionUtils;
+import com.jarvisframework.tool.core.util.StringUtils;
 
 /**
  * <p>加密异常类</p>
@@ -14,7 +14,7 @@ public class CryptoException extends RuntimeException {
     private static final long serialVersionUID = 8068509879445395353L;
 
     public CryptoException(Throwable e) {
-        super(ExceptionUtil.getMessage(e), e);
+        super(ExceptionUtils.getMessage(e), e);
     }
 
     public CryptoException(String message) {
@@ -22,7 +22,7 @@ public class CryptoException extends RuntimeException {
     }
 
     public CryptoException(String messageTemplate, Object... params) {
-        super(StrUtil.format(messageTemplate, params));
+        super(StringUtils.format(messageTemplate, params));
     }
 
     public CryptoException(String message, Throwable throwable) {
@@ -30,6 +30,6 @@ public class CryptoException extends RuntimeException {
     }
 
     public CryptoException(Throwable throwable, String messageTemplate, Object... params) {
-        super(StrUtil.format(messageTemplate, params), throwable);
+        super(StringUtils.format(messageTemplate, params), throwable);
     }
 }
