@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * {@link cn.hutool.cache.impl.AbstractCache} 的CacheObj迭代器.
+ * {@link AbstractCache} 的CacheObj迭代器.
  *
  * @param <K> 键类型
  * @param <V> 值类型

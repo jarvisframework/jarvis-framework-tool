@@ -105,7 +105,7 @@ public class ClassUtils {
 
     /**
      * 获取完整类名的短格式如：<br>
-     * cn.hutool.core.util.StrUtil -》c.h.c.u.StrUtil
+     * StringUtils -》c.h.c.u.StringUtils
      *
      * @param className 类名
      * @return 短格式类名

@@ -29,9 +29,13 @@ import java.util.Map;
 public class BeanDesc implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /** Bean类 */
+    /**
+     * Bean类
+     */
     private final Class<?> beanClass;
-    /** 属性Map */
+    /**
+     * 属性Map
+     */
     private final Map<String, PropDesc> propMap = new LinkedHashMap<>();
 
     /**
@@ -126,6 +130,7 @@ public class BeanDesc implements Serializable {
     }
 
     // ------------------------------------------------------------------------------------------------------ Private method start
+
     /**
      * 初始化<br>
      * 只有与属性关联的相关Getter和Setter方法才会被读取，无关的getXXX和setXXX都被忽略
@@ -134,7 +139,7 @@ public class BeanDesc implements Serializable {
      */
     private BeanDesc init() {
         for (Field field : ReflectUtils.getFields(this.beanClass)) {
-            if(false == ModifierUtils.isStatic(field)) {
+            if (false == ModifierUtils.isStatic(field)) {
                 //只针对非static属性
                 this.propMap.put(ReflectUtils.getFieldName(field), createProp(field));
             }
@@ -206,8 +211,8 @@ public class BeanDesc implements Serializable {
      * name     -》 getName
      * </pre>
      *
-     * @param methodName 方法名
-     * @param fieldName 字段名
+     * @param methodName    方法名
+     * @param fieldName     字段名
      * @param isBooeanField 是否为Boolean类型字段
      * @return 是否匹配
      */
@@ -220,7 +225,7 @@ public class BeanDesc implements Serializable {
             // 非标准Getter方法
             return false;
         }
-        if("getclass".equals(methodName)) {
+        if ("getclass".equals(methodName)) {
             //跳过getClass方法
             return false;
         }
@@ -229,9 +234,9 @@ public class BeanDesc implements Serializable {
         if (isBooeanField) {
             if (fieldName.startsWith("is")) {
                 // 字段已经是is开头
-                if (methodName.equals(fieldName) // isName -》 isName
-                        || methodName.equals("get" + fieldName)// isName -》 getIsName
-                        || methodName.equals("is" + fieldName)// isName -》 isIsName
+                if (methodName.equals(fieldName)
+                        || methodName.equals("get" + fieldName)
+                        || methodName.equals("is" + fieldName)
                 ) {
                     return true;
                 }
@@ -256,8 +261,8 @@ public class BeanDesc implements Serializable {
      * name     -》 setName
      * </pre>
      *
-     * @param methodName 方法名
-     * @param fieldName 字段名
+     * @param methodName    方法名
+     * @param fieldName     字段名
      * @param isBooeanField 是否为Boolean类型字段
      * @return 是否匹配
      */
@@ -274,8 +279,8 @@ public class BeanDesc implements Serializable {
         // 针对Boolean类型特殊检查
         if (isBooeanField && fieldName.startsWith("is")) {
             // 字段是is开头
-            if (methodName.equals("set" + StringUtils.removePrefix(fieldName, "is"))// isName -》 setName
-                    || methodName.equals("set" + fieldName)// isName -》 setIsName
+            if (methodName.equals("set" + StringUtils.removePrefix(fieldName, "is"))
+                    || methodName.equals("set" + fieldName)
             ) {
                 return true;
             }
@@ -288,24 +293,27 @@ public class BeanDesc implements Serializable {
 
     /**
      * 属性描述
-     *
-     * @author looly
-     *
      */
     public static class PropDesc {
 
-        /** 字段 */
+        /**
+         * 字段
+         */
         private final Field field;
-        /** Getter方法 */
+        /**
+         * Getter方法
+         */
         private final Method getter;
-        /** Setter方法 */
+        /**
+         * Setter方法
+         */
         private final Method setter;
 
         /**
          * 构造<br>
          * Getter和Setter方法设置为默认可访问
          *
-         * @param field 字段
+         * @param field  字段
          * @param getter get方法
          * @param setter set方法
          */
@@ -396,9 +404,9 @@ public class BeanDesc implements Serializable {
          * @since 4.0.5
          */
         public Object getValue(Object bean) {
-            if(null != this.getter) {
+            if (null != this.getter) {
                 return ReflectUtils.invoke(bean, this.getter);
-            } else if(ModifierUtils.isPublic(this.field)) {
+            } else if (ModifierUtils.isPublic(this.field)) {
                 return ReflectUtils.getFieldValue(bean, this.field);
             }
             return null;
@@ -408,21 +416,22 @@ public class BeanDesc implements Serializable {
          * 设置Bean的字段值<br>
          * 首先调用字段对应的Setter方法，如果Setter方法不存在，则判断字段如果为public，则直接赋值字段值
          *
-         * @param bean Bean对象
+         * @param bean  Bean对象
          * @param value 值
          * @return this
          * @since 4.0.5
          */
         public PropDesc setValue(Object bean, Object value) {
-            if(null != this.setter) {
+            if (null != this.setter) {
                 ReflectUtils.invoke(bean, this.setter, value);
-            } else if(ModifierUtils.isPublic(this.field)) {
+            } else if (ModifierUtils.isPublic(this.field)) {
                 ReflectUtils.setFieldValue(bean, this.field, value);
             }
             return this;
         }
 
         //------------------------------------------------------------------------------------ Private method start
+
         /**
          * 通过Getter和Setter方法中找到属性类型
          *

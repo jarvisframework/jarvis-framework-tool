@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 
 /**
- *  {@link cn.hutool.cache.impl.AbstractCache} 的值迭代器.
+ *  {@link AbstractCache} 的值迭代器.
  *
  * @author 王涛
  * @since 1.0, 2020-07-29 11:49:01

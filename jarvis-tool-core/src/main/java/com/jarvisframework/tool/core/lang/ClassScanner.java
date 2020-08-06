@@ -295,7 +295,6 @@ public class ClassScanner implements Serializable {
             // 版本导致的不兼容的类，跳过
         } catch (Exception e) {
             throw new RuntimeException(e);
-            // Console.error(e);
         }
         return clazz;
     }
@@ -317,7 +316,7 @@ public class ClassScanner implements Serializable {
                 addIfAccept(loadClass(className));
             }
         } else if (classLen > packageLen) {
-            //检查类名是否以指定包名为前缀，包名后加.（避免类似于cn.hutool.A和cn.hutool.ATest这类类名引起的歧义）
+            //检查类名是否以指定包名为前缀，包名后加.（避免类似于com.jarvisframework.A和com.jarvisframework.ATest这类类名引起的歧义）
             if (className.startsWith(this.packageNameWithDot)) {
                 addIfAccept(loadClass(className));
             }

@@ -1098,7 +1098,7 @@ public class NumberUtils {
             if (chars[start] == '0' && (chars[start + 1] == 'x' || chars[start + 1] == 'X')) {
                 int i = start + 2;
                 if (i == sz) {
-                    return false; // str == "0x"
+                    return false;
                 }
                 // checking hex (it can't be anything else)
                 for (; i < chars.length; i++) {
