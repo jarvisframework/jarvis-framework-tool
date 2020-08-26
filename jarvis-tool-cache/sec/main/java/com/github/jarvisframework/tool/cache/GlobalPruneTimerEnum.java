@@ -1,4 +1,4 @@
-package com.jarvisframework.tool.cache;
+package com.github.jarvisframework.tool.cache;
 
 import com.jarvisframework.tool.core.thread.ThreadUtils;
 import com.jarvisframework.tool.core.util.StringUtils;

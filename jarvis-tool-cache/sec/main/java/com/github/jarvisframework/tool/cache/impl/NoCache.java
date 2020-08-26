@@ -1,6 +1,6 @@
-package com.jarvisframework.tool.cache.impl;
+package com.github.jarvisframework.tool.cache.impl;
 
-import com.jarvisframework.tool.cache.Cache;
+import com.github.jarvisframework.tool.cache.Cache;
 import com.jarvisframework.tool.core.func.Func0;
 
 import java.util.Iterator;

@@ -5,13 +5,13 @@
     <!-- The first line of code for the jarvis (2019-11-08 16:00:00) -->
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.jarvisframework</groupId>
+    <groupId>com.github.jarvisframework</groupId>
     <artifactId>jarvis-framework-tool</artifactId>
     <version>1.0.1</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>Jarvis框架工具类库</description>
-    <url>https://github.com/wt0856/jarvis-framework</url>
+    <url>https://github.com/jarvisframework/jarvis-framework-tool</url>
     <!-- 还未注册的域名 -->
     <!--<url>jarvisframework.com</url>-->
 

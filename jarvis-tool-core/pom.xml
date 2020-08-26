@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.jarvisframework</groupId>
+        <groupId>com.github.jarvisframework</groupId>
         <artifactId>jarvis-framework-tool</artifactId>
         <version>1.0.1</version>
     </parent>
@@ -14,7 +14,7 @@
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>Jarvis框架工具类库</description>
-    <url>https://github.com/wt0856/jarvis-framework</url>
+    <url>https://github.com/jarvisframework/jarvis-framework-tool</url>
 
     <properties>
         <log4j.version>1.2.17</log4j.version>

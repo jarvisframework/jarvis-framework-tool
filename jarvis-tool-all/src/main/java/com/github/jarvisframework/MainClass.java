@@ -1,4 +1,4 @@
-package org.jarvis.framework;
+package com.github.jarvisframework;
 
 /**
  * <p>所有模块依赖包</p>

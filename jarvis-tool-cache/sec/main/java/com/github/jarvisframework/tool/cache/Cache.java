@@ -1,6 +1,6 @@
-package com.jarvisframework.tool.cache;
+package com.github.jarvisframework.tool.cache;
 
-import com.jarvisframework.tool.cache.impl.CacheObject;
+import com.github.jarvisframework.tool.cache.impl.CacheObject;
 import com.jarvisframework.tool.core.func.Func0;
 
 import java.io.Serializable;

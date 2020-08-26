@@ -1,6 +1,6 @@
-package com.jarvisframework.tool.cache.impl;
+package com.github.jarvisframework.tool.cache.impl;
 
-import com.jarvisframework.tool.cache.GlobalPruneTimerEnum;
+import com.github.jarvisframework.tool.cache.GlobalPruneTimerEnum;
 
 import java.util.HashMap;
 import java.util.Iterator;
