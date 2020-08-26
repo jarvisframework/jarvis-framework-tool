@@ -9,6 +9,6 @@ package com.jarvisframework.tool.core.convert;
  * @deprecated 请使用 {@link NumberWordFormatter}
  */
 @Deprecated
-public class NumberWordFormater extends NumberWordFormatter{
+public class NumberWordFormater extends NumberWordFormatter {
 
 }

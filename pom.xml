@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version='1.0' encoding='utf-8'?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <!-- The first line of code for the jarvis (2019-11-08 16:00:00) -->
     <modelVersion>4.0.0</modelVersion>
 
@@ -8,8 +9,11 @@
     <artifactId>jarvis-framework-tool</artifactId>
     <version>1.0.1</version>
     <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <description>Jarvis框架工具类库</description>
+    <url>https://github.com/wt0856/jarvis-framework</url>
     <!-- 还未注册的域名 -->
-    <url>jarvisframework.com</url>
+    <!--<url>jarvisframework.com</url>-->
 
     <properties>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
@@ -43,7 +47,7 @@
         <!--<dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
+           <version>${hutool.version}</version>
             <optional>true</optional>
         </dependency>-->
     </dependencies>
@@ -62,16 +66,75 @@
         </plugins>
     </build>
 
-    <distributionManagement>
-        <repository>
-            <id>snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
+    <licenses>
+        <license>
+            <name>Mulan Permissive Software License，Version 1</name>
+            <url>http://license.coscl.org.cn/MulanPSL</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>DougWang</name>
+            <email>17621987665@163.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git@github.com:wt0856/jarvis-framework.git</connection>
+        <developerConnection>scm:git@github.com:wt0856/jarvis-framework.git</developerConnection>
+        <url>git@github.com:wt0856/jarvis-framework.git</url>
+    </scm>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>oss</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                </snapshotRepository>
+                <repository>
+                    <id>oss</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <!-- Source -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>oss</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Gpg Signature -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>oss</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
 

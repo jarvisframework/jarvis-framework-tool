@@ -11,5 +11,8 @@
   </parent>
 
   <artifactId>jarvis-tool-email</artifactId>
+  <name>${project.artifactId}</name>
+  <description>Jarvis框架工具类库</description>
+  <url>https://github.com/wt0856/jarvis-framework</url>
 
 </project>

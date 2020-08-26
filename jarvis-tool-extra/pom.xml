@@ -11,6 +11,9 @@
     </parent>
 
     <artifactId>jarvis-tool-extra</artifactId>
+    <name>${project.artifactId}</name>
+    <description>Jarvis框架工具类库</description>
+    <url>https://github.com/wt0856/jarvis-framework</url>
 
     <properties>
         <net.version>3.6</net.version>

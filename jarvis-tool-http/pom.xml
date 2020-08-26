@@ -12,6 +12,9 @@
     </parent>
 
     <artifactId>jarvis-tool-http</artifactId>
+    <name>${project.artifactId}</name>
+    <description>Jarvis框架工具类库</description>
+    <url>https://github.com/wt0856/jarvis-framework</url>
 
     <properties>
         <servlet.version>2.5</servlet.version>
