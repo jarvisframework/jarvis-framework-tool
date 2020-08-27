@@ -1,7 +1,7 @@
 package com.github.jarvisframework.tool.cache;
 
 import com.github.jarvisframework.tool.cache.impl.CacheObject;
-import com.jarvisframework.tool.core.func.Func0;
+import com.github.jarvisframework.tool.core.func.Func0;
 
 import java.io.Serializable;
 import java.util.Iterator;

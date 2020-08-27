@@ -1,6 +1,6 @@
 package com.github.jarvisframework.tool.cache.impl;
 
-import com.jarvisframework.tool.core.map.FixedLinkedHashMap;
+import com.github.jarvisframework.tool.core.map.FixedLinkedHashMap;
 
 import java.util.Iterator;
 

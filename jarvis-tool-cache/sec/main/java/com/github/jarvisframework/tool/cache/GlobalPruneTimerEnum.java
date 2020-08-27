@@ -1,7 +1,7 @@
 package com.github.jarvisframework.tool.cache;
 
-import com.jarvisframework.tool.core.thread.ThreadUtils;
-import com.jarvisframework.tool.core.util.StringUtils;
+import com.github.jarvisframework.tool.core.thread.ThreadUtils;
+import com.github.jarvisframework.tool.core.util.StringUtils;
 
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
