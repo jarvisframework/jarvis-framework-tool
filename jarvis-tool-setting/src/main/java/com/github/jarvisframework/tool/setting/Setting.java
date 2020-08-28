@@ -37,7 +37,7 @@ import java.util.function.Consumer;
  *  4、store方法不会保存注释内容，慎重使用
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 15:22:27
  */
 public class Setting extends AbsSetting implements Map<String, String> {

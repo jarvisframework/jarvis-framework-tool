@@ -15,7 +15,7 @@ import java.nio.charset.Charset;
  * 资源接口定义<br>
  * 资源可以是文件、URL、ClassPath中的文件亦或者jar包中的文件
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 17:58:55
  */
 public interface Resource {

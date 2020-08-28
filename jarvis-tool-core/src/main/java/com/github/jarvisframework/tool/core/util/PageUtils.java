@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.core.util;
 /**
  * <p>分页工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-13 13:27:38
  */
 public class PageUtils {

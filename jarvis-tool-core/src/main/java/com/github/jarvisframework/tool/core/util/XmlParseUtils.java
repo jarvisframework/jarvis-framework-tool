@@ -24,7 +24,7 @@ import java.util.TimeZone;
 /**
  * <p>Xml解析工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @date 2019-11-18 14:44:36
  */
 public abstract class XmlParseUtils {

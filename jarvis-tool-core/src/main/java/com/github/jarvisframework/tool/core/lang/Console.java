@@ -12,7 +12,7 @@ import static java.lang.System.out;
  * 命令行（控制台）工具方法类<br>
  * 此类主要针对{@link System#out} 和 {@link System#err} 做封装。
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-08 16:38:33
  */
 public class Console {

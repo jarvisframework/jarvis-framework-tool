@@ -10,7 +10,7 @@ import java.util.Date;
  * 在不提供默认值的情况下， 如果值不存在或获取错误，返回null<br>
  * 用户只需实现{@link OptBasicTypeGetter}接口即可
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 10:37:01
  */
 public interface OptNullBasicTypeGetter<K> extends BasicTypeGetter<K>, OptBasicTypeGetter<K> {

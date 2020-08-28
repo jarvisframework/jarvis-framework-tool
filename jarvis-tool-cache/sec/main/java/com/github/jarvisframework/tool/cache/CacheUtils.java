@@ -4,7 +4,7 @@ import com.github.jarvisframework.tool.cache.impl.*;
 /**
  * <p>缓存工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 11:23:29
  */
 public class CacheUtils {

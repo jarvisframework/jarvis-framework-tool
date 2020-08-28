@@ -24,7 +24,7 @@ import java.util.zip.Checksum;
 /**
  * <p>文件工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-10 14:58:48
  */
 public class FileUtils {

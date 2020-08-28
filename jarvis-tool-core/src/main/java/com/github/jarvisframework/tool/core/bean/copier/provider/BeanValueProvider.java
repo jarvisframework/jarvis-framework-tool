@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * <p>Bean的值提供者</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 19:48:03
  */
 public class BeanValueProvider implements ValueProvider<String> {

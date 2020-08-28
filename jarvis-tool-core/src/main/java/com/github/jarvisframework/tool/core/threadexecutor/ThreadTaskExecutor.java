@@ -7,7 +7,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 /**
  * <p>异步处理线程管理类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 2018/1/17 17:48
  */
 public class ThreadTaskExecutor implements InitializingBean {

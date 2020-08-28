@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 /**
  * <p>Java日志API</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @see <a href="http://java.sun.com/javase/6/docs/technotes/guides/logging/index.html">java.util.logging</a> log.
  * @since 1.0, 2020-08-03 16:53:30
  */

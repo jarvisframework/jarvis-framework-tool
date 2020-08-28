@@ -4,7 +4,7 @@ package com.github.jarvisframework.tool.ctypto.symmetric;
  * 对称算法类型<br>
  * see: https://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#KeyGenerator
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 12:00:22
  */
 public enum SymmetricAlgorithmEnum {

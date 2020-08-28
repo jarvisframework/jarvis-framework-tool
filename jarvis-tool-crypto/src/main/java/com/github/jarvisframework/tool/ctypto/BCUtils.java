@@ -23,7 +23,7 @@ import java.security.spec.ECPublicKeySpec;
 /**
  * Bouncy Castle相关工具类封装
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 11:14:09
  */
 public class BCUtils {

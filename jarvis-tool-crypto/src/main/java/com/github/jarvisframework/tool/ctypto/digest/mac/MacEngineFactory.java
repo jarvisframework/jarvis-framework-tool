@@ -9,7 +9,7 @@ import java.security.Key;
 /**
  * <p>{@link MacEngine} 实现工厂类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 20:10:27
  */
 public class MacEngineFactory {

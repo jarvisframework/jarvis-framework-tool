@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.extra.qimen;
 /**
  * <p>奇门Method公用常量类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @date 2019-11-15 14:19:10
  */
 public abstract class QimenMethodConstants {

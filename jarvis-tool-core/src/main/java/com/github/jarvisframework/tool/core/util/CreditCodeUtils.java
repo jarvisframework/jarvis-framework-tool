@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  * 第五部分：校验码1位 (数字或大写英文字母)
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 20:02:10
  */
 public class CreditCodeUtils {

@@ -17,7 +17,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
  * 基于分组的Map<br>
  * 此对象方法线程安全
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 15:27:24
  */
 public class GroupedMap extends LinkedHashMap<String, LinkedHashMap<String, String>> {

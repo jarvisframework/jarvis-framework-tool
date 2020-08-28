@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * <p>校验返回对象</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @date 2019-11-19 14:42:34
  */
 public class CheckResultDTO extends CheckResult {

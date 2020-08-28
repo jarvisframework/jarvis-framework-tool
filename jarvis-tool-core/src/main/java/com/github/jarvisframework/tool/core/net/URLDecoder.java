@@ -16,7 +16,7 @@ import java.nio.charset.Charset;
  * 3. 跳过不符合规范的%形式，直接输出
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 10:59:41
  */
 public class URLDecoder implements Serializable {

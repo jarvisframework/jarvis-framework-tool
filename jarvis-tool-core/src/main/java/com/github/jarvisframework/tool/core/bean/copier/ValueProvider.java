@@ -8,7 +8,7 @@ import java.lang.reflect.Type;
  * 在Bean注入过程中，Bean获得字段名，通过外部方式根据这个字段名查找相应的字段值，然后注入Bean<br>
  *
  * @param <T> KEY类型，一般情况下为 {@link String}
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 19:46:24
  */
 public interface ValueProvider<T> {

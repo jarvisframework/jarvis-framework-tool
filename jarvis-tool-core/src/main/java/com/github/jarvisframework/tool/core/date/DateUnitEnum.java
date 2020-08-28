@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.core.date;
 /**
  * <p>日期时间单位，每个单位都是以毫秒为基数</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 16:18:01
  */
 public enum DateUnitEnum {

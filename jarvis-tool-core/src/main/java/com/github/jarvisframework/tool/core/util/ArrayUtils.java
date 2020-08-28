@@ -14,7 +14,7 @@ import java.util.*;
 /**
  * <p>数组工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-08 17:01:59
  */
 public class ArrayUtils {

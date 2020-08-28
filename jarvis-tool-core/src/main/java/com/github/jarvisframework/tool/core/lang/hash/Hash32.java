@@ -4,7 +4,7 @@ package com.github.jarvisframework.tool.core.lang.hash;
  * Hash计算接口
  *
  * @param <T> 被计算hash的对象类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:32:53
  */
 @FunctionalInterface

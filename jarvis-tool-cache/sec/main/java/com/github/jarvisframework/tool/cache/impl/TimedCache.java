@@ -13,7 +13,7 @@ import java.util.concurrent.ScheduledFuture;
  *
  * @param <K> 键类型
  * @param <V> 值类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 14:14:03
  */
 public class TimedCache<K, V> extends AbstractCache<K, V> {

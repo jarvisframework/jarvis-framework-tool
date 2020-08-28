@@ -6,7 +6,7 @@ import java.util.concurrent.*;
 /**
  * <p>线程池工具</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 12:01:35
  */
 public class ThreadUtils {

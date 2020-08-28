@@ -6,7 +6,7 @@ import java.io.Serializable;
  * 可变<code>Object</code>
  *
  * @param <T> 可变的类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 09:40:43
  */
 public class MutableObject<T> implements Mutable<T>, Serializable {

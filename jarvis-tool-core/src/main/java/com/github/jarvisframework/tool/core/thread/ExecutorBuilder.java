@@ -8,7 +8,7 @@ import java.util.concurrent.*;
 /**
  * <p>{@link ThreadPoolExecutor} 建造者</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 12:05:06
  */
 public class ExecutorBuilder implements Builder<ThreadPoolExecutor> {

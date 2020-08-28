@@ -7,7 +7,7 @@ import java.util.TimeZone;
 /**
  * <p>description</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 15:56:55
  */
 public abstract class AbstractDateBasic implements DateBasic, Serializable {

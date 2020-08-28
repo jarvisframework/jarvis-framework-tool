@@ -9,7 +9,7 @@ import java.util.Date;
  * 提供一个统一的接口定义返回不同类型的值（基本类型）<br>
  * 如果值不存在或获取错误，返回默认值
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 10:34:13
  */
 public interface OptBasicTypeGetter<K> {

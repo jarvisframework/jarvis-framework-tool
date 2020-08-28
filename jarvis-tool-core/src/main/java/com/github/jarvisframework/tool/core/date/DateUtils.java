@@ -27,7 +27,7 @@ import java.util.regex.Matcher;
 /**
  * <p>时间工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-10 17:33:02
  */
 public class DateUtils extends CalendarUtils {

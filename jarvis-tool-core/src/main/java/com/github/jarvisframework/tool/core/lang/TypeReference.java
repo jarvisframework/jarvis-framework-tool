@@ -19,7 +19,7 @@ import java.lang.reflect.Type;
  * 此类参考FastJSON的TypeReference实现
  *
  * @param <T> 需要自定义的参考类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 17:24:53
  */
 public abstract class TypeReference<T> implements Type {

@@ -5,7 +5,7 @@ package com.github.jarvisframework.tool.core.lang.func;
  *
  * @param <P> 参数类型
  * @param <R> 返回值类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 09:34:35
  */
 @FunctionalInterface

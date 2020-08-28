@@ -22,7 +22,7 @@ import java.util.Map;
  * <p>Bean拷贝</p>
  *
  * @param <T> 目标对象类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 19:40:34
  */
 public class BeanCopier<T> implements Copier<T>, Serializable {

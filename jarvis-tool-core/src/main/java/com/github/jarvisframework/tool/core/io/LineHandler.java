@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.core.io;
 /**
  * <p>行处理器</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:44:47
  */
 @FunctionalInterface

@@ -8,7 +8,7 @@ package com.github.jarvisframework.tool.core.date;
  * @see #Q3
  * @see #Q4
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 16:29:47
  */
 public enum QuarterEnum {

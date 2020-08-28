@@ -23,7 +23,7 @@ import java.util.Set;
 /**
  * <p>Setting文件加载器</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 15:36:13
  */
 public class SettingLoader {

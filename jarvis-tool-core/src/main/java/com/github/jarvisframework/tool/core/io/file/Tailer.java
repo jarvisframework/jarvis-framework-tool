@@ -20,7 +20,7 @@ import java.util.concurrent.*;
 /**
  * <p>文件内容跟随器，实现类似Linux下"tail -f"命令功能</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 10:05:33
  */
 public class Tailer implements Serializable {

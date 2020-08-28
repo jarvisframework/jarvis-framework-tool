@@ -26,7 +26,7 @@ import java.security.spec.RSAPublicKeySpec;
  * 非对称加密算法可以用来对对称加密的密钥加密，这样保证密钥的安全也就保证了数据的安全
  * </p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 19:35:42
  */
 public class RSA extends AsymmetricCrypto {

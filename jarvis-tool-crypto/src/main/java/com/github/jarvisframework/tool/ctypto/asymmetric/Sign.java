@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * <p>签名包装，{@link Signature} 包装类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-27 10:30:07
  */
 public class Sign extends BaseAsymmetric<Sign> {

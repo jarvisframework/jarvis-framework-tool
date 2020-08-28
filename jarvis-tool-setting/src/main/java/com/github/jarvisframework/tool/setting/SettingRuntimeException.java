@@ -5,7 +5,7 @@ import com.github.jarvisframework.tool.core.util.StringUtils;
 /**
  * <p>设置异常</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 16:04:43
  */
 public class SettingRuntimeException extends RuntimeException {

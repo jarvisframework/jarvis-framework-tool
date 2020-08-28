@@ -23,7 +23,7 @@ import java.util.*;
  * 把一个拥有对属性进行set和get方法的类，就可以称之为JavaBean。
  * </p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-13 10:58:42
  */
 public class BeanUtils {

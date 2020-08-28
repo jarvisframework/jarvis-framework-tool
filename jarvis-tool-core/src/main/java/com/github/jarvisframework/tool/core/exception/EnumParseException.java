@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.core.exception;
 /**
  * <p>枚举解析异常类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @date 2020-03-09 12:48:43
  */
 public class EnumParseException extends BusinessException {

@@ -5,7 +5,7 @@ import com.github.jarvisframework.tool.core.util.StringUtils;
 /**
  * <p>验证异常</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 19:59:43
  */
 public class ValidateException extends StatefulException {

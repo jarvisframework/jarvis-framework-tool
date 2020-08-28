@@ -24,7 +24,7 @@ import java.security.PublicKey;
  * <p>
  * 这种格式可以保存证书和私钥，有时我们也把PEM格式的私钥的后缀改为 .key 以区别证书与私钥。
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 11:16:56
  */
 public class PemUtils {

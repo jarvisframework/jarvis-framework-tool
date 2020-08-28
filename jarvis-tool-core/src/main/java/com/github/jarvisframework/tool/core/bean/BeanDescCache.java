@@ -6,7 +6,7 @@ import com.github.jarvisframework.tool.core.lang.SimpleCache;
  * Bean属性缓存<br>
  * 缓存用于防止多次反射造成的性能问题
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 18:20:24
  */
 public enum BeanDescCache {

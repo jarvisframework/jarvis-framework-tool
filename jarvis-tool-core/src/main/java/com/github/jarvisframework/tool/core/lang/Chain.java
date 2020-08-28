@@ -5,7 +5,7 @@ package com.github.jarvisframework.tool.core.lang;
  *
  * @param <E> 元素类型
  * @param <T> 目标类类型，用于返回this对象
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 15:50:39
  */
 public interface Chain<E, T> extends Iterable<E> {

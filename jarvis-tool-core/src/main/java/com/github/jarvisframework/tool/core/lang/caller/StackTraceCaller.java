@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * <p>通过StackTrace方式获取调用者。此方式效率最低，不推荐使用</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 16:34:59
  */
 public class StackTraceCaller implements Caller, Serializable {

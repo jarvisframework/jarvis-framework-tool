@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <p>
  * 参考：http://blog.csdn.net/qxc1281/article/details/54021882
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:17:00
  */
 public class ObjectId {

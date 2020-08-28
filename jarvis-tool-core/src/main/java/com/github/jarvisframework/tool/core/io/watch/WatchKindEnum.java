@@ -13,7 +13,7 @@ import java.nio.file.WatchEvent;
  *      4. 删除事件 DELETE   -》StandardWatchEventKinds.ENTRY_DELETE
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 15:42:49
  */
 public enum WatchKindEnum {

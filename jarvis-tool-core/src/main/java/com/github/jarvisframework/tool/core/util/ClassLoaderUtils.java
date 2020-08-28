@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * <p>{@link ClassLoader}工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-13 11:21:19
  */
 public class ClassLoaderUtils {

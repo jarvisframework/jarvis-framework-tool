@@ -6,7 +6,7 @@ import com.github.jarvisframework.tool.core.util.StringUtils;
 /**
  * <p>比较异常</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:29:33
  */
 public class ComparatorException extends RuntimeException{

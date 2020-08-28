@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * <p>比较工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-10 17:53:09
  */
 public class CompareUtils {

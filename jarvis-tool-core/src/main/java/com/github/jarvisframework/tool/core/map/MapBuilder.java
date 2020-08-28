@@ -8,7 +8,7 @@ import java.util.Map;
  *
  * @param <K> Key类型
  * @param <V> Value类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 10:44:07
  */
 public class MapBuilder<K, V> implements Serializable {

@@ -9,7 +9,7 @@ package com.github.jarvisframework.tool.core.io.file;
  * Windows系统换行符："\r\n"
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @see #MAC
  * @see #LINUX
  * @see #WINDOWS

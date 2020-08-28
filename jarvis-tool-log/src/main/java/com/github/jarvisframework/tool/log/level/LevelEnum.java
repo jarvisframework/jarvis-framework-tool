@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.log.level;
 /**
  * <p>日志等级枚举类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 16:27:11
  */
 public enum LevelEnum {

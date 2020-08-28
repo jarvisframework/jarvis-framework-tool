@@ -6,7 +6,7 @@ import com.github.jarvisframework.tool.core.lang.mutable.MutableObject;
  * <p>为不可变的对象引用提供一个可变的包装，在java中支持引用传递。</p>
  *
  * @param <T> 所持有值类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 09:45:44
  */
 public final class Holder<T> extends MutableObject<T> {

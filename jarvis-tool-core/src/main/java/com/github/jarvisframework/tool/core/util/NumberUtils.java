@@ -18,7 +18,7 @@ import java.util.Set;
 /**
  * <p>数值操作工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2018/1/16 15:40:00
  */
 public class NumberUtils {
@@ -740,13 +740,13 @@ public class NumberUtils {
     /**
      * 补充Math.ceilDiv() JDK8中添加了和Math.floorDiv()但却没有ceilDiv()
      *
-     * @param v1           被除数
-     * @param v2           除数
+     * @param v1 被除数
+     * @param v2 除数
      * @return 两个参数的商
      * @since 5.3.3
      */
     public static int ceilDiv(int v1, int v2) {
-        return (int)Math.ceil((double)v1 / v2);
+        return (int) Math.ceil((double) v1 / v2);
     }
 
     // ------------------------------------------------------------------------------------------- round
@@ -2194,7 +2194,6 @@ public class NumberUtils {
             // 0x04表示16进制数
             return Long.parseLong(number.substring(2), 16);
         }
-
         return Long.parseLong(removeNumberFlag(number));
     }
 
@@ -2246,6 +2245,128 @@ public class NumberUtils {
                 | (bytes[1] & 0xff) << 16
                 | (bytes[2] & 0xff) << 8
                 | (bytes[3] & 0xff);
+    }
+
+    /**
+     * 字符转int
+     *
+     * @param str 字符型整数
+     * @return 转换结果
+     */
+    public static int toInt(String str) {
+        return toInt(str, 0);
+    }
+
+    /**
+     * 字符转int
+     *
+     * @param str          字符型整数
+     * @param defaultValue 默认值
+     * @return 转换结果
+     */
+    public static int toInt(String str, int defaultValue) {
+        if (str == null) {
+            return defaultValue;
+        } else {
+            try {
+                return Integer.parseInt(str);
+            } catch (NumberFormatException var3) {
+                return defaultValue;
+            }
+        }
+    }
+
+    /**
+     * 字符转数long
+     *
+     * @param str 字符型长整数
+     * @return 转换结果
+     */
+    public static long toLong(String str) {
+        return toLong(str, 0L);
+    }
+
+    /**
+     * 字符转数long
+     *
+     * @param str          字符型长整数
+     * @param defaultValue 默认值
+     * @return 转换结果
+     */
+    public static long toLong(String str, long defaultValue) {
+        if (str == null) {
+            return defaultValue;
+        } else {
+            try {
+                return Long.parseLong(str);
+            } catch (NumberFormatException var4) {
+                return defaultValue;
+            }
+        }
+    }
+
+    public static byte toByte(String str) {
+        return toByte(str, (byte)0);
+    }
+
+    public static byte toByte(String str, byte defaultValue) {
+        if (str == null) {
+            return defaultValue;
+        } else {
+            try {
+                return Byte.parseByte(str);
+            } catch (NumberFormatException var3) {
+                return defaultValue;
+            }
+        }
+    }
+
+    public static short toShort(String str) {
+        return toShort(str, (short)0);
+    }
+
+    public static short toShort(String str, short defaultValue) {
+        if (str == null) {
+            return defaultValue;
+        } else {
+            try {
+                return Short.parseShort(str);
+            } catch (NumberFormatException var3) {
+                return defaultValue;
+            }
+        }
+    }
+
+    public static double toDouble(String str) {
+        return toDouble(str, 0.0D);
+    }
+
+    public static double toDouble(String str, double defaultValue) {
+        if (str == null) {
+            return defaultValue;
+        } else {
+            try {
+                return Double.parseDouble(str);
+            } catch (NumberFormatException var4) {
+                return defaultValue;
+            }
+        }
+    }
+
+    public static float toFloat(String str) {
+        return toFloat(str, 0.0F);
+    }
+
+    public static float toFloat(String str, float defaultValue) {
+        if (str == null) {
+            return defaultValue;
+        } else {
+            try {
+                return Float.parseFloat(str);
+            } catch (NumberFormatException var3) {
+                return defaultValue;
+            }
+        }
     }
 
     /**

@@ -6,7 +6,7 @@ import java.nio.charset.Charset;
 /**
  * <p>FTP配置项，提供FTP各种参数信息</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-14 11:40:36
  */
 public class FtpConfig implements Serializable {

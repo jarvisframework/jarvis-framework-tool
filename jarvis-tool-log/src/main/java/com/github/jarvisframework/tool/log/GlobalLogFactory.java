@@ -4,7 +4,7 @@ package com.github.jarvisframework.tool.log;
  * 全局日志工厂类<br>
  * 用于减少日志工厂创建，减少日志库探测
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 16:43:32
  */
 public class GlobalLogFactory {

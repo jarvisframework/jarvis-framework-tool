@@ -9,7 +9,7 @@ import java.util.WeakHashMap;
  *
  * @param <K> 键
  * @param <V> 值
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 14:26:17
  */
 public class WeakCache<K, V> extends TimedCache<K, V> {

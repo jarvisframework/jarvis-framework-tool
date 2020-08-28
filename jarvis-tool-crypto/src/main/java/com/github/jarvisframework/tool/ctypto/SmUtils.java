@@ -28,7 +28,7 @@ import java.math.BigInteger;
  * SM国密算法工具类<br>
  * 此工具类依赖org.bouncycastle:bcpkix-jdk15on
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 11:10:01
  */
 public class SmUtils {

@@ -18,7 +18,7 @@ import java.util.Set;
 /**
  * <p>Map代理，提供各种getXXX方法，并提供默认值支持</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 10:10:20
  */
 public class MapProxy implements Map<Object, Object>, OptNullBasicTypeFromObjectGetter<Object>, InvocationHandler, Serializable {

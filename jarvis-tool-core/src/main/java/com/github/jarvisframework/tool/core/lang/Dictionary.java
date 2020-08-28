@@ -14,7 +14,7 @@ import java.util.*;
 /**
  * <p>字典对象，扩充了HashMap中的方法</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 17:02:14
  */
 public class Dictionary extends LinkedHashMap<String, Object> implements BasicTypeGetter<String> {
@@ -381,7 +381,7 @@ public class Dictionary extends LinkedHashMap<String, Object> implements BasicTy
      */
     @Override
     public Boolean getBoolean(String attr) {
-        return Convert.toBool(get(attr), null);
+        return Convert.toBoolean(get(attr), null);
     }
 
     /**

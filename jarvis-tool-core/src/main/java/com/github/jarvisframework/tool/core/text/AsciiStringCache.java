@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.core.text;
 /**
  * <p>ASCII字符对应的字符串缓存</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-08 18:10:52
  */
 public class AsciiStringCache {

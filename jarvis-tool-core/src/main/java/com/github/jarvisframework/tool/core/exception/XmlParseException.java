@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.core.exception;
 /**
  * <p>Xml处理异常类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @date 2019-11-18 17:39:54
  */
 public class XmlParseException extends BusinessException {

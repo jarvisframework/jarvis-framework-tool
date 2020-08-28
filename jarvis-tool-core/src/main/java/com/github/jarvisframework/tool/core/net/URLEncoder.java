@@ -19,7 +19,7 @@ import java.util.BitSet;
  * 3.将非文本内容转换成"%xy"的形式,xy是两位16进制的数值;
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 10:49:21
  */
 public class URLEncoder implements Serializable {

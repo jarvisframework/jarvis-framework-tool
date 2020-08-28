@@ -7,7 +7,7 @@ import java.util.Date;
  * 日期格式化输出接口<br>
  * Thanks to Apache Commons Lang 3.5
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 15:26:43
  */
 public interface DatePrinter extends DateBasic {

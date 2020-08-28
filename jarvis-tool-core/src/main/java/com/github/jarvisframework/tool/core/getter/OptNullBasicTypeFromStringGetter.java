@@ -10,7 +10,7 @@ import java.util.Date;
  * 基本类型的getter接口抽象实现，所有类型的值获取都是通过将String转换而来<br>
  * 用户只需实现getStr方法即可，其他类型将会从String结果中转换 在不提供默认值的情况下， 如果值不存在或获取错误，返回null<br>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 15:14:19
  */
 public interface OptNullBasicTypeFromStringGetter<K> extends OptNullBasicTypeGetter<K> {
@@ -32,7 +32,7 @@ public interface OptNullBasicTypeFromStringGetter<K> extends OptNullBasicTypeGet
 
     @Override
     default Boolean getBoolean(K key, Boolean defaultValue) {
-        return Convert.toBool(getString(key), defaultValue);
+        return Convert.toBoolean(getString(key), defaultValue);
     }
 
     @Override

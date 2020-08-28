@@ -18,7 +18,7 @@ import java.util.Map;
  *   key1=v1&amp;key2=&amp;key3=v3
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 15:09:22
  */
 public class UrlQuery {

@@ -13,7 +13,7 @@ import java.util.ServiceLoader;
  *     3、文件内容填写实现类的全限定类名
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @see <a href="https://www.jianshu.com/p/3a3edbcd8f24"></a>
  * @since 1.0, 2020-08-03 16:45:58
  */

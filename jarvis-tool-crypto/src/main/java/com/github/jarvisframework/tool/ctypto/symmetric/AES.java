@@ -25,7 +25,7 @@ import javax.crypto.spec.IvParameterSpec;
  * <p>
  * 相关概念见：https://blog.csdn.net/OrangeJack/article/details/82913804
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 18:42:49
  */
 public class AES extends SymmetricCrypto {

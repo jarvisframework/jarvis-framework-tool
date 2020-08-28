@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * <p>ID生成工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 2018/1/16 20:02:00
  */
 public class IdCreateUtils {

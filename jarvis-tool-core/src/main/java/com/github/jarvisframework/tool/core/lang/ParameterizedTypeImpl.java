@@ -10,7 +10,7 @@ import java.lang.reflect.Type;
 /**
  * <p>{@link ParameterizedType} 接口实现，用于重新定义泛型类型</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 19:55:50
  */
 public class ParameterizedTypeImpl implements ParameterizedType, Serializable {

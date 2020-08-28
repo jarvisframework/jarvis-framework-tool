@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @param <T> 拷贝的对象
  * @param <C> 本类的类型。用于set方法返回本对象，方便流式编程
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 09:51:12
  */
 public abstract class SrcToDestCopier<T, C extends SrcToDestCopier<T, C>> implements Copier<T>, Serializable {

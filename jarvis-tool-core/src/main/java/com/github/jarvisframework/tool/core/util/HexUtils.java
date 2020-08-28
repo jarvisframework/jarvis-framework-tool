@@ -11,7 +11,7 @@ import java.nio.charset.Charset;
  * <p>
  * 参考：https://my.oschina.net/xinxingegeya/blog/287476
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-10 19:59:13
  */
 public class HexUtils {

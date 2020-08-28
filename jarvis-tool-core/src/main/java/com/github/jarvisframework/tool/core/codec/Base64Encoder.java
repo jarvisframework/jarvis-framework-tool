@@ -8,7 +8,7 @@ import java.nio.charset.Charset;
 /**
  * <p>Base64编码</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 11:38:05
  */
 public class Base64Encoder {

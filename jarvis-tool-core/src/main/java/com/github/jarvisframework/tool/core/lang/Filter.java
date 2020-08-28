@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.core.lang;
 /**
  * <p>过滤器接口</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 17:37:57
  */
 @FunctionalInterface

@@ -8,7 +8,7 @@ import java.util.Iterator;
  * <p>{@link Iterator}对象转{@link Enumeration}</p>
  *
  * @param <E> 元素类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:35:04
  */
 public class IteratorEnumeration<E> implements Enumeration<E>, Serializable {

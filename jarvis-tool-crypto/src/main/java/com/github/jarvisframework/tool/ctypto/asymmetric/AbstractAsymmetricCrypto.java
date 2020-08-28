@@ -18,7 +18,7 @@ import java.security.PublicKey;
  * <p>抽象的非对称加密对象，包装了加密和解密为Hex和Base64的封装</p>
  *
  * @param <T> 返回自身类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 11:28:44
  */
 public abstract class AbstractAsymmetricCrypto <T extends AbstractAsymmetricCrypto<T>> extends BaseAsymmetric<T> {

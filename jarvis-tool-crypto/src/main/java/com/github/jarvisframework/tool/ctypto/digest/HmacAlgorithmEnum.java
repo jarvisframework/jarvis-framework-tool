@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.ctypto.digest;
 /**
  * <p>HMAC算法类型</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @ss <a href="https://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#Mac"></a>
  * @since 1.0, 2020-07-24 18:26:07
  */

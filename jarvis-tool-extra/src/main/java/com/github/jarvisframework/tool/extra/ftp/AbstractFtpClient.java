@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * <p>抽象FTP类，用于定义通用的FTP方法</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-14 11:16:17
  */
 public abstract class AbstractFtpClient implements Closeable {

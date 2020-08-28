@@ -4,7 +4,7 @@ package com.github.jarvisframework.tool.core.io;
  * 代码移植自<a href="https://github.com/biezhi/blade">blade</a><br>
  * 快速缓冲，将数据存放在缓冲集中，取代以往的单一数组
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 19:42:14
  */
 public class FastByteBuffer {

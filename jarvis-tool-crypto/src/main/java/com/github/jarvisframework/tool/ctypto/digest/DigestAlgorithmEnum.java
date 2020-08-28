@@ -4,7 +4,7 @@ package com.github.jarvisframework.tool.ctypto.digest;
  * <p>摘要算法类型枚举类</p>
  * see: https://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#MessageDigest
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-22 10:57:18
  */
 public enum DigestAlgorithmEnum {

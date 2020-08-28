@@ -15,7 +15,7 @@ import java.io.InputStream;
  * BouncyCastle的HMAC算法实现引擎，使用{@link Mac} 实现摘要<br>
  * 当引入BouncyCastle库时自动使用其作为Provider
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-27 10:41:40
  */
 public class BCHMacEngine implements MacEngine {

@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.log.level;
 /**
  * <p>ERROR级别日志接口</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 16:41:23
  */
 public interface ErrorLog {

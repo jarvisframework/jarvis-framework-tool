@@ -6,7 +6,7 @@ import com.github.jarvisframework.tool.log.LogFactory;
 /**
  * <p>利用System.out.println()打印日志</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 16:58:17
  */
 public class ConsoleLogFactory extends LogFactory {

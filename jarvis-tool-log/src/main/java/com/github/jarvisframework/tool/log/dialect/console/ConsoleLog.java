@@ -11,7 +11,7 @@ import com.github.jarvisframework.tool.log.level.LevelEnum;
 /**
  * <p>利用System.out.println()打印日志</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 16:59:37
  */
 public class ConsoleLog extends AbstractLog {

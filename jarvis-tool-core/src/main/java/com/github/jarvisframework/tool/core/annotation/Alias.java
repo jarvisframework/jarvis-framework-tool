@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 /**
  * <p>别名注解，使用此注解的字段、方法、参数等会有一个别名，用于Bean拷贝、Bean转Map等</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 17:35:19
  */
 @Documented

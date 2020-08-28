@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * <p>FTP客户端测试类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-14 12:08:34
  */
 public class FtpClientTest {

@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * ThreadFactory创建器<br>
  * 参考：Guava的ThreadFactoryBuilder
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 13:46:45
  */
 public class ThreadFactoryBuilder implements Builder<ThreadFactory> {

@@ -18,7 +18,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * </p>
  *
  * @param <T> 生成范围对象的类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 17:56:49
  */
 public class Range<T> implements Iterable<T>, Iterator<T>, Serializable {

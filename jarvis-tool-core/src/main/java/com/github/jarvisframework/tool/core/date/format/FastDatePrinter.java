@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentMap;
  * {@link java.text.SimpleDateFormat} 的线程安全版本，用于将 {@link Date} 格式化输出<br>
  * Thanks to Apache Commons Lang 3.5
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 15:55:14
  */
 class FastDatePrinter extends AbstractDateBasic implements DatePrinter {

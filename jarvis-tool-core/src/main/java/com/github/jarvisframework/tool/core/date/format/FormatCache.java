@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentMap;
  * 日期格式化器缓存<br>
  * Thanks to Apache Commons Lang 3.5
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 15:44:38
  */
 abstract class FormatCache<F extends Format> {

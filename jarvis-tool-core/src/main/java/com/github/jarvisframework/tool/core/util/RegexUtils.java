@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  * 正则表达式工具类<br>
  * 常用正则请见 {@link Validator}
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-10 18:05:53
  */
 public class RegexUtils {

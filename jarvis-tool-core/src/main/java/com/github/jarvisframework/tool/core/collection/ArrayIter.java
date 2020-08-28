@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
  * <p>数组Iterator对象</p>
  *
  * @param <E> 元素类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 17:20:15
  */
 public class ArrayIter<E> implements Iterator<E>, Iterable<E>, Serializable {

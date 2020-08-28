@@ -10,7 +10,7 @@ import java.util.concurrent.Future;
  * 全局公共线程池<br>
  * 此线程池是一个无限线程池，即加入的线程不等待任何线程，直接执行
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 13:56:00
  */
 public class GlobalThreadPool {

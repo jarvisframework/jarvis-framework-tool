@@ -17,7 +17,7 @@ import java.lang.reflect.Type;
 /**
  * <p>Setting抽象类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 11:12:49
  */
 public abstract class AbsSetting implements OptNullBasicTypeFromStringGetter<String>, Serializable {
@@ -210,7 +210,7 @@ public abstract class AbsSetting implements OptNullBasicTypeFromStringGetter<Str
      * @return 属性值
      */
     public Boolean getBool(String key, String group, Boolean defaultValue) {
-        return Convert.toBool(getByGroup(key, group), defaultValue);
+        return Convert.toBoolean(getByGroup(key, group), defaultValue);
     }
 
     // --------------------------------------------------------------- Get long

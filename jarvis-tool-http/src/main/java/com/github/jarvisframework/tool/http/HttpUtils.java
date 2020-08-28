@@ -26,7 +26,7 @@ import java.util.zip.GZIPInputStream;
 /**
  * <p>Http工具类(项目整理)</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @date 2019-11-25 18:08:42
  */
 public abstract class HttpUtils {

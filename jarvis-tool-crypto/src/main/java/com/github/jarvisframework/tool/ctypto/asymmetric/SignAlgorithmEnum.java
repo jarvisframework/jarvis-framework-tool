@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.ctypto.asymmetric;
 /**
  * <p>签名算法类型</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @see <a href="https://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#Signature"></a>
  * @since 1.0, 2020-07-24 20:15:20
  */

@@ -5,7 +5,7 @@ import com.github.jarvisframework.tool.core.util.StringUtils;
 /**
  * <p>带有状态码的异常</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 20:00:47
  */
 public class StatefulException extends RuntimeException {

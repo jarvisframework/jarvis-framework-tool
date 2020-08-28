@@ -7,7 +7,7 @@ import com.github.jarvisframework.tool.core.util.StringUtils;
 /**
  * <p>提供Unicode字符串和普通字符串之间的转换</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-13 10:53:47
  */
 public class UnicodeUtils {

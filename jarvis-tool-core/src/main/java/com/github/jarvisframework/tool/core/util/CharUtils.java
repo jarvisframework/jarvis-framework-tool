@@ -1,12 +1,13 @@
 package com.github.jarvisframework.tool.core.util;
 
+import com.github.jarvisframework.tool.core.lang.Assert;
 import com.github.jarvisframework.tool.core.text.AsciiStringCache;
 
 /**
  * 字符工具类<br>
  * 部分工具来自于Apache Commons系列
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-08 18:08:26
  */
 public class CharUtils {
@@ -342,5 +343,15 @@ public class CharUtils {
      */
     public static int digit16(int b) {
         return Character.digit(b, 16);
+    }
+
+    /**
+     * 获取给定字符的Char值
+     * @param str
+     * @return
+     */
+    public static char toChar(String str) {
+        Assert.notEmpty(str);
+        return str.charAt(0);
     }
 }

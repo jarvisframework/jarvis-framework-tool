@@ -6,7 +6,7 @@ import java.io.Serializable;
  * 建造者模式接口定义
  *
  * @param <T> 建造对象类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 12:08:26
  */
 public interface Builder<T> extends Serializable {

@@ -6,7 +6,7 @@ import com.github.jarvisframework.tool.core.util.StringUtils;
 /**
  * <p>监听异常</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 15:41:51
  */
 public class WatchException extends RuntimeException {

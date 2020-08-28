@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * <p>文件读取器</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 10:38:08
  */
 public class FileReader extends FileWrapper {

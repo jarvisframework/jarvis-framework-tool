@@ -11,7 +11,7 @@ import java.security.Provider;
  * 1. 调用{@link #createBouncyCastleProvider()} 用于新建一个org.bouncycastle.jce.provider.BouncyCastleProvider对象
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 18:20:24
  */
 public class ProviderFactory {

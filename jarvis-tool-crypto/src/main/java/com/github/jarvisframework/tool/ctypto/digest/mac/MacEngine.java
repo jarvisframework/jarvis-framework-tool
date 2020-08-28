@@ -7,7 +7,7 @@ import java.io.InputStream;
 /**
  * <p>MAC（Message Authentication Code）算法引擎</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 20:08:13
  */
 public interface MacEngine {

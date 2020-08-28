@@ -18,7 +18,7 @@ import java.util.*;
 /**
  * <p>反射工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-10 11:59:38
  */
 public class ReflectUtils {

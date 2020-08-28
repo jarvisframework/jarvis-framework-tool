@@ -7,7 +7,7 @@ import com.github.jarvisframework.tool.core.util.MacInfoUtils;
 /**
  * <p>推特雪花ID生成规则</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 2018/1/11 22:39
  */
 public class SnowflakeIdWorker {

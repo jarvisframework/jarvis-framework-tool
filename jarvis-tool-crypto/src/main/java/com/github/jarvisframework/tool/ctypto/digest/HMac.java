@@ -24,7 +24,7 @@ import java.security.Key;
  * HMAC 可以与任何迭代散列函数捆绑使用。MD5 和 SHA-1 就是这种散列函数。HMAC 还可以使用一个用于计算和确认消息鉴别值的密钥。<br>
  * 注意：此对象实例化后为非线程安全！
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 20:05:20
  */
 public class HMac implements Serializable {

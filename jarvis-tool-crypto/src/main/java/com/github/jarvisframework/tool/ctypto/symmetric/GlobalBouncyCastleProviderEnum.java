@@ -5,7 +5,7 @@ import java.security.Provider;
 /**
  * <p>全局单例的 org.bouncycastle.jce.provider.BouncyCastleProvider 对象</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 18:19:30
  */
 public enum GlobalBouncyCastleProviderEnum {

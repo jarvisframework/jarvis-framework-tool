@@ -29,7 +29,7 @@ import java.util.jar.JarFile;
  *   protocol :// hostname[:port] / path / [:parameters][?query]#fragment
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-13 11:15:37
  */
 public class UrlUtils {

@@ -5,7 +5,7 @@ import com.github.jarvisframework.tool.core.exception.BusinessException;
 /**
  * <p>奇门业务异常类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @date 2019年11月04日 11:10:03
  */
 public class QimenException extends BusinessException {

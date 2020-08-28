@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * <p>日期间隔</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 16:15:27
  */
 public class DateBetween implements Serializable{

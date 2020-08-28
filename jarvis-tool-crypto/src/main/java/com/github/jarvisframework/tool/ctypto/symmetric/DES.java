@@ -13,7 +13,7 @@ import javax.crypto.spec.IvParameterSpec;
  * DES全称为Data Encryption Standard，即数据加密标准，是一种使用密钥加密的块算法<br>
  * Java中默认实现为：DES/CBC/PKCS5Padding
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 18:47:23
  */
 public class DES extends SymmetricCrypto {

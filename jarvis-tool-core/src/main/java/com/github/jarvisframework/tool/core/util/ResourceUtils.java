@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * <p>Resource资源工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-13 11:23:46
  */
 public class ResourceUtils {

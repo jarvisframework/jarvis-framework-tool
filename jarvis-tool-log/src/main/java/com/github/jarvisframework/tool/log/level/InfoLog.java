@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.log.level;
 /**
  * <p>INFO级别日志接口</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 16:39:40
  */
 public interface InfoLog {

@@ -25,7 +25,7 @@ import java.security.PublicKey;
  * 用于向公钥所有者发布信息,这个信息可能被他人篡改,但是无法被他人获得。
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 19:37:42
  */
 public class AsymmetricCrypto extends AbstractAsymmetricCrypto<AsymmetricCrypto> {

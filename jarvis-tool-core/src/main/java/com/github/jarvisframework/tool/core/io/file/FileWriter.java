@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * <p>文件写入器</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 10:45:07
  */
 public class FileWriter extends FileWrapper {

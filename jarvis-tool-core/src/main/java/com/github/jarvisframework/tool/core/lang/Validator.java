@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 /**
  * <p>字段验证器</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 19:55:37
  */
 public class Validator {

@@ -12,7 +12,7 @@ import java.util.HashMap;
  * 单例类<br>
  * 提供单例对象的统一管理，当调用get方法时，如果对象池中存在此对象，返回此对象，否则创建新对象返回<br>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:12:55
  */
 public final class Singleton {

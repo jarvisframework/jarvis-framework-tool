@@ -17,7 +17,7 @@ import java.util.List;
  * 需要注意的是，在构造此对象时需要保证原子性（原对象不被修改），最好加锁构造此对象，构造完毕后解锁。
  *
  * @param <E> 元素类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 11:41:36
  */
 public class CopiedIter<E> implements Iterator<E>, Iterable<E>, Serializable {

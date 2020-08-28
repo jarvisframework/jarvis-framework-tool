@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.core.io.file;
 /**
  * <p>文件读写模式，常用于RandomAccessFile</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 10:07:53
  */
 public enum FileModeEnum {

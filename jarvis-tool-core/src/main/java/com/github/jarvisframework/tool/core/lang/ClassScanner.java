@@ -21,7 +21,7 @@ import java.util.jar.JarFile;
 /**
  * <p>类扫描器</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 19:34:31
  */
 public class ClassScanner implements Serializable {

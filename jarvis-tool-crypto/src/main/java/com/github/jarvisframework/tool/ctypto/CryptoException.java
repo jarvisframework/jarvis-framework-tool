@@ -6,7 +6,7 @@ import com.github.jarvisframework.tool.core.util.StringUtils;
 /**
  * <p>加密异常类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-22 10:54:34
  */
 public class CryptoException extends RuntimeException {

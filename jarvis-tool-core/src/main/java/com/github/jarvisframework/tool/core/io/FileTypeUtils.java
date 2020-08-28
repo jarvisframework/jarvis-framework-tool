@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * <p>此工具根据文件的前几位bytes猜测文件类型，对于文本、zip判断不准确，对于视频、图片类型判断准确</p>
  * <p>需要注意的是，xlsx、docx等Office2007格式，全部识别为zip，因为新版采用了OpenXML格式，这些格式本质上是XML文件打包为zip</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-13 13:29:01
  */
 public class FileTypeUtils {

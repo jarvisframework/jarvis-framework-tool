@@ -29,7 +29,7 @@ import java.util.*;
  * ['person']['friends'][5]['name']
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 18:23:34
  */
 public class BeanPath implements Serializable {

@@ -12,7 +12,7 @@ import java.util.Map;
  * 2、是否忽略空值，当源对象的值为null时，true: 忽略而不注入此值，false: 注入null<br>
  * 3、忽略的属性列表，设置一个属性列表，不拷贝这些属性值<br>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 18:37:16
  */
 public class CopyOptions implements Serializable {

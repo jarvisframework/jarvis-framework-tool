@@ -10,7 +10,7 @@ import java.nio.file.Path;
 /**
  * <p>文件资源访问对象</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 18:02:39
  */
 public class FileResource extends UrlResource {

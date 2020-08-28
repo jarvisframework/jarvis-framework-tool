@@ -21,7 +21,7 @@ import java.util.List;
  * FTP客户端封装<br>
  * 此客户端基于Apache-Commons-Net
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-14 11:10:58
  */
 public class FtpClient extends AbstractFtpClient {

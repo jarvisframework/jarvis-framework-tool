@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 /**
  * <p>日期格式化类，提供常用的日期格式化对象</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 15:09:01
  */
 public class DatePattern {

@@ -10,7 +10,7 @@ import java.util.Set;
  * 带有类验证的对象流，用于避免反序列化漏洞<br>
  * 详细见：https://xz.aliyun.com/t/41/
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:45:46
  */
 public class ValidateObjectInputStream extends ObjectInputStream {

@@ -7,7 +7,7 @@ import com.github.jarvisframework.tool.core.util.StringUtils;
 /**
  * <p>资源文件或资源不存在异常</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 17:41:16
  */
 public class NoResourceException extends IORuntimeException {

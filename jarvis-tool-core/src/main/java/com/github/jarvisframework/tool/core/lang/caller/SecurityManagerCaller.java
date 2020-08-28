@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * <p>{@link SecurityManager} 方式获取调用者</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 16:33:32
  */
 public class SecurityManagerCaller extends SecurityManager implements Caller, Serializable {

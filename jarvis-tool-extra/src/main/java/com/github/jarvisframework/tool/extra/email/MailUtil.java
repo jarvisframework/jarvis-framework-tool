@@ -18,6 +18,7 @@ import java.util.Map.Entry;
  * @author looly
  * @since 3.1.2
  */
+@Deprecated
 public class MailUtil {
 	/**
 	 * 使用配置文件中设置的账户发送文本邮件，发送给单个或多个收件人<br>

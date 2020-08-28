@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.ctypto.asymmetric;
 /**
  * <p>非对称算法类型</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @see <a href="https://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#KeyPairGenerator"></a>
  * @since 1.0, 2020-07-24 18:14:26
  */

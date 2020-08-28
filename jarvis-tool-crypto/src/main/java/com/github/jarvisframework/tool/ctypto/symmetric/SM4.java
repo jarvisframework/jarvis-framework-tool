@@ -13,7 +13,7 @@ import javax.crypto.spec.IvParameterSpec;
 /**
  * <p>SM4实现</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 11:56:48
  */
 public class SM4 extends SymmetricCrypto {

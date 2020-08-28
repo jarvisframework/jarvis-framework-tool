@@ -6,7 +6,7 @@ import com.github.jarvisframework.tool.core.util.StringUtils;
 /**
  * <p>IO运行时异常，常用于对IOException的包装</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-13 13:39:30
  */
 public class IORuntimeException extends RuntimeException {

@@ -15,7 +15,7 @@ import java.util.Map;
  * 2. 获取泛型参数类型（包括对象的泛型参数或集合元素的泛型类型）
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-10 18:36:57
  */
 public class TypeUtils {

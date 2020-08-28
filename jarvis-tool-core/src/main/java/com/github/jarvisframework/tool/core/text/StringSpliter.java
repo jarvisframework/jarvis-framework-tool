@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 /**
  * <p>字符串切分器</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:55:14
  */
 public class StringSpliter {

@@ -7,7 +7,7 @@ import com.github.jarvisframework.tool.log.level.LevelEnum;
 /**
  * <p>静态日志类，用于在不引入日志对象的情况下打印日志</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 16:21:22
  */
 public final class StaticLog {

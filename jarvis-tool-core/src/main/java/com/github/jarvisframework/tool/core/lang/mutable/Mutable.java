@@ -4,7 +4,7 @@ package com.github.jarvisframework.tool.core.lang.mutable;
  * 提供可变值类型接口
  *
  * @param <T> 值得类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 09:44:37
  */
 public interface Mutable<T> {

@@ -14,7 +14,7 @@ import javax.crypto.spec.IvParameterSpec;
  * 如果三个 56 位的子元素都相同，则三重 DES 向后兼容 DES。<br>
  * Java中默认实现为：DESede/ECB/PKCS5Padding
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 18:51:07
  */
 public class DESede extends SymmetricCrypto {

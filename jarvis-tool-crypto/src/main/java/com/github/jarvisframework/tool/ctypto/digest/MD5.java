@@ -7,7 +7,7 @@ import java.nio.charset.Charset;
 /**
  * <p>MD5算法</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-22 10:44:04
  */
 public class MD5 extends Digester {

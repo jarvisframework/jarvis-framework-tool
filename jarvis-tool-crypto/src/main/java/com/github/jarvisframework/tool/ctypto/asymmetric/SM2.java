@@ -29,7 +29,7 @@ import java.security.PublicKey;
  * SM2算法只支持公钥加密，私钥解密<br>
  * 参考：https://blog.csdn.net/pridas/article/details/86118774
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 11:20:01
  */
 public class SM2 extends AbstractAsymmetricCrypto<SM2> {

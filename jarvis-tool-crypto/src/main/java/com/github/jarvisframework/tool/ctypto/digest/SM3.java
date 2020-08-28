@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.ctypto.digest;
 /**
  * <p>SM3算法</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 11:54:43
  */
 public class SM3 extends Digester {

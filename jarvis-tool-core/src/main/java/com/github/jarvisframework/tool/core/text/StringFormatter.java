@@ -6,7 +6,7 @@ import com.github.jarvisframework.tool.core.util.StringUtils;
 /**
  * <p>字符串格式化工具</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:53:38
  */
 public class StringFormatter {

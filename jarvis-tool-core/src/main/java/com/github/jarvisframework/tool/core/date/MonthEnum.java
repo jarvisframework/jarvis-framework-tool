@@ -21,7 +21,7 @@ import java.util.Calendar;
  * @see Calendar#DECEMBER
  * @see Calendar#UNDECIMBER
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 16:12:11
  */
 public enum MonthEnum {

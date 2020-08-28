@@ -16,7 +16,7 @@ import java.nio.charset.Charset;
 /**
  * <p>URL资源访问类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 18:00:18
  */
 public class UrlResource implements Resource, Serializable {

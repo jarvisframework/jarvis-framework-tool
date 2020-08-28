@@ -11,7 +11,7 @@ import java.util.Date;
  * 用户只需实现getObj方法即可，其他类型将会从Object结果中转换
  * 在不提供默认值的情况下， 如果值不存在或获取错误，返回null<br>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 10:17:22
  */
 public interface OptNullBasicTypeFromObjectGetter<K> extends OptNullBasicTypeGetter<K> {
@@ -49,7 +49,7 @@ public interface OptNullBasicTypeFromObjectGetter<K> extends OptNullBasicTypeGet
         if (null == obj) {
             return defaultValue;
         }
-        return Convert.toBool(obj, defaultValue);
+        return Convert.toBoolean(obj, defaultValue);
     }
 
     @Override

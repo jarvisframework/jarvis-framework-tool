@@ -10,7 +10,7 @@ import java.io.Serializable;
  * 抽象日志类<br>
  * 实现了一些通用的接口
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 16:51:48
  */
 public abstract class AbstractLog implements Log, Serializable {

@@ -16,7 +16,7 @@ import java.util.*;
 /**
  * <p>奇门平台工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-15 18:41:07
  */
 public class QimenUtils {

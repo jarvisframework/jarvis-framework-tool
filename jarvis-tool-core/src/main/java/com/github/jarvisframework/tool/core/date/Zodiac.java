@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * <p>星座</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 17:40:40
  * @ss <a href="https://blog.csdn.net/u010758605/article/details/48317881">星座</a>
  */

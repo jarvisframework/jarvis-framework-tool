@@ -5,7 +5,7 @@ import com.github.jarvisframework.tool.core.util.StringUtils;
 /**
  * <p>未初始化异常</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 14:12:19
  */
 public class NotInitedException extends RuntimeException {

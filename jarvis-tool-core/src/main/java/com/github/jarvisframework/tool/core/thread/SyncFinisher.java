@@ -11,7 +11,7 @@ import java.util.concurrent.ExecutorService;
 /**
  * <p>description</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 14:08:07
  */
 public class SyncFinisher {

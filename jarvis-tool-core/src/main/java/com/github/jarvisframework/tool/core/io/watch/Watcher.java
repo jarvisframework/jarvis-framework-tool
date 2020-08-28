@@ -6,7 +6,7 @@ import java.nio.file.WatchEvent;
 /**
  * <p>观察者（监视器）</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 10:33:19
  */
 public interface Watcher {

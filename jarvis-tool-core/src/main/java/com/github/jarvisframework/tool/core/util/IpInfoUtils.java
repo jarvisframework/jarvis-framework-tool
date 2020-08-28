@@ -7,7 +7,7 @@ import java.net.UnknownHostException;
 /**
  * <p>IP工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 2018/1/16 13:46
  */
 public class IpInfoUtils {

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * 计时器<br>
  * 计算某个过程花费的时间，精确到毫秒
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 17:38:54
  */
 public class TimeInterval implements Serializable {

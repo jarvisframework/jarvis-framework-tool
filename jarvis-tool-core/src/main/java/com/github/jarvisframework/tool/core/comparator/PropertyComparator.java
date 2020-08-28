@@ -10,7 +10,7 @@ import java.util.Comparator;
  * Bean属性排序器<br>
  * 支持读取Bean多层次下的属性
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:28:27
  */
 public class PropertyComparator<T> implements Comparator<T>, Serializable {

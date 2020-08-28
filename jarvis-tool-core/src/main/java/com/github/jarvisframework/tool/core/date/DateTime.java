@@ -23,7 +23,7 @@ import java.util.TimeZone;
 /**
  * <p>包装java.util.Date</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 15:04:39
  */
 public class DateTime extends Date {

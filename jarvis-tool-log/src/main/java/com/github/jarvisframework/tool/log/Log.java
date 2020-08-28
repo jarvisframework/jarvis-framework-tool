@@ -6,7 +6,7 @@ import com.github.jarvisframework.tool.log.level.*;
 /**
  * <p>日志统一接口</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 16:26:08
  */
 public interface Log extends TraceLog, DebugLog, InfoLog, WarnLog, ErrorLog {

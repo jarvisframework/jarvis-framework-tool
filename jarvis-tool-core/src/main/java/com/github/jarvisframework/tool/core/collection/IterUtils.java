@@ -15,7 +15,7 @@ import java.util.function.Function;
 /**
  *  {@link Iterable} 和 {@link Iterator} 相关工具类
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-10 18:52:40
  */
 public class IterUtils {

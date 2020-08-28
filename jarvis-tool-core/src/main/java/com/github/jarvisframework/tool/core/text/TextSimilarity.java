@@ -7,7 +7,7 @@ import com.github.jarvisframework.tool.core.util.StringUtils;
  * 文本相似度计算<br>
  * 工具类提供者：【杭州】fineliving
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:49:53
  */
 public class TextSimilarity {

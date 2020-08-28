@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 2. 自定义是否守护线程
  * </pre>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 13:58:29
  */
 public class NamedThreadFactory implements ThreadFactory {

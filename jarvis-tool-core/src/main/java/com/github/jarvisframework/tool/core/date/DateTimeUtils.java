@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * <p>日期时间处理类(从项目整理)</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @date 2019-11-21 10:42:17
  */
 public class DateTimeUtils {

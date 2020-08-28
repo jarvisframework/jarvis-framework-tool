@@ -6,7 +6,7 @@ import java.util.Calendar;
  * 日期各个部分的枚举<br>
  * 与Calendar相应值对应
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 16:25:00
  */
 public enum DateFieldEnum {

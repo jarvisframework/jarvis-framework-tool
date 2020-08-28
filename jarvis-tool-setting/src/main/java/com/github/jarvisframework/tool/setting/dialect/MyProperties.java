@@ -40,7 +40,7 @@ import java.util.Properties;
 /**
  * <p>Properties文件读取封装类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 15:57:37
  */
 public class MyProperties extends Properties implements BasicTypeGetter<String>, OptBasicTypeGetter<String> {
@@ -335,7 +335,7 @@ public class MyProperties extends Properties implements BasicTypeGetter<String>,
 
     @Override
     public Boolean getBoolean(String key, Boolean defaultValue) {
-        return Convert.toBool(getString(key), defaultValue);
+        return Convert.toBoolean(getString(key), defaultValue);
     }
 
     @Override

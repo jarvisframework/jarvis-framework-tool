@@ -13,7 +13,7 @@ import java.util.List;
  * 观察者链<br>
  * 用于加入多个观察者
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 15:48:44
  */
 public class WatcherChain implements Watcher, Chain<Watcher, WatcherChain> {

@@ -7,7 +7,7 @@ package com.github.jarvisframework.tool.core.func;
  * 在JDK8之前，Java的函数并不能作为参数传递，也不能作为返回值存在，此接口用于将一个函数包装成为一个对象，从而传递对象
  *
  * @param <R> 返回值类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 11:32:31
  */
 @FunctionalInterface

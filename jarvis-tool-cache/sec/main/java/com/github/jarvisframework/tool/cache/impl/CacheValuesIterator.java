@@ -6,7 +6,7 @@ import java.util.Iterator;
 /**
  *  {@link AbstractCache} 的值迭代器.
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 11:49:01
  */
 public class CacheValuesIterator <V> implements Iterator<V>, Serializable {

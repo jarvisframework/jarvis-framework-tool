@@ -25,7 +25,7 @@ import java.io.PushbackInputStream;
  * </code>
  * <br><br>
  *
- * @author 王涛
+ * @author Doug Wang
  * @see <a href="http://akini.mbnet.fi/java/unicodereader/UnicodeInputStream.java.txt"></a>
  * @since 1.0, 2020-08-03 09:57:42
  */

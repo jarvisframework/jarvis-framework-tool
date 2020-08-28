@@ -13,7 +13,7 @@ import java.util.Map;
  * 动态Bean，通过反射对Bean的相关方法做操作<br>
  * 支持Map和普通Bean
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 18:08:12
  */
 public class DynaBean extends CloneSupport<DynaBean> implements Serializable {

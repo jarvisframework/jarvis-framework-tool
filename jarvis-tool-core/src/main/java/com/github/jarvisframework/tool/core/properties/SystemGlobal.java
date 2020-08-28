@@ -8,7 +8,7 @@ import java.util.Properties;
 /**
  * <p>Spring解析的属性配置对象</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 2018/1/17 13:53
  */
 @Component("global")

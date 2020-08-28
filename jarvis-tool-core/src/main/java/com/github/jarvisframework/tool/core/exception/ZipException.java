@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.core.exception;
 /**
  * <p>压缩异常类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @date 2019-11月-22 11:43:37
  */
 public class ZipException extends BusinessException {

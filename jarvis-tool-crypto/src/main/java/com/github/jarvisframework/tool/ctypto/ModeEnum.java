@@ -6,7 +6,7 @@ package com.github.jarvisframework.tool.ctypto;
  * <p>
  * 加密算法模式，是用来描述加密算法（此处特指分组密码，不包括流密码，）在加密时对明文分组的模式，它代表了不同的分组方式
  *
- * @author 王涛
+ * @author Doug Wang
  * @see <a href="https://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#Cipher"> Cipher章节</a>
  * @since 1.0, 2020-07-24 18:05:31
  */

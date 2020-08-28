@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 /**
  * <p>Mac工具类</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 2018/1/16 15:40:00
  */
 public class MacInfoUtils {

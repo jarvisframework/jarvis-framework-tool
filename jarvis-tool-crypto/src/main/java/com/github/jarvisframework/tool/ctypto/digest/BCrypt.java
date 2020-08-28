@@ -28,7 +28,7 @@ import java.security.SecureRandom;
  * String stronger_salt = BCrypt.gensalt(12);
  * </code>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-24 18:35:02
  */
 public class BCrypt {

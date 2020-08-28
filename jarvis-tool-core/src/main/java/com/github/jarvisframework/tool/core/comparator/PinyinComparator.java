@@ -8,7 +8,7 @@ import java.util.Locale;
 /**
  * <p>按照GBK拼音顺序对给定的汉字字符串排序</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:27:12
  */
 public class PinyinComparator implements Comparator<String>, Serializable {

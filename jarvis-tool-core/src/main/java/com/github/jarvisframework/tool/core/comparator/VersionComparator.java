@@ -15,7 +15,7 @@ import java.util.List;
  * 支持如：1.3.20.8，6.82.20160101，8.5a/8.5c等版本形式<br>
  * 参考：https://www.cnblogs.com/shihaiming/p/6286575.html
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:48:22
  */
 public class VersionComparator implements Comparator<String>, Serializable {

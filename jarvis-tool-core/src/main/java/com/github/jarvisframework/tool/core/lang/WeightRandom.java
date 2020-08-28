@@ -13,7 +13,7 @@ import java.util.TreeMap;
  * <p>description</p>
  *
  * @param <T> 权重随机获取的对象类型
- * @author 王涛
+ * @author Doug Wang
  * @see <a href="https://www.cnblogs.com/waterystone/p/5708063.html">参考博客</a>
  * @since 1.0, 2020-07-23 12:11:46
  */

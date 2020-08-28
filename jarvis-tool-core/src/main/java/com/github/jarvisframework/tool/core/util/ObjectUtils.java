@@ -18,7 +18,7 @@ import java.util.*;
 /**
  * <p>description</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-10 17:09:28
  */
 public class ObjectUtils {

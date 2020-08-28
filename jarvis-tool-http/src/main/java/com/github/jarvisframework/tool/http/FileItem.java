@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * <p>文件包装类 ， 支持本地文件 、 字节数组和输入流三种方式 。</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @date 2019-11-26 09:50:25
  */
 public class FileItem {

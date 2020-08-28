@@ -6,7 +6,7 @@ package com.github.jarvisframework.tool.extra.ftp;
  * <p>
  * 见：https://www.cnblogs.com/huhaoshida/p/5412615.html
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-14 11:51:58
  */
 public enum FtpModeEnum {

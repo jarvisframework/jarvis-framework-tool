@@ -15,7 +15,7 @@ import com.github.jarvisframework.tool.core.lang.UUID;
  * <p>
  * ID相关文章见：http://calvin1978.blogcn.com/articles/uuid.html
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-13 11:52:15
  */
 public class IdUtils {

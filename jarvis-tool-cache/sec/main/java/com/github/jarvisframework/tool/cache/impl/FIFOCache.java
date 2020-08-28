@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
  *
  * @param <K> 键类型
  * @param <V> 值类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 11:37:00
  */
 public class FIFOCache<K, V> extends AbstractCache<K, V> {

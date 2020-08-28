@@ -18,7 +18,7 @@ import java.util.concurrent.locks.StampedLock;
  *
  * @param <K> 键类型
  * @param <V> 值类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 11:38:23
  */
 public abstract class AbstractCache<K, V> implements Cache<K, V> {

@@ -10,7 +10,7 @@ import java.util.Arrays;
 /**
  * <p>可复用的字符串生成器，非线程安全</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-29 18:27:37
  */
 public class StringBuilder implements CharSequence, Appendable, Serializable {

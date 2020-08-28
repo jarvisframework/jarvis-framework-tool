@@ -3,7 +3,7 @@ package com.github.jarvisframework.tool.core.lang.caller;
 /**
  * <p>调用者。可以通过此类的方法获取调用者、多级调用者以及判断是否被调用</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 16:30:08
  */
 public class CallerUtils {

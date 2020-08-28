@@ -15,7 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * <p>非对称基础，提供锁、私钥和公钥的持有</p>
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-23 11:34:26
  */
 public class BaseAsymmetric <T extends BaseAsymmetric<T>> {

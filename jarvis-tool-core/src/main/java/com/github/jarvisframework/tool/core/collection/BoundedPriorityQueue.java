@@ -11,7 +11,7 @@ import java.util.PriorityQueue;
  * 按照给定的排序规则，排序元素，当队列满时，按照给定的排序规则淘汰末尾元素（去除末尾元素）
  *
  * @param <E> 成员类型
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-07-30 11:36:37
  */
 public class BoundedPriorityQueue<E> extends PriorityQueue<E> {

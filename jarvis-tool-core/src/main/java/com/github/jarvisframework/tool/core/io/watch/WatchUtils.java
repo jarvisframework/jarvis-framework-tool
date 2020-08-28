@@ -13,7 +13,7 @@ import java.nio.file.*;
  * 监听工具类<br>
  * 主要负责文件监听器的快捷创建
  *
- * @author 王涛
+ * @author Doug Wang
  * @since 1.0, 2020-08-03 15:54:42
  */
 public class WatchUtils {
