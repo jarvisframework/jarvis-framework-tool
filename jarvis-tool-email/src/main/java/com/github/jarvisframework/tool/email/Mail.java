@@ -1,4 +1,4 @@
-package com.github.jarvisframework.tool.extra.email;
+package com.github.jarvisframework.tool.email;
 
 import com.github.jarvisframework.tool.core.io.FileUtils;
 import com.github.jarvisframework.tool.core.io.IORuntimeException;
@@ -250,7 +250,7 @@ public class Mail {
                 for (DataSource attachment : attachments) {
                     bodyPart = new MimeBodyPart();
                     bodyPart.setDataHandler(new DataHandler(attachment));
-                    nameEncoded = InternalMailUtil.encodeText(attachment.getName(), charset);
+                    nameEncoded = InternalMailUtils.encodeText(attachment.getName(), charset);
                     // 普通附件文件名
                     bodyPart.setFileName(nameEncoded);
                     if (StringUtils.startWith(attachment.getContentType(), "image/")) {
@@ -384,7 +384,7 @@ public class Mail {
             // 用户未提供发送方，则从Session中自动获取
             msg.setFrom();
         } else {
-            msg.setFrom(InternalMailUtil.parseFirstAddress(from, charset));
+            msg.setFrom(InternalMailUtils.parseFirstAddress(from, charset));
         }
         // 标题
         msg.setSubject(this.title, charset.name());
@@ -393,18 +393,18 @@ public class Mail {
         // 内容和附件
         msg.setContent(buildContent(charset));
         // 收件人
-        msg.setRecipients(MimeMessage.RecipientType.TO, InternalMailUtil.parseAddressFromStrs(this.tos, charset));
+        msg.setRecipients(MimeMessage.RecipientType.TO, InternalMailUtils.parseAddressFromStrs(this.tos, charset));
         // 抄送人
         if (ArrayUtils.isNotEmpty(this.ccs)) {
-            msg.setRecipients(MimeMessage.RecipientType.CC, InternalMailUtil.parseAddressFromStrs(this.ccs, charset));
+            msg.setRecipients(MimeMessage.RecipientType.CC, InternalMailUtils.parseAddressFromStrs(this.ccs, charset));
         }
         // 密送人
         if (ArrayUtils.isNotEmpty(this.bccs)) {
-            msg.setRecipients(MimeMessage.RecipientType.BCC, InternalMailUtil.parseAddressFromStrs(this.bccs, charset));
+            msg.setRecipients(MimeMessage.RecipientType.BCC, InternalMailUtils.parseAddressFromStrs(this.bccs, charset));
         }
         // 回复地址(reply-to)
         if (ArrayUtils.isNotEmpty(this.reply)) {
-            msg.setReplyTo(InternalMailUtil.parseAddressFromStrs(this.reply, charset));
+            msg.setReplyTo(InternalMailUtils.parseAddressFromStrs(this.reply, charset));
         }
 
         return msg;

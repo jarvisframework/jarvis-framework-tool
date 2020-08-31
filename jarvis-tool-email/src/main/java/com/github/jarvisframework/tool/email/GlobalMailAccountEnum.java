@@ -1,4 +1,4 @@
-package com.github.jarvisframework.tool.extra.email;
+package com.github.jarvisframework.tool.email;
 
 import com.github.jarvisframework.tool.core.io.IORuntimeException;
 

@@ -1,4 +1,4 @@
-package com.github.jarvisframework.tool.extra.email;
+package com.github.jarvisframework.tool.email;
 
 import com.github.jarvisframework.tool.core.util.CharsetUtils;
 import com.github.jarvisframework.tool.core.util.StringUtils;
@@ -494,7 +494,7 @@ public class MailAccount implements Serializable {
      */
     public MailAccount defaultIfEmpty() {
         // 去掉发件人的姓名部分
-        final String fromAddress = InternalMailUtil.parseFirstAddress(this.from, this.charset).getAddress();
+        final String fromAddress = InternalMailUtils.parseFirstAddress(this.from, this.charset).getAddress();
 
         if (StringUtils.isBlank(this.host)) {
             // 如果SMTP地址为空，默认使用smtp.<发件人邮箱后缀>

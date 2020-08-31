@@ -17,7 +17,6 @@
 
     <properties>
         <net.version>3.6</net.version>
-        <mail.version>1.6.2</mail.version>
     </properties>
 
     <dependencies>
@@ -26,14 +25,6 @@
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
             <version>${net.version}</version>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-        <!-- 邮件 -->
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>${mail.version}</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>

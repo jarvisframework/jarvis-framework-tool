@@ -1,4 +1,4 @@
-package com.github.jarvisframework.tool.extra.email;
+package com.github.jarvisframework.tool.email;
 
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
