@@ -1,6 +1,6 @@
 package com.github.jarvisframework.tool.email;
 
-import com.github.jarvisframework.tool.core.lang.Console;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -14,7 +14,7 @@ public class MailUtilsTest {
     @Test
     public void sendTextTest() {
         String result = MailUtils.sendText("***9551*@qq.com","这是一封测试邮件","测试一下下啦~~~");
-        Console.log(result);
+        Assert.assertNotNull(result);
     }
 
 }

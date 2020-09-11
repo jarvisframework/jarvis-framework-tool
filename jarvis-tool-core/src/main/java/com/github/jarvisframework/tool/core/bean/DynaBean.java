@@ -6,7 +6,6 @@ import com.github.jarvisframework.tool.core.util.ClassUtils;
 import com.github.jarvisframework.tool.core.util.ReflectUtils;
 
 import java.io.Serializable;
-import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
@@ -17,6 +16,7 @@ import java.util.Map;
  * @since 1.0, 2020-07-29 18:08:12
  */
 public class DynaBean extends CloneSupport<DynaBean> implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     private final Class<?> beanClass;
@@ -25,40 +25,46 @@ public class DynaBean extends CloneSupport<DynaBean> implements Serializable {
 
     /**
      * 创建一个{@link DynaBean}
+     *
      * @param bean 普通Bean
      * @return {@link DynaBean}
      */
-    public static DynaBean create(Object bean){
+    public static DynaBean create(Object bean) {
         return new DynaBean(bean);
     }
+
     /**
      * 创建一个{@link DynaBean}
+     *
      * @param beanClass Bean类
-     * @param params 构造Bean所需要的参数
+     * @param params    构造Bean所需要的参数
      * @return {@link DynaBean}
      */
-    public static DynaBean create(Class<?> beanClass, Object... params){
+    public static DynaBean create(Class<?> beanClass, Object... params) {
         return new DynaBean(beanClass, params);
     }
 
     //------------------------------------------------------------------------ Constructor start
+
     /**
      * 构造
+     *
      * @param beanClass Bean类
-     * @param params 构造Bean所需要的参数
+     * @param params    构造Bean所需要的参数
      */
-    public DynaBean(Class<?> beanClass, Object... params){
+    public DynaBean(Class<?> beanClass, Object... params) {
         this(ReflectUtils.newInstance(beanClass, params));
     }
 
     /**
      * 构造
+     *
      * @param bean 原始Bean
      */
-    public DynaBean(Object bean){
+    public DynaBean(Object bean) {
         Assert.notNull(bean);
-        if(bean instanceof DynaBean){
-            bean = ((DynaBean)bean).getBean();
+        if (bean instanceof DynaBean) {
+            bean = ((DynaBean) bean).getBean();
         }
         this.bean = bean;
         this.beanClass = ClassUtils.getClass(bean);
@@ -67,37 +73,45 @@ public class DynaBean extends CloneSupport<DynaBean> implements Serializable {
 
     /**
      * 获得字段对应值
-     * @param <T> 属性值类型
+     *
+     * @param <T>       属性值类型
      * @param fieldName 字段名
      * @return 字段值
      * @throws BeanException 反射获取属性值或字段值导致的异常
      */
     @SuppressWarnings("unchecked")
-    public <T> T get(String fieldName) throws BeanException{
-        if(Map.class.isAssignableFrom(beanClass)){
-            return (T) ((Map<?, ?>)bean).get(fieldName);
-        }else{
-            try {
-                final Method method = BeanUtils.getBeanDesc(beanClass).getGetter(fieldName);
-                if(null == method){
-                    throw new BeanException("No get method for {}", fieldName);
-                }
-                return (T) method.invoke(this.bean);
-            } catch (Exception e) {
-                throw new BeanException(e);
+    public <T> T get(String fieldName) throws BeanException {
+        if (Map.class.isAssignableFrom(beanClass)) {
+            return (T) ((Map<?, ?>) bean).get(fieldName);
+        } else {
+            final BeanDesc.PropDesc prop = BeanUtils.getBeanDesc(beanClass).getProp(fieldName);
+            if (null == prop) {
+                throw new BeanException("No public field or get method for {}", fieldName);
             }
+            return (T) prop.getValue(bean);
         }
+    }
+
+    /**
+     * 检查是否有指定名称的bean属性
+     *
+     * @param fieldName 字段名
+     * @return 是否有bean属性
+     * @since 5.4.2
+     */
+    public boolean containsProp(String fieldName) {
+        return null != BeanUtils.getBeanDesc(beanClass).getProp(fieldName);
     }
 
     /**
      * 获得字段对应值，获取异常返回{@code null}
      *
-     * @param <T> 属性值类型
+     * @param <T>       属性值类型
      * @param fieldName 字段名
      * @return 字段值
      * @since 3.1.1
      */
-    public <T> T safeGet(String fieldName){
+    public <T> T safeGet(String fieldName) {
         try {
             return get(fieldName);
         } catch (Exception e) {
@@ -107,54 +121,54 @@ public class DynaBean extends CloneSupport<DynaBean> implements Serializable {
 
     /**
      * 设置字段值
+     *
      * @param fieldName 字段名
-     * @param value 字段值
+     * @param value     字段值
      * @throws BeanException 反射获取属性值或字段值导致的异常
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    public void set(String fieldName, Object value) throws BeanException{
-        if(Map.class.isAssignableFrom(beanClass)){
-            ((Map)bean).put(fieldName, value);
-        }else{
-            try {
-                final Method setter = BeanUtils.getBeanDesc(beanClass).getSetter(fieldName);
-                if(null == setter){
-                    throw new BeanException("No set method for {}", fieldName);
-                }
-                setter.invoke(this.bean, value);
-            } catch (Exception e) {
-                throw new BeanException(e);
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public void set(String fieldName, Object value) throws BeanException {
+        if (Map.class.isAssignableFrom(beanClass)) {
+            ((Map) bean).put(fieldName, value);
+        } else {
+            final BeanDesc.PropDesc prop = BeanUtils.getBeanDesc(beanClass).getProp(fieldName);
+            if (null == prop) {
+                throw new BeanException("No public field or set method for {}", fieldName);
             }
+            prop.setValue(bean, value);
         }
     }
 
     /**
      * 执行原始Bean中的方法
+     *
      * @param methodName 方法名
-     * @param params 参数
+     * @param params     参数
      * @return 执行结果，可能为null
      */
-    public Object invoke(String methodName, Object... params){
+    public Object invoke(String methodName, Object... params) {
         return ReflectUtils.invoke(this.bean, methodName, params);
     }
 
     /**
      * 获得原始Bean
+     *
      * @param <T> Bean类型
      * @return bean
      */
     @SuppressWarnings("unchecked")
-    public <T> T getBean(){
-        return (T)this.bean;
+    public <T> T getBean() {
+        return (T) this.bean;
     }
 
     /**
      * 获得Bean的类型
+     *
      * @param <T> Bean类型
      * @return Bean类型
      */
     @SuppressWarnings("unchecked")
-    public <T> Class<T> getBeanClass(){
+    public <T> Class<T> getBeanClass() {
         return (Class<T>) this.beanClass;
     }
 

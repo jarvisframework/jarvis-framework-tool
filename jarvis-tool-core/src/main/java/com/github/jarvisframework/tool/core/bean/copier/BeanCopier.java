@@ -2,7 +2,9 @@ package com.github.jarvisframework.tool.core.bean.copier;
 
 import com.github.jarvisframework.tool.core.bean.BeanDesc.PropDesc;
 import com.github.jarvisframework.tool.core.bean.BeanUtils;
+import com.github.jarvisframework.tool.core.bean.DynaBean;
 import com.github.jarvisframework.tool.core.bean.copier.provider.BeanValueProvider;
+import com.github.jarvisframework.tool.core.bean.copier.provider.DynaBeanValueProvider;
 import com.github.jarvisframework.tool.core.bean.copier.provider.MapValueProvider;
 import com.github.jarvisframework.tool.core.collection.CollectionUtils;
 import com.github.jarvisframework.tool.core.convert.Convert;
@@ -26,6 +28,7 @@ import java.util.Map;
  * @since 1.0, 2020-07-29 19:40:34
  */
 public class BeanCopier<T> implements Copier<T>, Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -94,6 +97,9 @@ public class BeanCopier<T> implements Copier<T>, Serializable {
             if (this.source instanceof ValueProvider) {
                 // 目标只支持Bean
                 valueProviderToBean((ValueProvider<String>) this.source, this.dest);
+            } else if (this.source instanceof DynaBean) {
+                // 目标只支持Bean
+                valueProviderToBean(new DynaBeanValueProvider((DynaBean) this.source, copyOptions.ignoreError), this.dest);
             } else if (this.source instanceof Map) {
                 if (this.dest instanceof Map) {
                     mapToMap((Map<?, ?>) this.source, (Map<?, ?>) this.dest);
@@ -174,7 +180,8 @@ public class BeanCopier<T> implements Copier<T>, Serializable {
                     value = getter.invoke(bean);
                 } catch (Exception e) {
                     if (copyOptions.ignoreError) {
-                        continue;// 忽略反射失败
+                        // 忽略反射失败s
+                        continue;
                     } else {
                         throw new UtilException(e, "Get value of [{}] error!", prop.getFieldName());
                     }
@@ -184,10 +191,12 @@ public class BeanCopier<T> implements Copier<T>, Serializable {
                     continue;
                 }
                 if (null == value && copyOptions.ignoreNullValue) {
-                    continue;// 当允许跳过空时，跳过
+                    // 当允许跳过空时，跳过
+                    continue;
                 }
                 if (bean.equals(value)) {
-                    continue;// 值不能为bean本身，防止循环引用
+                    // 值不能为bean本身，防止循环引用
+                    continue;
                 }
                 targetMap.put(mappingKey(copyOptions.fieldMapping, key), value);
             }
@@ -263,10 +272,12 @@ public class BeanCopier<T> implements Copier<T>, Serializable {
 
             value = valueProvider.value(providerKey, valueType);
             if (null == value && copyOptions.ignoreNullValue) {
-                continue;// 当允许跳过空时，跳过
+                // 当允许跳过空时，跳过
+                continue;
             }
             if (bean == value) {
-                continue;// 值不能为bean本身，防止循环引用
+                // 值不能为bean本身，防止循环引用
+                continue;
             }
 
             try {
@@ -275,7 +286,8 @@ public class BeanCopier<T> implements Copier<T>, Serializable {
                 if (false == propClass.isInstance(value)) {
                     value = Convert.convert(propClass, value);
                     if (null == value && copyOptions.ignoreNullValue) {
-                        continue;// 当允许跳过空时，跳过
+                        // 当允许跳过空时，跳过
+                        continue;
                     }
                 }
 
