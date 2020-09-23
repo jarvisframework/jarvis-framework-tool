@@ -84,7 +84,7 @@ public class DynaBean extends CloneSupport<DynaBean> implements Serializable {
         if (Map.class.isAssignableFrom(beanClass)) {
             return (T) ((Map<?, ?>) bean).get(fieldName);
         } else {
-            final BeanDesc.PropDesc prop = BeanUtils.getBeanDesc(beanClass).getProp(fieldName);
+            final PropDesc prop = BeanUtils.getBeanDesc(beanClass).getProp(fieldName);
             if (null == prop) {
                 throw new BeanException("No public field or get method for {}", fieldName);
             }
@@ -131,7 +131,7 @@ public class DynaBean extends CloneSupport<DynaBean> implements Serializable {
         if (Map.class.isAssignableFrom(beanClass)) {
             ((Map) bean).put(fieldName, value);
         } else {
-            final BeanDesc.PropDesc prop = BeanUtils.getBeanDesc(beanClass).getProp(fieldName);
+            final PropDesc prop = BeanUtils.getBeanDesc(beanClass).getProp(fieldName);
             if (null == prop) {
                 throw new BeanException("No public field or set method for {}", fieldName);
             }

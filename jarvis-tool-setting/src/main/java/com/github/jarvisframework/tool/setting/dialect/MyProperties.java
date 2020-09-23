@@ -50,7 +50,17 @@ public class MyProperties extends Properties implements BasicTypeGetter<String>,
     /**
      * 默认配置文件扩展名
      */
-    public final static String EXT_NAME = "properties";
+    public static final  String EXT_NAME = "properties";
+
+    /**
+     * 构建一个空的Props，用于手动加入参数
+     *
+     * @return Setting
+     * @since 5.4.3
+     */
+    public static MyProperties create() {
+        return new MyProperties();
+    }
 
     // ----------------------------------------------------------------------- 私有属性 start
     /**

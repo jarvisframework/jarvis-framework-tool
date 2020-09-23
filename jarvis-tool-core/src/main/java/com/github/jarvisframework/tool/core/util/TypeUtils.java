@@ -1,7 +1,8 @@
 package com.github.jarvisframework.tool.core.util;
 
 
-import com.github.jarvisframework.tool.core.map.TableMap;
+import com.github.jarvisframework.tool.core.lang.ParameterizedTypeImpl;
+import com.github.jarvisframework.tool.core.lang.reflect.ActualTypeMapperPool;
 
 import java.lang.reflect.*;
 import java.util.Map;
@@ -56,6 +57,18 @@ public class TypeUtils {
             return null;
         }
         return field.getGenericType();
+    }
+
+    /**
+     * 获得字段的泛型类型
+     *
+     * @param clazz     Bean类
+     * @param fieldName 字段名
+     * @return 字段的泛型类型
+     * @since 5.4.2
+     */
+    public static Type getFieldType(Class<?> clazz, String fieldName) {
+        return getType(ReflectUtils.getField(clazz, fieldName));
     }
 
     /**
@@ -267,74 +280,6 @@ public class TypeUtils {
     }
 
     /**
-     * 获取指定泛型变量对应的真实类型<br>
-     * 由于子类中泛型参数实现和父类（接口）中泛型定义位置是一一对应的，因此可以通过对应关系找到泛型实现类型<br>
-     * 使用此方法注意：
-     *
-     * <pre>
-     * 1. superClass必须是clazz的父类或者clazz实现的接口
-     * 2. typeVariable必须在superClass中声明
-     * </pre>
-     *
-     * @param actualType      真实类型所在类，此类中记录了泛型参数对应的实际类型
-     * @param typeDefineClass 泛型变量声明所在类或接口，此类中定义了泛型类型
-     * @param typeVariables   泛型变量，需要的实际类型对应的泛型参数
-     * @return 给定泛型参数对应的实际类型，如果无对应类型，返回null
-     * @since 4.5.7
-     */
-    public static Type[] getActualTypes(Type actualType, Class<?> typeDefineClass, Type... typeVariables) {
-        if (false == typeDefineClass.isAssignableFrom(getClass(actualType))) {
-            throw new IllegalArgumentException("Parameter [superClass] must be assignable from [clazz]");
-        }
-
-        // 泛型参数标识符列表
-        final TypeVariable<?>[] typeVars = typeDefineClass.getTypeParameters();
-        if (ArrayUtils.isEmpty(typeVars)) {
-            return null;
-        }
-        // 实际类型列表
-        final Type[] actualTypeArguments = TypeUtils.getTypeArguments(actualType);
-        if (ArrayUtils.isEmpty(actualTypeArguments)) {
-            return null;
-        }
-
-        int size = Math.min(actualTypeArguments.length, typeVars.length);
-        final Map<TypeVariable<?>, Type> tableMap = new TableMap<>(typeVars, actualTypeArguments);
-
-        // 查找方法定义所在类或接口中此泛型参数的位置
-        final Type[] result = new Type[size];
-        for (int i = 0; i < typeVariables.length; i++) {
-            //noinspection SuspiciousMethodCalls
-            result[i] = (typeVariables[i] instanceof TypeVariable) ? tableMap.get(typeVariables[i]) : typeVariables[i];
-        }
-        return result;
-    }
-
-    /**
-     * 获取指定泛型变量对应的真实类型<br>
-     * 由于子类中泛型参数实现和父类（接口）中泛型定义位置是一一对应的，因此可以通过对应关系找到泛型实现类型<br>
-     * 使用此方法注意：
-     *
-     * <pre>
-     * 1. superClass必须是clazz的父类或者clazz实现的接口
-     * 2. typeVariable必须在superClass中声明
-     * </pre>
-     *
-     * @param actualType      真实类型所在类，此类中记录了泛型参数对应的实际类型
-     * @param typeDefineClass 泛型变量声明所在类或接口，此类中定义了泛型类型
-     * @param typeVariable    泛型变量，需要的实际类型对应的泛型参数
-     * @return 给定泛型参数对应的实际类型
-     * @since 4.5.2
-     */
-    public static Type getActualType(Type actualType, Class<?> typeDefineClass, Type typeVariable) {
-        Type[] types = getActualTypes(actualType, typeDefineClass, typeVariable);
-        if (ArrayUtils.isNotEmpty(types)) {
-            return types[0];
-        }
-        return null;
-    }
-
-    /**
      * 是否未知类型<br>
      * type为null或者{@link TypeVariable} 都视为未知类型
      *
@@ -342,7 +287,7 @@ public class TypeUtils {
      * @return 是否未知类型
      * @since 4.5.2
      */
-    public static boolean isUnknow(Type type) {
+    public static boolean isUnknown(Type type) {
         return null == type || type instanceof TypeVariable;
     }
 
@@ -360,5 +305,95 @@ public class TypeUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 获取泛型变量和泛型实际类型的对应关系Map，例如：
+     *
+     * <pre>
+     *     T    cn.hutool.test.User
+     *     E    java.lang.Integer
+     * </pre>
+     *
+     * @param clazz 被解析的包含泛型参数的类
+     * @return 泛型对应关系Map
+     */
+    public static Map<Type, Type> getTypeMap(Class<?> clazz) {
+        return ActualTypeMapperPool.get(clazz);
+    }
+
+    /**
+     * 获得泛型字段对应的泛型实际类型，如果此变量没有对应的实际类型，返回null
+     *
+     * @param type  实际类型明确的类
+     * @param field 字段
+     * @return 实际类型，可能为Class等
+     */
+    public static Type getActualType(Type type, Field field) {
+        if (null == field) {
+            return null;
+        }
+        return getActualType(ObjectUtils.defaultIfNull(type, field.getDeclaringClass()), field.getGenericType());
+    }
+
+    /**
+     * 获得泛型变量对应的泛型实际类型，如果此变量没有对应的实际类型，返回null
+     * 此方法可以处理：
+     *
+     * <pre>
+     *     1. 泛型化对象，类似于Map&lt;User, Key&lt;Long&gt;&gt;
+     *     2. 泛型变量，类似于T
+     * </pre>
+     *
+     * @param type         类
+     * @param typeVariable 泛型变量，例如T等
+     * @return 实际类型，可能为Class等
+     */
+    public static Type getActualType(Type type, Type typeVariable) {
+        if (typeVariable instanceof ParameterizedType) {
+            return getActualType(type, (ParameterizedType) typeVariable);
+        }
+
+        if (typeVariable instanceof TypeVariable) {
+            return ActualTypeMapperPool.getActualType(type, (TypeVariable<?>) typeVariable);
+        }
+
+        // 没有需要替换的泛型变量，原样输出
+        return typeVariable;
+    }
+
+    /**
+     * 获得泛型变量对应的泛型实际类型，如果此变量没有对应的实际类型，返回null
+     * 此方法可以处理复杂的泛型化对象，类似于Map&lt;User, Key&lt;Long&gt;&gt;
+     *
+     * @param type              类
+     * @param parameterizedType 泛型变量，例如List&lt;T&gt;等
+     * @return 实际类型，可能为Class等
+     */
+    public static Type getActualType(Type type, ParameterizedType parameterizedType) {
+        // 字段类型为泛型参数类型，解析对应泛型类型为真实类型，类似于List<T> a
+        Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+
+        // 泛型对象中含有未被转换的泛型变量
+        if (TypeUtils.hasTypeVeriable(actualTypeArguments)) {
+            actualTypeArguments = getActualTypes(type, parameterizedType.getActualTypeArguments());
+            if (ArrayUtils.isNotEmpty(actualTypeArguments)) {
+                // 替换泛型变量为实际类型，例如List<T>变为List<String>
+                parameterizedType = new ParameterizedTypeImpl(actualTypeArguments, parameterizedType.getOwnerType(), parameterizedType.getRawType());
+            }
+        }
+
+        return parameterizedType;
+    }
+
+    /**
+     * 获得泛型变量对应的泛型实际类型，如果此变量没有对应的实际类型，返回null
+     *
+     * @param type          类
+     * @param typeVariables 泛型变量数组，例如T等
+     * @return 实际类型数组，可能为Class等
+     */
+    public static Type[] getActualTypes(Type type, Type... typeVariables) {
+        return ActualTypeMapperPool.getActualTypes(type, typeVariables);
     }
 }

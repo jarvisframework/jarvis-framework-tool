@@ -1,5 +1,6 @@
 package com.github.jarvisframework.tool.core.lang;
 
+import com.github.jarvisframework.tool.core.util.ArrayUtils;
 import com.github.jarvisframework.tool.core.util.CharUtils;
 import com.github.jarvisframework.tool.core.util.StringUtils;
 
@@ -17,7 +18,9 @@ import static java.lang.System.out;
  */
 public class Console {
 
-    // ---------------------------Log---------------------------
+    private static final String TEMPLATE_VAR = "{}";
+
+    // --------------------------------------------------------------------------------- Log
 
     /**
      * 同 System.out.println()方法，打印控制台日志
@@ -34,12 +37,71 @@ public class Console {
      */
     public static void log(Object obj) {
         if (obj instanceof Throwable) {
-            Throwable e = (Throwable) obj;
+            final Throwable e = (Throwable) obj;
             log(e, e.getMessage());
         } else {
-            log("{}", obj);
+            log(TEMPLATE_VAR, obj);
         }
     }
+
+    /**
+     * 同 System.out.println()方法，打印控制台日志<br>
+     * 如果传入打印对象为{@link Throwable}对象，那么同时打印堆栈
+     *
+     * @param obj1      第一个要打印的对象
+     * @param otherObjs 其它要打印的对象
+     * @since 5.4.3
+     */
+    public static void log(Object obj1, Object... otherObjs) {
+        if (ArrayUtils.isEmpty(otherObjs)) {
+            log(obj1);
+        } else {
+            log(buildTemplateSplitBySpace(otherObjs.length + 1), ArrayUtils.insert(otherObjs, 0, obj1));
+        }
+    }
+
+    /**
+     * 同 System.out.println()方法，打印控制台日志<br>
+     * 当传入template无"{}"时，被认为非模板，直接打印多个参数以空格分隔
+     *
+     * @param template 文本模板，被替换的部分用 {} 表示
+     * @param values   值
+     */
+    public static void log(String template, Object... values) {
+        if (ArrayUtils.isEmpty(values) || StringUtils.contains(template, TEMPLATE_VAR)) {
+            logInternal(template, values);
+        } else {
+            logInternal(buildTemplateSplitBySpace(values.length + 1), ArrayUtils.insert(values, 0, template));
+        }
+    }
+
+    /**
+     * 同 System.out.println()方法，打印控制台日志
+     *
+     * @param t        异常对象
+     * @param template 文本模板，被替换的部分用 {} 表示
+     * @param values   值
+     */
+    public static void log(Throwable t, String template, Object... values) {
+        out.println(StringUtils.format(template, values));
+        if (null != t) {
+            t.printStackTrace();
+            out.flush();
+        }
+    }
+
+    /**
+     * 同 System.out.println()方法，打印控制台日志
+     *
+     * @param template 文本模板，被替换的部分用 {} 表示
+     * @param values   值
+     * @since 5.4.3
+     */
+    private static void logInternal(String template, Object... values) {
+        log(null, template, values);
+    }
+
+    // --------------------------------------------------------------------------------- print
 
     /**
      * 同 System.out.print()方法，打印控制台日志
@@ -48,7 +110,38 @@ public class Console {
      * @since 3.3.1
      */
     public static void print(Object obj) {
-        print("{}", obj);
+        print(TEMPLATE_VAR, obj);
+    }
+
+    /**
+     * 同 System.out.println()方法，打印控制台日志<br>
+     * 如果传入打印对象为{@link Throwable}对象，那么同时打印堆栈
+     *
+     * @param obj1      第一个要打印的对象
+     * @param otherObjs 其它要打印的对象
+     * @since 5.4.3
+     */
+    public static void print(Object obj1, Object... otherObjs) {
+        if (ArrayUtils.isEmpty(otherObjs)) {
+            print(obj1);
+        } else {
+            print(buildTemplateSplitBySpace(otherObjs.length + 1), ArrayUtils.insert(otherObjs, 0, obj1));
+        }
+    }
+
+    /**
+     * 同 System.out.print()方法，打印控制台日志
+     *
+     * @param template 文本模板，被替换的部分用 {} 表示
+     * @param values   值
+     * @since 3.3.1
+     */
+    public static void print(String template, Object... values) {
+        if (ArrayUtils.isEmpty(values) || StringUtils.contains(template, TEMPLATE_VAR)) {
+            printInternal(template, values);
+        } else {
+            printInternal(buildTemplateSplitBySpace(values.length + 1), ArrayUtils.insert(values, 0, template));
+        }
     }
 
     /**
@@ -80,38 +173,13 @@ public class Console {
      *
      * @param template 文本模板，被替换的部分用 {} 表示
      * @param values   值
+     * @since 5.4.3
      */
-    public static void log(String template, Object... values) {
-        log(null, template, values);
-    }
-
-    /**
-     * 同 System.out.print()方法，打印控制台日志
-     *
-     * @param template 文本模板，被替换的部分用 {} 表示
-     * @param values   值
-     * @since 3.3.1
-     */
-    public static void print(String template, Object... values) {
+    private static void printInternal(String template, Object... values) {
         out.print(StringUtils.format(template, values));
     }
 
-    /**
-     * 同 System.out.println()方法，打印控制台日志
-     *
-     * @param t        异常对象
-     * @param template 文本模板，被替换的部分用 {} 表示
-     * @param values   值
-     */
-    public static void log(Throwable t, String template, Object... values) {
-        out.println(StringUtils.format(template, values));
-        if (null != t) {
-            t.printStackTrace();
-            out.flush();
-        }
-    }
-
-    // ---------------------------Error---------------------------
+    // --------------------------------------------------------------------------------- Error
 
     /**
      * 同 System.err.println()方法，打印控制台日志
@@ -130,7 +198,23 @@ public class Console {
             Throwable e = (Throwable) obj;
             error(e, e.getMessage());
         } else {
-            error("{}", obj);
+            error(TEMPLATE_VAR, obj);
+        }
+    }
+
+    /**
+     * 同 System.out.println()方法，打印控制台日志<br>
+     * 如果传入打印对象为{@link Throwable}对象，那么同时打印堆栈
+     *
+     * @param obj1      第一个要打印的对象
+     * @param otherObjs 其它要打印的对象
+     * @since 5.4.3
+     */
+    public static void error(Object obj1, Object... otherObjs) {
+        if (ArrayUtils.isEmpty(otherObjs)) {
+            error(obj1);
+        } else {
+            error(buildTemplateSplitBySpace(otherObjs.length + 1), ArrayUtils.insert(otherObjs, 0, obj1));
         }
     }
 
@@ -141,7 +225,11 @@ public class Console {
      * @param values   值
      */
     public static void error(String template, Object... values) {
-        error(null, template, values);
+        if (ArrayUtils.isEmpty(values) || StringUtils.contains(template, TEMPLATE_VAR)) {
+            errorInternal(template, values);
+        } else {
+            errorInternal(buildTemplateSplitBySpace(values.length + 1), ArrayUtils.insert(values, 0, template));
+        }
     }
 
     /**
@@ -159,7 +247,17 @@ public class Console {
         }
     }
 
-    // ---------------------------in---------------------------
+    /**
+     * 同 System.err.println()方法，打印控制台日志
+     *
+     * @param template 文本模板，被替换的部分用 {} 表示
+     * @param values   值
+     */
+    private static void errorInternal(String template, Object... values) {
+        error(null, template, values);
+    }
+
+    // --------------------------------------------------------------------------------- in
 
     /**
      * 创建从控制台读取内容的{@link Scanner}
@@ -181,7 +279,7 @@ public class Console {
         return scanner().next();
     }
 
-    // ---------------------------console lineNumber---------------------------
+    // --------------------------------------------------------------------------------- console lineNumber
 
     /**
      * 返回当前位置+行号 (不支持Lambda、内部类、递归内使用)
@@ -207,6 +305,16 @@ public class Console {
      */
     public static Integer lineNumber() {
         return new Throwable().getStackTrace()[1].getLineNumber();
+    }
+
+    /**
+     * 构建空格分隔的模板，类似于"{} {} {} {}"
+     *
+     * @param count 变量数量
+     * @return 模板
+     */
+    private static String buildTemplateSplitBySpace(int count) {
+        return StringUtils.repeatAndJoin(TEMPLATE_VAR, count, StringUtils.SPACE);
     }
 
 }

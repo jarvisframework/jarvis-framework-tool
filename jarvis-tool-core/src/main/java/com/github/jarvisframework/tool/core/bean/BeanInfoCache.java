@@ -1,5 +1,6 @@
 package com.github.jarvisframework.tool.core.bean;
 
+import com.github.jarvisframework.tool.core.func.Func0;
 import com.github.jarvisframework.tool.core.lang.SimpleCache;
 
 import java.beans.PropertyDescriptor;
@@ -28,7 +29,23 @@ public enum BeanInfoCache {
      * @return 属性名和{@link PropertyDescriptor}Map映射
      */
     public Map<String, PropertyDescriptor> getPropertyDescriptorMap(Class<?> beanClass, boolean ignoreCase) {
-        return (ignoreCase ? ignoreCasePdCache : pdCache).get(beanClass);
+        return getCache(ignoreCase).get(beanClass);
+    }
+
+    /**
+     * 获得属性名和{@link PropertyDescriptor}Map映射
+     *
+     * @param beanClass  Bean的类
+     * @param ignoreCase 是否忽略大小写
+     * @param supplier   缓存对象产生函数
+     * @return 属性名和{@link PropertyDescriptor}Map映射
+     * @since 5.4.1
+     */
+    public Map<String, PropertyDescriptor> getPropertyDescriptorMap(
+            Class<?> beanClass,
+            boolean ignoreCase,
+            Func0<Map<String, PropertyDescriptor>> supplier) {
+        return getCache(ignoreCase).get(beanClass, supplier);
     }
 
     /**
@@ -39,6 +56,17 @@ public enum BeanInfoCache {
      * @param ignoreCase                     是否忽略大小写
      */
     public void putPropertyDescriptorMap(Class<?> beanClass, Map<String, PropertyDescriptor> fieldNamePropertyDescriptorMap, boolean ignoreCase) {
-        (ignoreCase ? ignoreCasePdCache : pdCache).put(beanClass, fieldNamePropertyDescriptorMap);
+        getCache(ignoreCase).put(beanClass, fieldNamePropertyDescriptorMap);
+    }
+
+    /**
+     * 根据是否忽略字段名的大小写，返回不用Cache对象
+     *
+     * @param ignoreCase 是否忽略大小写
+     * @return SimpleCache
+     * @since 5.4.1
+     */
+    private SimpleCache<Class<?>, Map<String, PropertyDescriptor>> getCache(boolean ignoreCase) {
+        return ignoreCase ? ignoreCasePdCache : pdCache;
     }
 }

@@ -1,6 +1,8 @@
 package com.github.jarvisframework.tool.core.bean.copier;
 
+import com.github.jarvisframework.tool.core.lang.Editor;
 import com.github.jarvisframework.tool.core.map.MapUtils;
+import com.github.jarvisframework.tool.core.util.ObjectUtils;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -43,6 +45,18 @@ public class CopyOptions implements Serializable {
      * 拷贝属性的字段映射，用于不同的属性之前拷贝做对应表用
      */
     protected Map<String, String> fieldMapping;
+    /**
+     * 反向映射表，自动生成用于反向查找
+     */
+    private Map<String, String> reversedFieldMapping;
+    /**
+     * 字段属性编辑器，用于自定义属性转换规则，例如驼峰转下划线等
+     */
+    protected Editor<String> fieldNameEditor;
+    /**
+     * 是否支持transient关键字修饰和@Transient注解，如果支持，被修饰的字段或方法对应的字段将被忽略。
+     */
+    private boolean transientSupport = true;
 
     /**
      * 创建拷贝选项
@@ -181,12 +195,80 @@ public class CopyOptions implements Serializable {
     }
 
     /**
+     * 设置字段属性编辑器，用于自定义属性转换规则，例如驼峰转下划线等<br>
+     * 此转换器只针对源端的字段做转换，请确认转换后与目标端字段一致
+     *
+     * @param fieldNameEditor 字段属性编辑器，用于自定义属性转换规则，例如驼峰转下划线等
+     * @return CopyOptions
+     * @since 5.4.2
+     */
+    public CopyOptions setFieldNameEditor(Editor<String> fieldNameEditor) {
+        this.fieldNameEditor = fieldNameEditor;
+        return this;
+    }
+
+    /**
+     * 是否支持transient关键字修饰和@Transient注解，如果支持，被修饰的字段或方法对应的字段将被忽略。
+     *
+     * @return 是否支持
+     * @since 5.4.2
+     */
+    public boolean isTransientSupport() {
+        return this.transientSupport;
+    }
+
+    /**
+     * 设置是否支持transient关键字修饰和@Transient注解，如果支持，被修饰的字段或方法对应的字段将被忽略。
+     *
+     * @param transientSupport 是否支持
+     * @return this
+     * @since 5.4.2
+     */
+    public CopyOptions setTransientSupport(boolean transientSupport) {
+        this.transientSupport = transientSupport;
+        return this;
+    }
+
+    /**
+     * 获得映射后的字段名<br>
+     * 当非反向，则根据源字段名获取目标字段名，反之根据目标字段名获取源字段名。
+     *
+     * @param fieldName 字段名
+     * @param reversed  是否反向映射
+     * @return 映射后的字段名
+     */
+    protected String getMappedFieldName(String fieldName, boolean reversed) {
+        Map<String, String> mapping = reversed ? getReversedMapping() : this.fieldMapping;
+        if (MapUtils.isEmpty(mapping)) {
+            return fieldName;
+        }
+        return ObjectUtils.defaultIfNull(mapping.get(fieldName), fieldName);
+    }
+
+    /**
+     * 转换字段名为编辑后的字段名
+     *
+     * @param fieldName 字段名
+     * @return 编辑后的字段名
+     * @since 5.4.2
+     */
+    protected String editFieldName(String fieldName) {
+        return (null != this.fieldNameEditor) ? this.fieldNameEditor.edit(fieldName) : fieldName;
+    }
+
+    /**
      * 获取反转之后的映射
      *
      * @return 反转映射
      * @since 4.1.10
      */
-    protected Map<String, String> getReversedMapping() {
-        return (null != this.fieldMapping) ? MapUtils.reverse(this.fieldMapping) : null;
+    private Map<String, String> getReversedMapping() {
+        if (null == this.fieldMapping) {
+            return null;
+        }
+        if (null == this.reversedFieldMapping) {
+            reversedFieldMapping = MapUtils.reverse(this.fieldMapping);
+        }
+        return reversedFieldMapping;
     }
 }

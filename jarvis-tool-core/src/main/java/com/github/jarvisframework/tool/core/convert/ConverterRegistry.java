@@ -40,6 +40,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * @since 1.0, 2020-07-13 14:40:23
  */
 public class ConverterRegistry implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -165,14 +166,14 @@ public class ConverterRegistry implements Serializable {
      */
     @SuppressWarnings("unchecked")
     public <T> T convert(Type type, Object value, T defaultValue, boolean isCustomFirst) throws ConvertException {
-        if (TypeUtils.isUnknow(type) && null == defaultValue) {
+        if (TypeUtils.isUnknown(type) && null == defaultValue) {
             // 对于用户不指定目标类型的情况，返回原值
             return (T) value;
         }
         if (ObjectUtils.isNull(value)) {
             return defaultValue;
         }
-        if (TypeUtils.isUnknow(type)) {
+        if (TypeUtils.isUnknown(type)) {
             type = defaultValue.getClass();
         }
 
@@ -289,11 +290,7 @@ public class ConverterRegistry implements Serializable {
         // 数组转换
         if (rowType.isArray()) {
             final ArrayConverter arrayConverter = new ArrayConverter(rowType);
-            try {
-                return (T) arrayConverter.convert(value, defaultValue);
-            } catch (Exception e) {
-                // 数组转换失败进行下一步
-            }
+            return (T) arrayConverter.convert(value, defaultValue);
         }
 
         // 表示非需要特殊转换的对象

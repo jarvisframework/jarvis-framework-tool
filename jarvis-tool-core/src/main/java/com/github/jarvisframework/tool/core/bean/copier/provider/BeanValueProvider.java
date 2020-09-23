@@ -1,8 +1,7 @@
 package com.github.jarvisframework.tool.core.bean.copier.provider;
 
-import com.github.jarvisframework.tool.core.bean.BeanDesc;
-import com.github.jarvisframework.tool.core.bean.BeanDesc.PropDesc;
 import com.github.jarvisframework.tool.core.bean.BeanUtils;
+import com.github.jarvisframework.tool.core.bean.PropDesc;
 import com.github.jarvisframework.tool.core.bean.copier.ValueProvider;
 import com.github.jarvisframework.tool.core.util.StringUtils;
 
@@ -21,7 +20,7 @@ public class BeanValueProvider implements ValueProvider<String> {
 
     private final boolean ignoreError;
 
-    private final Map<String, BeanDesc.PropDesc> sourcePdMap;
+    final Map<String, PropDesc> sourcePdMap;
 
     /**
      * 构造
@@ -42,7 +41,7 @@ public class BeanValueProvider implements ValueProvider<String> {
 
         Object result = null;
         if (null != sourcePd) {
-            result = sourcePd.getValueWithConvert(this.source, valueType, this.ignoreError);
+            result = sourcePd.getValue(this.source, valueType, this.ignoreError);
         }
         return result;
     }
@@ -52,7 +51,7 @@ public class BeanValueProvider implements ValueProvider<String> {
         final PropDesc sourcePd = getPropDesc(key, null);
 
         // 字段描述不存在或忽略读的情况下，表示不存在
-        return null != sourcePd && false == sourcePd.isIgnoreGet();
+        return null != sourcePd && sourcePd.isReadable(false);
     }
 
     /**
@@ -71,5 +70,4 @@ public class BeanValueProvider implements ValueProvider<String> {
 
         return sourcePd;
     }
-
 }

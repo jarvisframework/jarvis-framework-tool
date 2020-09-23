@@ -9,11 +9,18 @@ import com.github.jarvisframework.tool.core.util.ObjectUtils;
 import com.github.jarvisframework.tool.core.util.ReflectUtils;
 import com.github.jarvisframework.tool.core.util.StringUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.function.Function;
 
 /**
- *  {@link Iterable} 和 {@link Iterator} 相关工具类
+ * {@link Iterable} 和 {@link Iterator} 相关工具类
  *
  * @author Doug Wang
  * @since 1.0, 2020-07-10 18:52:40
@@ -370,10 +377,10 @@ public class IterUtils {
      * @param entryIter entry集合
      * @return Map
      */
-    public static <K, V> HashMap<K, V> toMap(Iterable<Map.Entry<K, V>> entryIter) {
+    public static <K, V> HashMap<K, V> toMap(Iterable<Entry<K, V>> entryIter) {
         final HashMap<K, V> map = new HashMap<>();
         if (isNotEmpty(entryIter)) {
-            for (Map.Entry<K, V> entry : entryIter) {
+            for (Entry<K, V> entry : entryIter) {
                 map.put(entry.getKey(), entry.getValue());
             }
         }
@@ -799,5 +806,19 @@ public class IterUtils {
      */
     public static <T> Iterator<T> empty() {
         return Collections.emptyIterator();
+    }
+
+    /**
+     * 按照给定函数，转换{@link Iterator}为另一种类型的{@link Iterator}
+     *
+     * @param <F>      源元素类型
+     * @param <T>      目标元素类型
+     * @param iterator 源{@link Iterator}
+     * @param function 转换函数
+     * @return 转换后的{@link Iterator}
+     * @since 5.4.3
+     */
+    public static <F, T> Iterator<T> trans(Iterator<F> iterator, Function<? super F, ? extends T> function) {
+        return new TransIter<>(iterator, function);
     }
 }

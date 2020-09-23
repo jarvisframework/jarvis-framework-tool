@@ -1,22 +1,18 @@
 package com.github.jarvisframework.tool.core.bean.copier;
 
-import com.github.jarvisframework.tool.core.bean.BeanDesc.PropDesc;
+import com.github.jarvisframework.tool.core.bean.BeanException;
 import com.github.jarvisframework.tool.core.bean.BeanUtils;
 import com.github.jarvisframework.tool.core.bean.DynaBean;
 import com.github.jarvisframework.tool.core.bean.copier.provider.BeanValueProvider;
 import com.github.jarvisframework.tool.core.bean.copier.provider.DynaBeanValueProvider;
 import com.github.jarvisframework.tool.core.bean.copier.provider.MapValueProvider;
 import com.github.jarvisframework.tool.core.collection.CollectionUtils;
-import com.github.jarvisframework.tool.core.convert.Convert;
-import com.github.jarvisframework.tool.core.exception.UtilException;
-import com.github.jarvisframework.tool.core.lang.ParameterizedTypeImpl;
 import com.github.jarvisframework.tool.core.lang.copier.Copier;
-import com.github.jarvisframework.tool.core.map.MapUtils;
-import com.github.jarvisframework.tool.core.util.*;
+import com.github.jarvisframework.tool.core.util.StringUtils;
+import com.github.jarvisframework.tool.core.util.TypeUtils;
 
 import java.io.Serializable;
-import java.lang.reflect.*;
-import java.util.Collection;
+import java.lang.reflect.Type;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -162,49 +158,45 @@ public class BeanCopier<T> implements Copier<T>, Serializable {
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
     private void beanToMap(Object bean, Map targetMap) {
-        final Collection<PropDesc> props = BeanUtils.getBeanDesc(bean.getClass()).getProps();
         final HashSet<String> ignoreSet = (null != copyOptions.ignoreProperties) ? CollectionUtils.newHashSet(copyOptions.ignoreProperties) : null;
         final CopyOptions copyOptions = this.copyOptions;
 
-        String key;
-        Method getter;
-        Object value;
-        for (PropDesc prop : props) {
-            key = prop.getFieldName();
-            // 过滤class属性
-            // 得到property对应的getter方法
-            getter = prop.getGetter();
-            if (null != getter) {
-                // 只读取有getter方法的属性
-                try {
-                    value = getter.invoke(bean);
-                } catch (Exception e) {
-                    if (copyOptions.ignoreError) {
-                        // 忽略反射失败s
-                        continue;
-                    } else {
-                        throw new UtilException(e, "Get value of [{}] error!", prop.getFieldName());
-                    }
-                }
-                if (CollectionUtils.contains(ignoreSet, key)) {
-                    // 目标属性值被忽略或值提供者无此key时跳过
-                    continue;
-                }
-                if (null == value && copyOptions.ignoreNullValue) {
-                    // 当允许跳过空时，跳过
-                    continue;
-                }
-                if (bean.equals(value)) {
-                    // 值不能为bean本身，防止循环引用
-                    continue;
-                }
-                targetMap.put(mappingKey(copyOptions.fieldMapping, key), value);
+        BeanUtils.descForEach(bean.getClass(), (prop) -> {
+            if (false == prop.isReadable(copyOptions.isTransientSupport())) {
+                // 忽略的属性跳过之
+                return;
             }
-        }
+            String key = prop.getFieldName();
+            if (CollectionUtils.contains(ignoreSet, key)) {
+                // 目标属性值被忽略或值提供者无此key时跳过
+                return;
+            }
+
+            Object value;
+            try {
+                value = prop.getValue(bean);
+            } catch (Exception e) {
+                if (copyOptions.ignoreError) {
+                    return;// 忽略反射失败
+                } else {
+                    throw new BeanException(e, "Get value of [{}] error!", prop.getFieldName());
+                }
+            }
+            if ((null == value && copyOptions.ignoreNullValue) || bean == value) {
+                // 当允许跳过空时，跳过
+                // 值不能为bean本身，防止循环引用，此类也跳过
+                return;
+            }
+
+            // 对key做映射
+            key = copyOptions.editFieldName(copyOptions.getMappedFieldName(key, false));
+            targetMap.put(key, value);
+        });
     }
 
     /**
-     * 值提供器转Bean
+     * 值提供器转Bean<br>
+     * 此方法通过遍历目标Bean的字段，从ValueProvider查找对应值
      *
      * @param valueProvider 值提供器
      * @param bean          Bean
@@ -224,101 +216,38 @@ public class BeanCopier<T> implements Copier<T>, Serializable {
             actualEditable = copyOptions.editable;
         }
         final HashSet<String> ignoreSet = (null != copyOptions.ignoreProperties) ? CollectionUtils.newHashSet(copyOptions.ignoreProperties) : null;
-        final Map<String, String> fieldReverseMapping = copyOptions.getReversedMapping();
 
-        final Collection<PropDesc> props = BeanUtils.getBeanDesc(actualEditable).getProps();
-        Field field;
-        String fieldName;
-        Object value;
-        Method setterMethod;
-        Class<?> propClass;
-        for (PropDesc prop : props) {
-            // 获取值
-            field = prop.getField();
-            fieldName = prop.getFieldName();
+        // 遍历目标bean的所有属性
+        BeanUtils.descForEach(actualEditable, (prop) -> {
+            if (false == prop.isWritable(this.copyOptions.isTransientSupport())) {
+                // 字段不可写，跳过之
+                return;
+            }
+            // 检查属性名
+            String fieldName = prop.getFieldName();
             if (CollectionUtils.contains(ignoreSet, fieldName)) {
                 // 目标属性值被忽略或值提供者无此key时跳过
-                continue;
+                return;
             }
-            final String providerKey = mappingKey(fieldReverseMapping, fieldName);
+
+            final String providerKey = copyOptions.getMappedFieldName(fieldName, true);
             if (false == valueProvider.containsKey(providerKey)) {
                 // 无对应值可提供
-                continue;
-            }
-            setterMethod = prop.getSetter();
-            if (null == setterMethod && false == ModifierUtils.isPublic(field)) {
-                // Setter方法不存在或者字段为非public跳过
-                //5.1.0新增支持public字段注入支持
-                continue;
+                return;
             }
 
-            Type valueType = (null == setterMethod) ? TypeUtils.getType(field) : TypeUtils.getFirstParamType(setterMethod);
-            if (valueType instanceof ParameterizedType) {
-                // 参数为泛型参数类型，解析对应泛型类型为真实类型
-                ParameterizedType tmp = (ParameterizedType) valueType;
-                Type[] actualTypeArguments = tmp.getActualTypeArguments();
-                if (TypeUtils.hasTypeVeriable(actualTypeArguments)) {
-                    // 泛型对象中含有未被转换的泛型变量
-                    actualTypeArguments = TypeUtils.getActualTypes(this.destType, field.getDeclaringClass(), tmp.getActualTypeArguments());
-                    if (ArrayUtils.isNotEmpty(actualTypeArguments)) {
-                        // 替换泛型变量为实际类型
-                        valueType = new ParameterizedTypeImpl(actualTypeArguments, tmp.getOwnerType(), tmp.getRawType());
-                    }
-                }
-            } else if (valueType instanceof TypeVariable) {
-                // 参数为泛型，查找其真实类型（适用于泛型方法定义于泛型父类）
-                valueType = TypeUtils.getActualType(this.destType, field.getDeclaringClass(), valueType);
-            }
+            // 获取目标字段真实类型
+            final Type fieldType = TypeUtils.getActualType(this.destType, prop.getFieldType());
 
-            value = valueProvider.value(providerKey, valueType);
-            if (null == value && copyOptions.ignoreNullValue) {
+            // 获取属性值
+            Object value = valueProvider.value(providerKey, fieldType);
+            if ((null == value && copyOptions.ignoreNullValue) || bean == value) {
                 // 当允许跳过空时，跳过
-                continue;
-            }
-            if (bean == value) {
                 // 值不能为bean本身，防止循环引用
-                continue;
+                return;
             }
 
-            try {
-                // valueProvider在没有对值做转换且当类型不匹配的时候，执行默认转换
-                propClass = prop.getFieldClass();
-                if (false == propClass.isInstance(value)) {
-                    value = Convert.convert(propClass, value);
-                    if (null == value && copyOptions.ignoreNullValue) {
-                        // 当允许跳过空时，跳过
-                        continue;
-                    }
-                }
-
-                if (null == setterMethod) {
-                    // 直接注入值
-                    ReflectUtils.setFieldValue(bean, field, value);
-                } else {
-                    // 执行set方法注入值
-                    ReflectUtils.invoke(bean, setterMethod, value);
-                }
-            } catch (Exception e) {
-                if (false == copyOptions.ignoreError) {
-                    throw new UtilException(e, "Inject [{}] error!", prop.getFieldName());
-                }
-                // 忽略注入失败
-            }
-        }
-    }
-
-    /**
-     * 获取指定字段名对应的映射值
-     *
-     * @param mapping   反向映射Map
-     * @param fieldName 字段名
-     * @return 映射值，无对应值返回字段名
-     * @since 4.1.10
-     */
-    private static String mappingKey(Map<String, String> mapping, String fieldName) {
-        if (MapUtils.isEmpty(mapping)) {
-            return fieldName;
-        }
-        return ObjectUtils.defaultIfNull(mapping.get(fieldName), fieldName);
+            prop.setValue(bean, value, copyOptions.ignoreNullValue, copyOptions.ignoreError);
+        });
     }
 }

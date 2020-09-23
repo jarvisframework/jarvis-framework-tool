@@ -16,11 +16,13 @@ import com.github.jarvisframework.tool.core.util.*;
 
 import java.lang.reflect.Type;
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * <p>集合工具类</p>
@@ -234,6 +236,45 @@ public class CollectionUtils {
     }
 
     /**
+     * 多个集合的交集<br>
+     * 针对一个集合中存在多个相同元素的情况，只保留一个<br>
+     * 例如：集合1：[a, b, c, c, c]，集合2：[a, b, c, c]<br>
+     * 结果：[a, b, c]，此结果中只保留了一个c
+     *
+     * @param <T>        集合元素类型
+     * @param coll1      集合1
+     * @param coll2      集合2
+     * @param otherColls 其它集合
+     * @return 并集的集合，返回 {@link LinkedHashSet}
+     * @since 5.3.9
+     */
+    @SafeVarargs
+    public static <T> Set<T> intersectionDistinct(Collection<T> coll1, Collection<T> coll2, Collection<T>... otherColls) {
+        final Set<T> result;
+        if (isEmpty(coll1) || isEmpty(coll2)) {
+            // 有一个空集合就直接返回空
+            return new LinkedHashSet<>();
+        } else {
+            result = new LinkedHashSet<>(coll1);
+        }
+
+        if (ArrayUtils.isNotEmpty(otherColls)) {
+            for (Collection<T> otherColl : otherColls) {
+                if (isNotEmpty(otherColl)) {
+                    result.retainAll(otherColl);
+                } else {
+                    // 有一个空集合就直接返回空
+                    return new LinkedHashSet<>();
+                }
+            }
+        }
+
+        result.retainAll(coll2);
+
+        return result;
+    }
+
+    /**
      * 两个集合的差集<br>
      * 针对一个集合中存在多个相同元素的情况，计算两个集合中此元素的个数，保留两个集合中此元素个数差的个数<br>
      * 例如：
@@ -335,6 +376,26 @@ public class CollectionUtils {
      */
     public static boolean contains(Collection<?> collection, Object value) {
         return isNotEmpty(collection) && collection.contains(value);
+    }
+
+    /**
+     * 自定义函数判断集合是否包含某类值
+     *
+     * @param collection  集合
+     * @param containFunc 自定义判断函数
+     * @param <T>         值类型
+     * @return 是否包含自定义规则的值
+     */
+    public static <T> boolean contains(Collection<T> collection, Predicate<? super T> containFunc) {
+        if (isEmpty(collection)) {
+            return false;
+        }
+        for (T t : collection) {
+            if (containFunc.test(t)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -473,7 +534,7 @@ public class CollectionUtils {
      */
     public static <T> List<T> popPart(Stack<T> surplusAlaDatas, int partSize) {
         if (isEmpty(surplusAlaDatas)) {
-            return null;
+            return ListUtils.empty();
         }
 
         final List<T> currentAlaDatas = new ArrayList<>();
@@ -502,7 +563,7 @@ public class CollectionUtils {
      */
     public static <T> List<T> popPart(Deque<T> surplusAlaDatas, int partSize) {
         if (isEmpty(surplusAlaDatas)) {
-            return null;
+            return ListUtils.empty();
         }
 
         final List<T> currentAlaDatas = new ArrayList<>();
@@ -1007,7 +1068,7 @@ public class CollectionUtils {
      */
     public static <T> List<T> sub(Collection<T> list, int start, int end, int step) {
         if (list == null || list.isEmpty()) {
-            return null;
+            return ListUtils.empty();
         }
 
         return sub(new ArrayList<>(list), start, end, step);
@@ -1111,7 +1172,7 @@ public class CollectionUtils {
      */
     public static <T> Collection<T> filterNew(Collection<T> collection, Filter<T> filter) {
         if (null == collection || null == filter) {
-            return null;
+            return collection;
         }
 
         Collection<T> collection2 = ObjectUtils.clone(collection);
@@ -1256,7 +1317,7 @@ public class CollectionUtils {
      * @return 抽取后的新列表
      * @since 5.3.5
      */
-    public static <T, R> List<R> map(Iterable<T> collection, Function<T, R> func, boolean ignoreNull) {
+    public static <T, R> List<R> map(Iterable<T> collection, Function<? super T, ? extends R> func, boolean ignoreNull) {
         final List<R> fieldValueList = new ArrayList<>();
         if (null == collection) {
             return fieldValueList;
@@ -1415,7 +1476,7 @@ public class CollectionUtils {
      * @return 过滤后的Map
      * @see MapUtils#filter(Map, Editor)
      */
-    public static <K, V> Map<K, V> filter(Map<K, V> map, Editor<Map.Entry<K, V>> editor) {
+    public static <K, V> Map<K, V> filter(Map<K, V> map, Editor<Entry<K, V>> editor) {
         return MapUtils.filter(map, editor);
     }
 
@@ -1436,7 +1497,7 @@ public class CollectionUtils {
      * @see MapUtils#filter(Map, Filter)
      * @since 3.1.0
      */
-    public static <K, V> Map<K, V> filter(Map<K, V> map, Filter<Map.Entry<K, V>> filter) {
+    public static <K, V> Map<K, V> filter(Map<K, V> map, Filter<Entry<K, V>> filter) {
         return MapUtils.filter(map, filter);
     }
 
@@ -1674,7 +1735,7 @@ public class CollectionUtils {
      */
     public static <K, V> Map<K, V> zip(Collection<K> keys, Collection<V> values) {
         if (isEmpty(keys) || isEmpty(values)) {
-            return null;
+            return MapUtils.empty();
         }
 
         int entryCount = Math.min(keys.size(), values.size());
@@ -1699,7 +1760,7 @@ public class CollectionUtils {
      * @return Map
      * @see IterUtils#toMap(Iterable)
      */
-    public static <K, V> HashMap<K, V> toMap(Iterable<Map.Entry<K, V>> entryIter) {
+    public static <K, V> HashMap<K, V> toMap(Iterable<Entry<K, V>> entryIter) {
         return IterUtils.toMap(entryIter);
     }
 
@@ -1929,7 +1990,7 @@ public class CollectionUtils {
         if (null == collection || null == value) {
             return collection;
         }
-        if (TypeUtils.isUnknow(elementType)) {
+        if (TypeUtils.isUnknown(elementType)) {
             // 元素类型为空时，使用Object类型来接纳所有类型
             elementType = Object.class;
         }
@@ -2279,7 +2340,7 @@ public class CollectionUtils {
      *
      * @param <T>        集合元素类型
      * @param collection 集合
-     * @param comparator 比较器
+     * @param comparator 比较器s
      * @return treeSet
      */
     public static <T> List<T> sort(Collection<T> collection, Comparator<? super T> comparator) {
@@ -2409,8 +2470,8 @@ public class CollectionUtils {
      * @return 排序后的Set
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    public static <K, V> List<Map.Entry<K, V>> sortEntryToList(Collection<Map.Entry<K, V>> collection) {
-        List<Map.Entry<K, V>> list = new LinkedList<>(collection);
+    public static <K, V> List<Entry<K, V>> sortEntryToList(Collection<Entry<K, V>> collection) {
+        List<Entry<K, V>> list = new LinkedList<>(collection);
         list.sort((o1, o2) -> {
             V v1 = o1.getValue();
             V v2 = o2.getValue();
@@ -2467,7 +2528,7 @@ public class CollectionUtils {
      */
     public static <K, V> void forEach(Map<K, V> map, KVConsumer<K, V> kvConsumer) {
         int index = 0;
-        for (Map.Entry<K, V> entry : map.entrySet()) {
+        for (Entry<K, V> entry : map.entrySet()) {
             kvConsumer.accept(entry.getKey(), entry.getValue(), index);
             index++;
         }
@@ -2707,6 +2768,56 @@ public class CollectionUtils {
         }
     }
 
+    /**
+     * 填充List，以达到最小长度
+     *
+     * @param <T>    集合元素类型
+     * @param list   列表
+     * @param minLen 最小长度
+     * @param padObj 填充的对象
+     * @since 5.3.10
+     */
+    public static <T> void padLeft(List<T> list, int minLen, T padObj) {
+        Objects.requireNonNull(list);
+        if (list.isEmpty()) {
+            padRight(list, minLen, padObj);
+            return;
+        }
+        for (int i = list.size(); i < minLen; i++) {
+            list.add(0, padObj);
+        }
+    }
+
+    /**
+     * 填充List，以达到最小长度
+     *
+     * @param <T>    集合元素类型
+     * @param list   列表
+     * @param minLen 最小长度
+     * @param padObj 填充的对象
+     * @since 5.3.10
+     */
+    public static <T> void padRight(Collection<T> list, int minLen, T padObj) {
+        Objects.requireNonNull(list);
+        for (int i = list.size(); i < minLen; i++) {
+            list.add(padObj);
+        }
+    }
+
+    /**
+     * 使用给定的转换函数，转换源集合为新类型的集合
+     *
+     * @param <F>        源元素类型
+     * @param <T>        目标元素类型
+     * @param collection 集合
+     * @param function   转换函数
+     * @return 新类型的集合
+     * @since 5.4.3
+     */
+    public static <F, T> Collection<T> trans(Collection<F> collection, Function<? super F, ? extends T> function) {
+        return new TransCollection<>(collection, function);
+    }
+
     // ---------------------------------------------------------------------------------------------- Interface start
 
     /**
@@ -2715,6 +2826,7 @@ public class CollectionUtils {
      * @param <T> 处理参数类型
      * @author Looly
      */
+    @FunctionalInterface
     public interface Consumer<T> {
         /**
          * 接受并处理一个参数
@@ -2732,6 +2844,7 @@ public class CollectionUtils {
      * @param <V> VALUE类型
      * @author Looly
      */
+    @FunctionalInterface
     public interface KVConsumer<K, V> {
         /**
          * 接受并处理一对参数
