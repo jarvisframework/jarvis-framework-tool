@@ -20,7 +20,7 @@
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
 
         <compile.version>8</compile.version>
-        <junit.version>4.13</junit.version>
+        <junit.version>4.13.1</junit.version>
         <hutool.version>5.3.8</hutool.version>
     </properties>
 
