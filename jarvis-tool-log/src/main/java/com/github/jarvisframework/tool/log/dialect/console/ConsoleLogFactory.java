@@ -12,7 +12,7 @@ import com.github.jarvisframework.tool.log.LogFactory;
 public class ConsoleLogFactory extends LogFactory {
 
     public ConsoleLogFactory() {
-        super("Hutool Console Logging");
+        super("Jarvis Console Logging");
     }
 
     @Override
