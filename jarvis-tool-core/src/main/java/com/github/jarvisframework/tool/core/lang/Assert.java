@@ -7,6 +7,7 @@ import com.github.jarvisframework.tool.core.util.StringUtils;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.function.Supplier;
 
 /**
  * 断言<br>
@@ -168,6 +169,24 @@ public class Assert {
      */
     public static <T> T notNull(T object) throws IllegalArgumentException {
         return notNull(object, "[Assertion failed] - this argument is required; it must not be null");
+    }
+
+    /**
+     * 断言对象是否不为{@code null} ，如果为{@code null} 抛出{@link Supplier<? extends X> exceptionSupplier} 异常
+     *
+     * @param object 被检查对象
+     * @param exceptionSupplier 异常提供者
+     * @param <T> 被检查对象类型
+     * @param <X> 抛出异常类
+     * @return
+     * @throws X 抛出异常
+     */
+    public <T, X extends Throwable> T notNull(T object, Supplier<? extends X> exceptionSupplier) throws X {
+        if (null == object) {
+            throw exceptionSupplier.get();
+        } else {
+            return object;
+        }
     }
 
     // ----------------------------------------------------------------------------------------------------------- Check empty
