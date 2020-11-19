@@ -12,8 +12,14 @@ public class AssertTest {
 
     @Test
     public void notNullTest() {
-        String nullable = null;
+        String nullable = "";
         Assert.notNull(nullable, () -> new RuntimeException("Parameter is null"));
+    }
+
+    @Test
+    public void notBlankTest() {
+       String text = null;
+       Assert.notBlank(text, () -> new RuntimeException("The text must not be null"));
     }
 
 }

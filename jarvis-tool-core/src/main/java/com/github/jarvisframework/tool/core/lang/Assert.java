@@ -172,12 +172,16 @@ public class Assert {
     }
 
     /**
-     * 断言对象是否不为{@code null} ，如果为{@code null} 抛出{@link Supplier<? extends X> exceptionSupplier} 异常
+     * 断言对象是否不为{@code null} ，如果为{@code null} 抛出{@link Supplier<? extends Throwable> exceptionSupplier} 异常
      *
-     * @param object 被检查对象
+     * <pre class="code">
+     * Assert.notNull(clazz, () -> new RuntimeException("The class must not be null"));
+     * </pre>
+     *
+     * @param object            被检查对象
      * @param exceptionSupplier 异常提供者
-     * @param <T> 被检查对象类型
-     * @param <X> 抛出异常类
+     * @param <T>               被检查对象类型
+     * @param <X>               抛出异常类型
      * @return
      * @throws X 抛出异常
      */
@@ -256,7 +260,7 @@ public class Assert {
      * 检查给定字符串是否为空白（null、空串或只包含空白符），为空抛出 {@link IllegalArgumentException}
      *
      * <pre class="code">
-     * Assert.notBlank(name, "Name must not be blank");
+     * Assert.notBlank(text, "Text must not be blank");
      * </pre>
      *
      * @param <T>  字符串类型
@@ -267,6 +271,28 @@ public class Assert {
      */
     public static <T extends CharSequence> T notBlank(T text) throws IllegalArgumentException {
         return notBlank(text, "[Assertion failed] - this String argument must have text; it must not be null, empty, or blank");
+    }
+
+    /**
+     * 检查给定字符串是否为空白（null、空串或只包含空白符），为空抛出 {@link Supplier<? extends Throwable> exceptionSupplier}
+     *
+     * <pre class="code">
+     * Assert.notNull(text, () -> new RuntimeException("The text must not be blank"));
+     * </pre>
+     *
+     * @param text              被检查字符串
+     * @param exceptionSupplier
+     * @param <T>               字符串类型
+     * @param <X>               抛出异常类型
+     * @return 非空字符串
+     * @throws X 抛出异常
+     */
+    public static <T extends CharSequence, X extends Throwable> T notBlank(T text, Supplier<? extends X> exceptionSupplier) throws X {
+        if (StringUtils.isBlank(text)) {
+            throw exceptionSupplier.get();
+        } else {
+            return text;
+        }
     }
 
     /**
