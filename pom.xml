@@ -7,7 +7,7 @@
 
     <groupId>com.github.jarvisframework</groupId>
     <artifactId>jarvis-framework-tool</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.5.RELEASE</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>Jarvis框架工具类库</description>

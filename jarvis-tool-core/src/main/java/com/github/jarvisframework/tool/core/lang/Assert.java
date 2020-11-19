@@ -281,7 +281,7 @@ public class Assert {
      * </pre>
      *
      * @param text              被检查字符串
-     * @param exceptionSupplier
+     * @param exceptionSupplier 异常提供者
      * @param <T>               字符串类型
      * @param <X>               抛出异常类型
      * @return 非空字符串
@@ -442,6 +442,27 @@ public class Assert {
     }
 
     /**
+     * 断言给定集合非空
+     *
+     * <pre class="code">
+     * Assert.notEmpty(collection, () -> new RuntimeException("Collection must have elements"));
+     * </pre>
+     *
+     * @param collection        被检查的集合
+     * @param exceptionSupplier 异常提供者
+     * @param <T>               集合元素类型
+     * @param <X>               抛出异常类型
+     * @return
+     * @throws X 抛出异常
+     */
+    public static <T, X extends Throwable> Collection<T> notEmpty(Collection<T> collection, Supplier<? extends X> exceptionSupplier) throws X {
+        if (CollectionUtils.isEmpty(collection)) {
+            throw exceptionSupplier.get();
+        }
+        return collection;
+    }
+
+    /**
      * 断言给定Map非空
      *
      * <pre class="code">
@@ -478,6 +499,28 @@ public class Assert {
      */
     public static <K, V> Map<K, V> notEmpty(Map<K, V> map) throws IllegalArgumentException {
         return notEmpty(map, "[Assertion failed] - this map must not be empty; it must contain at least one entry");
+    }
+
+    /**
+     * 断言给定Map非空
+     *
+     * <pre class="code">
+     * Assert.notEmpty(map, () -> new RuntimeException("Map must have entries"));
+     * </pre>
+     *
+     * @param map               被检查的Map
+     * @param exceptionSupplier 异常提供者
+     * @param <K>               key——键
+     * @param <V>               Value——值
+     * @param <X>               抛出异常类型
+     * @return
+     * @throws X 抛出异常
+     */
+    public static <K, V, X extends Throwable> Map<K, V> notEmpty(Map<K, V> map, Supplier<? extends X> exceptionSupplier) throws X {
+        if (CollectionUtils.isEmpty(map)) {
+            throw exceptionSupplier.get();
+        }
+        return map;
     }
 
     /**
