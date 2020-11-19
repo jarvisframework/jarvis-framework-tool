@@ -181,7 +181,7 @@ public class Assert {
      * @return
      * @throws X 抛出异常
      */
-    public <T, X extends Throwable> T notNull(T object, Supplier<? extends X> exceptionSupplier) throws X {
+    public static <T, X extends Throwable> T notNull(T object, Supplier<? extends X> exceptionSupplier) throws X {
         if (null == object) {
             throw exceptionSupplier.get();
         } else {

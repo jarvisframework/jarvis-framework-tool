@@ -7,7 +7,7 @@
 
     <groupId>com.github.jarvisframework</groupId>
     <artifactId>jarvis-framework-tool</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.3.RELEASE</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>Jarvis框架工具类库</description>
@@ -44,12 +44,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <!--<dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-           <version>${hutool.version}</version>
-            <optional>true</optional>
-        </dependency>-->
     </dependencies>
 
     <build>

@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.github.jarvisframework</groupId>
         <artifactId>jarvis-framework-tool</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.3.RELEASE</version>
     </parent>
 
     <artifactId>jarvis-tool-extra</artifactId>
