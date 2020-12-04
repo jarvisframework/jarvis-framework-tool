@@ -14,6 +14,7 @@ import java.util.concurrent.Future;
  * @since 1.0, 2020-07-29 13:56:00
  */
 public class GlobalThreadPool {
+
     private static ExecutorService executor;
 
     private GlobalThreadPool() {

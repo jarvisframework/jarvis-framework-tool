@@ -67,6 +67,7 @@
             <version>20200716</version>
             <scope>system</scope>
             <systemPath>${pom.basedir}/src/main/resources/libs/taobao-sdk-java-auto_1594802809428-20200716.jar</systemPath>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 </project>

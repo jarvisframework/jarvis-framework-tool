@@ -162,11 +162,11 @@ public class ExecutorBuilder implements Builder<ThreadPoolExecutor> {
     /**
      * 设置当线程阻塞（block）时的异常处理器，所谓线程阻塞即线程池和等待队列已满，无法处理线程时采取的策略
      * <p>
-     * 此处可以使用JDK预定义的几种策略，见{@link RejectPolicy}枚举
+     * 此处可以使用JDK预定义的几种策略，见{@link RejectPolicyEnum}枚举
      *
      * @param handler {@link RejectedExecutionHandler}
      * @return this
-     * @see RejectPolicy
+     * @see RejectPolicyEnum
      */
     public ExecutorBuilder setHandler(RejectedExecutionHandler handler) {
         this.handler = handler;
